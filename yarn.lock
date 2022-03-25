@@ -2227,6 +2227,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"kakao.maps.d.ts@npm:^0.1.26":
+  version: 0.1.26
+  resolution: "kakao.maps.d.ts@npm:0.1.26"
+  checksum: ffa1632fa84f5ad78c164e6c2137846053a2b1dba2db3f09b6c9adf93ca7ec6404f47e182fcf83b491bb4292b33f69ffdfed04f2642dc8685ac7721037788468
+  languageName: node
+  linkType: hard
+
 "language-subtag-registry@npm:~0.3.2":
   version: 0.3.21
   resolution: "language-subtag-registry@npm:0.3.21"
@@ -2391,6 +2398,7 @@ __metadata:
     prettier: ^2.6.0
     react: 17.0.2
     react-dom: 17.0.2
+    react-kakao-maps-sdk: ^1.0.6
     typescript: 4.6.2
   languageName: unknown
   linkType: soft
@@ -2736,6 +2744,18 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
+  languageName: node
+  linkType: hard
+
+"react-kakao-maps-sdk@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "react-kakao-maps-sdk@npm:1.0.6"
+  dependencies:
+    kakao.maps.d.ts: ^0.1.26
+  peerDependencies:
+    react: ">=17.0.2 || >=16.9.0"
+    react-dom: ">=17.0.2 || >=16.9.0"
+  checksum: de3ad41b71406683badcdbd99d2722dedb4b3c21d1421cde18d99134d9ee64d17d1d4d0f6ba6ae3d17aec1f65ed4b79a6d70cef9d12e69acb2fb2c8625d36659
   languageName: node
   linkType: hard
 

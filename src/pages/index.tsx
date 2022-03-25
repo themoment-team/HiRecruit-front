@@ -1,16 +1,21 @@
-import React from 'react';
 import type { NextPage } from 'next';
-import { css } from '@emotion/react';
+import { Map } from 'react-kakao-maps-sdk';
 
 const Home: NextPage = () => {
   return (
-    <div
-      css={css`
-        color: red;
-      `}
-    >
-      Designed by sunwoo in californium
-    </div>
+    <>
+      <Map
+        center={{
+          lat: 36.658563176254795,
+          lng: 127.86119616960151,
+        }}
+        style={{
+          width: '100vw',
+          height: '100vh',
+        }}
+        level={12}
+      />
+    </>
   );
 };
 

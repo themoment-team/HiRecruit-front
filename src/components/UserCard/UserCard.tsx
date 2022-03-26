@@ -3,20 +3,12 @@ import Image from 'next/image';
 import { useCallback } from 'react';
 
 import pallete from 'shared/Pallete';
-
-interface UserCardProps {
-  name: string;
-  githubId: string;
-  email: string;
-  company: string;
-  introduction: string;
-}
+import { UserData as UserCardProps } from 'shared/Type';
 
 const UserCard = styled.div`
-  width: 18.75rem;
+  width: 100%;
   border-radius: 0.5rem;
   padding: 1.5rem;
-  margin-top: 10rem;
   background: ${pallete.scheme.white};
 `;
 
@@ -74,7 +66,7 @@ const IntroduceCard = styled.div`
 
 export const UserCardComponent: React.FC<UserCardProps> = ({
   name,
-  githubId,
+  imageUrl,
   email,
   company,
   introduction,
@@ -88,7 +80,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
       <ProfileWrapper>
         <ProfileImage>
           <Image
-            src={`https://github.com/${githubId}.png`}
+            src={imageUrl}
             alt={`${name}님의 프로필 사진`}
             width={60}
             height={60}

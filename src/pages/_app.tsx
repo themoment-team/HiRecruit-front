@@ -2,7 +2,7 @@ import React from 'react';
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 
-import { GlobalStyle } from '../shared/GlobalStyle';
+import { GlobalStyle } from 'shared/GlobalStyle';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

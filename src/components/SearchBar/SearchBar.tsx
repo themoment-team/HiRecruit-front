@@ -24,6 +24,17 @@ const SearchBar = styled.input`
   }
 `;
 
-export const SearchBarComponent: React.FC = () => {
-  return <SearchBar placeholder="이름 또는 회사로 검색" />;
+interface Props {
+  setSearchState: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SearchBarComponent: React.FC<Props> = ({ setSearchState }) => {
+  return (
+    <SearchBar
+      placeholder="이름 또는 회사로 검색"
+      onChange={e => {
+        setSearchState(e.target.value);
+      }}
+    />
+  );
 };

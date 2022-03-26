@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { SearchBar } from 'components/SearchBar';
 
@@ -16,10 +17,12 @@ const SideBar = styled.div`
 `;
 
 export const SideBarComponent: React.FC = () => {
+  const [searchState, setSearchState] = useState<string>('');
+
   return (
     <SideBar>
-      <SearchBar />
-      <UserList />
+      <SearchBar setSearchState={setSearchState} />
+      <UserList searchState={searchState} />
     </SideBar>
   );
 };

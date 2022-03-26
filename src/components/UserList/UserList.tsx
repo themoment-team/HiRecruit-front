@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { UserData } from 'shared/Type';
 import { UserCard } from 'components/UserCard';
@@ -193,8 +193,26 @@ const data: UserData[] = [
   },
 ];
 
-export const UserListComponent: React.FC = () => {
+interface Props {
+  searchState: string;
+}
+
+export const UserListComponent: React.FC<Props> = ({ searchState }) => {
   const [userList, setUserList] = useState<UserData[]>(data);
+
+  useEffect(() => {
+    if (searchState === '') {
+      setUserList(data);
+    } else {
+      setUserList(
+        userList.filter(
+          user =>
+            user.name.includes(searchState) ||
+            user.company.includes(searchState),
+        ),
+      );
+    }
+  }, [searchState]);
 
   return (
     <UserList>

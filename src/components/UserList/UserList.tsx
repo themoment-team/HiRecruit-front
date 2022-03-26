@@ -3,6 +3,11 @@ import { useEffect, useState } from 'react';
 
 import { UserData } from 'shared/Type';
 import { UserCard } from 'components/UserCard';
+import pallete from 'shared/Pallete';
+
+interface UserListProps {
+  searchState: string;
+}
 
 const UserList = styled.div`
   width: 100%;
@@ -19,6 +24,14 @@ const UserList = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+`;
+
+const NotFoundUser = styled.p`
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.2;
+  color: ${pallete.scheme.paragraph};
 `;
 
 const data: UserData[] = [
@@ -193,10 +206,6 @@ const data: UserData[] = [
   },
 ];
 
-interface UserListProps {
-  searchState: string;
-}
-
 export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
   const [userList, setUserList] = useState<UserData[]>(data);
 
@@ -216,16 +225,24 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
 
   return (
     <UserList>
-      {userList.map(({ name, imageUrl, email, company, introduction }, i) => (
-        <UserCard
-          key={i}
-          name={name}
-          imageUrl={imageUrl}
-          email={email}
-          company={company}
-          introduction={introduction}
-        />
-      ))}
+      {userList.length === 0 ? (
+        <NotFoundUser>
+          찾으시는 결과가 존재하지 않습니다.
+          <br />
+          철자와 띄어쓰기를 확인해주세요.
+        </NotFoundUser>
+      ) : (
+        userList.map(({ name, imageUrl, email, company, introduction }, i) => (
+          <UserCard
+            key={i}
+            name={name}
+            imageUrl={imageUrl}
+            email={email}
+            company={company}
+            introduction={introduction}
+          />
+        ))
+      )}
     </UserList>
   );
 };

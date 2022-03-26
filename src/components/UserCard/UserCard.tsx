@@ -64,6 +64,36 @@ const IntroduceCard = styled.div`
   }
 `;
 
+const UserButton = styled.button<{ secondary?: boolean }>`
+  border: none;
+  width: 100%;
+  height: 2rem;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 0.563rem;
+  cursor: pointer;
+  color: ${pallete.scheme.white};
+  background-color: ${pallete.scheme.blue};
+  ${({ secondary }) =>
+    secondary &&
+    `
+      background-color: ${pallete.scheme.white};
+      color: ${pallete.scheme.blue};
+      border: 2px solid ${pallete.scheme.blue};
+    `};
+  &:active {
+    transform: scale(0.98);
+  }
+`;
+
+const UserButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
+  gap: 0.8rem;
+`;
+
 export const UserCardComponent: React.FC<UserCardProps> = ({
   name,
   imageUrl,
@@ -100,6 +130,9 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
           <p>{introduction}</p>
         </IntroduceCard>
       )}
+      <UserButtonWrapper>
+        <UserButton>회사 위치</UserButton>
+      </UserButtonWrapper>
     </UserCard>
   );
 };

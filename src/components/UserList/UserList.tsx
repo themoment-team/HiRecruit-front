@@ -193,11 +193,11 @@ const data: UserData[] = [
   },
 ];
 
-interface Props {
+interface UserListProps {
   searchState: string;
 }
 
-export const UserListComponent: React.FC<Props> = ({ searchState }) => {
+export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
   const [userList, setUserList] = useState<UserData[]>(data);
 
   useEffect(() => {
@@ -205,7 +205,7 @@ export const UserListComponent: React.FC<Props> = ({ searchState }) => {
       setUserList(data);
     } else {
       setUserList(
-        userList.filter(
+        data.filter(
           user =>
             user.name.includes(searchState) ||
             user.company.includes(searchState),

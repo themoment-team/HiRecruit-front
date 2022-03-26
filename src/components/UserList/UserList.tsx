@@ -5,10 +5,9 @@ import { UserData } from 'shared/Type';
 import { UserCard } from 'components/UserCard';
 
 const UserList = styled.div`
-  width: 18.75rem;
+  width: 100%;
   margin: 0 auto;
-  margin-top: 7rem;
-  height: calc(100vh - 7rem);
+  height: calc(100vh - 6rem);
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

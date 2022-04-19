@@ -34,13 +34,17 @@ export const MapComponent: React.FC = () => {
         >
           <CustomOverlayMap
             position={{
-              lat: 33.55635,
-              lng: 126.795841,
+              lat: 37.4854898,
+              lng: 126.892397,
             }}
             xAnchor={0.5}
             yAnchor={1.1}
           >
-            <Marker />
+            <Marker
+              companyImgUrl="https://github.com/jyeonjyan.png"
+              companyName="영광 칼집 굴비"
+              companyUrl="https://toss.im/"
+            />
           </CustomOverlayMap>
         </MarkerClusterer>
       </Map>

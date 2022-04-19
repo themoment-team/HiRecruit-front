@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import pallete from 'shared/Pallete';
@@ -80,6 +81,8 @@ export const MarkerComponent: React.FC<MarkerProps> = ({
   companyUrl,
   companyImgUrl,
 }) => {
+  const router = useRouter();
+
   return (
     <Marker>
       <div className="stilettos" />
@@ -102,7 +105,16 @@ export const MarkerComponent: React.FC<MarkerProps> = ({
           </Link>
         </article>
       </CompanyIntroBox>
-      <CompanyButton>이 회사로 검색하기</CompanyButton>
+      <CompanyButton
+        onClick={() => {
+          router.push({
+            pathname: `/`,
+            query: { search: companyName },
+          });
+        }}
+      >
+        이 회사로 검색하기
+      </CompanyButton>
     </Marker>
   );
 };

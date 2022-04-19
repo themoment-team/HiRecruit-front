@@ -1,4 +1,4 @@
-import { CustomOverlayMap, Map, MarkerClusterer } from 'react-kakao-maps-sdk';
+import { CustomOverlayMap, Map } from 'react-kakao-maps-sdk';
 import styled from '@emotion/styled';
 
 import { Logo } from 'assets/Logo';
@@ -28,25 +28,20 @@ export const MapComponent: React.FC = () => {
         }}
         level={12}
       >
-        <MarkerClusterer
-          averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-          minLevel={10} // 클러스터 할 최소 지도 레벨
+        <CustomOverlayMap
+          position={{
+            lat: 37.4854898,
+            lng: 126.892397,
+          }}
+          xAnchor={0.5}
+          yAnchor={1.1}
         >
-          <CustomOverlayMap
-            position={{
-              lat: 37.4854898,
-              lng: 126.892397,
-            }}
-            xAnchor={0.5}
-            yAnchor={1.1}
-          >
-            <Marker
-              companyImgUrl="https://github.com/jyeonjyan.png"
-              companyName="영광 칼집 굴비"
-              companyUrl="https://toss.im/"
-            />
-          </CustomOverlayMap>
-        </MarkerClusterer>
+          <Marker
+            companyImgUrl="https://github.com/jyeonjyan.png"
+            companyName="Thoughtsphere"
+            companyUrl="https://toss.im/"
+          />
+        </CustomOverlayMap>
       </Map>
     </>
   );

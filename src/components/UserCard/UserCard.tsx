@@ -13,8 +13,8 @@ const UserCard = styled.div`
 `;
 
 const ProfileImage = styled.div`
-  width: 3.75rem;
-  height: 3.75rem;
+  width: 4.25rem;
+  height: 4.25rem;
   border-radius: 33%;
   overflow: hidden;
   background-color: ${pallete.scheme.gray};
@@ -33,10 +33,11 @@ const ProfileParagraph = styled.div`
   padding-left: 1.5rem;
   .name {
     font-weight: 600;
+    font-size: 1.125rem;
     color: ${pallete.scheme.black};
   }
   .email {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: ${pallete.scheme.blue};
     text-decoration: none;
     &:hover {
@@ -44,7 +45,7 @@ const ProfileParagraph = styled.div`
     }
   }
   .company {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -57,19 +58,19 @@ const IntroduceCard = styled.div`
   border-radius: 0.5rem;
   p {
     color: ${pallete.scheme.paragraph};
-    font-size: 0.765rem;
+    font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.25;
-    word-break: keep-all;
   }
 `;
 
 const UserButton = styled.button<{ secondary?: boolean }>`
   border: none;
   width: 100%;
-  height: 2rem;
+  height: 2.275rem;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.9rem;
   border-radius: 0.563rem;
   cursor: pointer;
   color: ${pallete.scheme.white};
@@ -100,6 +101,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
   email,
   company,
   introduction,
+  year,
 }) => {
   const subString = useCallback((str: string, n: number): string => {
     return str.length > n ? `${str.substring(0, n)}...` : str;
@@ -118,11 +120,14 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
           />
         </ProfileImage>
         <ProfileParagraph>
-          <p className="name">{subString(name, 8)}</p>
+          <p className="name">{subString(name, 14)}</p>
           <a className="email" href={`mailto:${email}`}>
-            {subString(email, 20)}
+            {subString(email, 25)}
           </a>
-          <p className="company">{subString(company, 15)}</p>
+          <p className="company">
+            {subString(company, 18)}
+            {year && ` • ${year}년차`}
+          </p>
         </ProfileParagraph>
       </ProfileWrapper>
       {!!introduction && (
@@ -132,6 +137,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
       )}
       <UserButtonWrapper>
         <UserButton>회사 위치</UserButton>
+        <UserButton secondary>연결 신청</UserButton>
       </UserButtonWrapper>
     </UserCard>
   );

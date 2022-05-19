@@ -3,12 +3,12 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import pallete from 'shared/Pallete';
 
-const SearchBar = styled.input`
+const SearchInput = styled.input`
   width: 100%;
-  height: 2.5rem;
+  height: 2.75rem;
   margin: 1.75rem 0;
   border: none;
-  font-size: 0.875rem;
+  font-size: 0.925rem;
   padding: 0.25rem 0.75rem;
   border-radius: 0.625rem;
   color: ${pallete.scheme.paragraph};
@@ -30,7 +30,7 @@ interface Props {
   setSearchState: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const SearchBarComponent: React.FC<Props> = ({ setSearchState }) => {
+export const SearchInputComponent: React.FC<Props> = ({ setSearchState }) => {
   const router = useRouter();
   const inputEl = useRef<HTMLInputElement>(null);
 
@@ -48,7 +48,7 @@ export const SearchBarComponent: React.FC<Props> = ({ setSearchState }) => {
   }, [router.query.search]);
 
   return (
-    <SearchBar
+    <SearchInput
       ref={inputEl}
       type="text"
       placeholder="이름 또는 회사로 검색"

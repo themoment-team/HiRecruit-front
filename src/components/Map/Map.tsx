@@ -2,7 +2,7 @@ import { CustomOverlayMap, Map } from 'react-kakao-maps-sdk';
 import styled from '@emotion/styled';
 
 import { Logo } from 'assets/Logo';
-import { Marker } from 'components/Marker';
+import { CompanyMarker } from 'components/CompanyMarker';
 
 const LogoWrapper = styled.div`
   position: fixed;
@@ -36,7 +36,7 @@ export const MapComponent: React.FC = () => {
           xAnchor={0.5}
           yAnchor={1.1}
         >
-          <Marker
+          <CompanyMarker
             companyImgUrl="https://github.com/jyeonjyan.png"
             companyName="Thoughtsphere"
             companyUrl="https://toss.im/"

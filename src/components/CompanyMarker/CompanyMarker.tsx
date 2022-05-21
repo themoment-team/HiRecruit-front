@@ -4,8 +4,9 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import pallete from 'shared/Pallete';
+import { Button } from 'components/common/Button';
 
-interface MarkerProps {
+interface CompanyMarkerProps {
   companyName: string;
   companyUrl: string;
   companyImgUrl: string;
@@ -19,7 +20,7 @@ const ProfileImage = styled.div`
   background-color: ${pallete.scheme.gray};
 `;
 
-const Marker = styled.div`
+const CompanyMarker = styled.div`
   padding: 0.6rem;
   background-color: ${pallete.scheme.white};
   border-radius: 10px;
@@ -60,23 +61,7 @@ const CompanyIntroBox = styled.div`
   }
 `;
 
-const CompanyButton = styled.button<{ secondary?: boolean }>`
-  border: none;
-  width: 100%;
-  height: 2rem;
-  margin-top: 0.6rem;
-  text-align: center;
-  font-weight: 600;
-  border-radius: 0.563rem;
-  cursor: pointer;
-  color: ${pallete.scheme.white};
-  background-color: ${pallete.scheme.blue};
-  &:active {
-    transform: scale(0.98);
-  }
-`;
-
-export const MarkerComponent: React.FC<MarkerProps> = ({
+export const CompanyMarkerComponent: React.FC<CompanyMarkerProps> = ({
   companyName,
   companyUrl,
   companyImgUrl,
@@ -84,7 +69,7 @@ export const MarkerComponent: React.FC<MarkerProps> = ({
   const router = useRouter();
 
   return (
-    <Marker>
+    <CompanyMarker>
       <div className="stilettos" />
       <CompanyIntroBox>
         <ProfileImage>
@@ -105,7 +90,7 @@ export const MarkerComponent: React.FC<MarkerProps> = ({
           </Link>
         </article>
       </CompanyIntroBox>
-      <CompanyButton
+      <Button
         onClick={() => {
           router.push({
             pathname: `/`,
@@ -114,7 +99,7 @@ export const MarkerComponent: React.FC<MarkerProps> = ({
         }}
       >
         이 회사로 검색하기
-      </CompanyButton>
-    </Marker>
+      </Button>
+    </CompanyMarker>
   );
 };

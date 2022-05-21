@@ -12,6 +12,7 @@ interface UserListProps {
 const UserList = styled.div`
   width: 100%;
   margin: 0 auto;
+  padding-bottom: 1.5rem;
   height: calc(100vh - 6rem);
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
@@ -23,7 +24,7 @@ const UserList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 `;
 
 const NotFoundUser = styled.p`
@@ -42,6 +43,7 @@ const data: UserData[] = [
     email: 'bmapam0@netscape.com',
     company: '(주)나루스튜디오',
     introduction: 'Software Consultant',
+    year: 7,
   },
   {
     name: '홍진택',
@@ -49,6 +51,7 @@ const data: UserData[] = [
     email: 'sinde1@canalblog.com',
     company: '(주)사이버다임',
     introduction: 'Quality Control Specialist',
+    year: 7,
   },
   {
     name: '한승재',
@@ -56,6 +59,7 @@ const data: UserData[] = [
     email: 'kmcmichan2@artisteer.com',
     company: '(주)스파이더크래프트',
     introduction: 'Technical Writer',
+    year: 7,
   },
   {
     name: '배재범',
@@ -63,6 +67,7 @@ const data: UserData[] = [
     email: 'mhebner3@nps.gov',
     company: '(주)우경정보기술',
     introduction: 'Business Systems Development Analyst',
+    year: 7,
   },
   {
     name: '전인성',
@@ -70,6 +75,7 @@ const data: UserData[] = [
     email: 'mharriot4@amazon.de',
     company: '(주)우경정보기술',
     introduction: 'Developer IV',
+    year: 7,
   },
   {
     name: '이영은',
@@ -78,6 +84,7 @@ const data: UserData[] = [
     email: 'psparkes5@cbc.ca',
     company: '(주)직랩',
     introduction: 'Analog Circuit Design manager',
+    year: 7,
   },
   {
     name: '임준혁',
@@ -85,6 +92,7 @@ const data: UserData[] = [
     email: 'lcheson6@nhs.uk',
     company: '(주)직랩',
     introduction: 'Financial Advisor',
+    year: 7,
   },
   {
     name: '제정민',
@@ -93,6 +101,7 @@ const data: UserData[] = [
     email: 'corrobin7@taobao.com',
     company: 'FLO',
     introduction: 'Product Engineer',
+    year: 7,
   },
   {
     name: '오해성',
@@ -100,6 +109,7 @@ const data: UserData[] = [
     email: 'tpolglase8@dmoz.org',
     company: 'OP.GG',
     introduction: 'Actuary',
+    year: 7,
   },
   {
     name: '김종우',
@@ -108,6 +118,7 @@ const data: UserData[] = [
     email: 'vcicculini9@noaa.gov',
     company: '더스윙',
     introduction: 'Professor',
+    year: 7,
   },
   {
     name: '정성화',
@@ -116,6 +127,7 @@ const data: UserData[] = [
     email: 'bbartolozzia@nationalgeographic.com',
     company: '더스윙',
     introduction: 'Accountant III',
+    year: 7,
   },
   {
     name: '박휘겸',
@@ -123,6 +135,7 @@ const data: UserData[] = [
     email: 'ccogarb@photobucket.com',
     company: '민병철유폰',
     introduction: 'Compensation Analyst',
+    year: 7,
   },
   {
     name: '김주엽',
@@ -130,6 +143,7 @@ const data: UserData[] = [
     email: 'tgeallc@shareasale.com',
     company: '여기어때컴퍼니',
     introduction: 'Marketing Manager',
+    year: 7,
   },
   {
     name: '차승호',
@@ -137,6 +151,7 @@ const data: UserData[] = [
     email: 'kmitrikhind@chron.com',
     company: '원티드랩',
     introduction: 'Web Designer II',
+    year: 7,
   },
   {
     name: '이규락',
@@ -144,6 +159,7 @@ const data: UserData[] = [
     email: 'dsleee@mapquest.com',
     company: '퀄슨',
     introduction: 'VP Sales',
+    year: 7,
   },
   {
     name: '김학노',
@@ -152,6 +168,7 @@ const data: UserData[] = [
     email: 'yredfernf@hubpages.com',
     company: '클루피(주)',
     introduction: 'Programmer III',
+    year: 7,
   },
   {
     name: '정동혁',
@@ -159,6 +176,7 @@ const data: UserData[] = [
     email: 'aknollerg@gravatar.com',
     company: '클루피(주)',
     introduction: 'Recruiter',
+    year: 7,
   },
   {
     name: '권순관',
@@ -167,6 +185,7 @@ const data: UserData[] = [
     email: 'smassimih@army.mil',
     company: '피플펀드컴퍼니',
     introduction: 'Computer Systems Analyst II',
+    year: 7,
   },
   {
     name: '신민수',
@@ -174,6 +193,7 @@ const data: UserData[] = [
     email: 'ncaddingi@networksolutions.com',
     company: '팀오투',
     introduction: 'Media Manager II',
+    year: 7,
   },
   {
     name: '강민석',
@@ -182,6 +202,7 @@ const data: UserData[] = [
     email: 'pballj@weibo.com',
     company: '팀블라인드',
     introduction: 'Accountant IV',
+    year: 7,
   },
   {
     name: '최석준',
@@ -189,6 +210,7 @@ const data: UserData[] = [
     email: 'sharhoff2p@slashdot.org',
     company: '차케어',
     introduction: 'VP Quality Control',
+    year: 7,
   },
   {
     name: '이효성',
@@ -196,6 +218,7 @@ const data: UserData[] = [
     email: 'aearlam2q@macromedia.com',
     company: '자이닉스',
     introduction: 'VP Quality Control',
+    year: 7,
   },
   {
     name: '최웅규',
@@ -203,6 +226,7 @@ const data: UserData[] = [
     email: 'ckintish2r@uol.com.br',
     company: '자이닉스',
     introduction: 'Web Designer III',
+    year: 7,
   },
 ];
 
@@ -232,16 +256,19 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
           철자와 띄어쓰기를 확인해주세요.
         </NotFoundUser>
       ) : (
-        userList.map(({ name, imageUrl, email, company, introduction }, i) => (
-          <UserCard
-            key={i}
-            name={name}
-            imageUrl={imageUrl}
-            email={email}
-            company={company}
-            introduction={introduction}
-          />
-        ))
+        userList.map(
+          ({ name, imageUrl, email, company, introduction, year }, i) => (
+            <UserCard
+              key={i}
+              name={name}
+              imageUrl={imageUrl}
+              email={email}
+              company={company}
+              introduction={introduction}
+              year={year}
+            />
+          ),
+        )
       )}
     </UserList>
   );

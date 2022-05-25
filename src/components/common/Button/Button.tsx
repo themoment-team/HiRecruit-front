@@ -18,7 +18,7 @@ export const ButtonComponent = styled.button<{ secondary?: boolean }>`
     `
       background-color: ${pallete.scheme.white};
       color: ${pallete.scheme.blue};
-      border: 2px solid ${pallete.scheme.blue};
+      border: 1px solid ${pallete.scheme.blue};
     `};
   &:active {
     transform: scale(0.98);

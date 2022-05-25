@@ -99,7 +99,10 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
         </NotFoundUser>
       ) : (
         userList.map(
-          ({ name, imageUrl, email, company, introduction, year }, i) => (
+          (
+            { name, imageUrl, email, company, introduction, year, location },
+            i,
+          ) => (
             <UserCard
               key={i}
               name={name}
@@ -107,6 +110,7 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
               email={email}
               company={company}
               introduction={introduction}
+              location={location}
               year={year}
             />
           ),

@@ -79,6 +79,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
   email,
   company,
   introduction,
+  location,
   year,
 }) => {
   const subString = useCallback((str: string, n: number): string => {

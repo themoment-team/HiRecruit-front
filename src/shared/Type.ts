@@ -4,5 +4,6 @@ export interface UserData {
   email: string;
   company: string;
   introduction?: string;
+  location: string;
   year?: number;
 }

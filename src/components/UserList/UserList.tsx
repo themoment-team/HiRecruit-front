@@ -12,6 +12,7 @@ interface UserListProps {
 const UserList = styled.div`
   width: 100%;
   margin: 0 auto;
+  padding-bottom: 1.5rem;
   height: calc(100vh - 6rem);
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
@@ -23,7 +24,7 @@ const UserList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 `;
 
 const NotFoundUser = styled.p`
@@ -42,7 +43,7 @@ const data: UserData[] = [
     email: 'bmapam0@netscape.com',
     company: 'Ozu',
     introduction: 'Software Consultant',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
+    location: '서울 송파구 올림픽로300, 35층',
   },
   {
     name: 'Sianna Inde',
@@ -50,7 +51,7 @@ const data: UserData[] = [
     email: 'sinde1@canalblog.com',
     company: 'Brightdog',
     introduction: 'Quality Control Specialist',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
+    location: '서울 구로구 디지털로31길 53 1101호',
   },
   {
     name: 'Kelsey McMichan',
@@ -61,171 +62,13 @@ const data: UserData[] = [
     location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
-    name: 'Mortimer Hebner',
-    imageUrl: 'https://robohash.org/quasivitaevelit.png?size=50x50&set=set1',
-    email: 'mhebner3@nps.gov',
-    company: 'Eidel',
-    introduction: 'Business Systems Development Analyst',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Maryanne Harriot',
-    imageUrl: 'https://robohash.org/rerumetqui.png?size=50x50&set=set1',
-    email: 'mharriot4@amazon.de',
-    company: 'Voonte',
-    introduction: 'Developer IV',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Padraig Sparkes',
-    imageUrl:
-      'https://robohash.org/laboreexcepturinesciunt.png?size=50x50&set=set1',
-    email: 'psparkes5@cbc.ca',
-    company: 'Kwilith',
-    introduction: 'Analog Circuit Design manager',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Lisette Cheson',
-    imageUrl: 'https://robohash.org/eamollitiadebitis.png?size=50x50&set=set1',
-    email: 'lcheson6@nhs.uk',
-    company: 'Youbridge',
-    introduction: 'Financial Advisor',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Cob Orrobin',
-    imageUrl:
-      'https://robohash.org/impeditnesciuntdeleniti.png?size=50x50&set=set1',
-    email: 'corrobin7@taobao.com',
-    company: 'Avavee',
-    introduction: 'Product Engineer',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Tris Polglase',
-    imageUrl: 'https://robohash.org/autporroquaerat.png?size=50x50&set=set1',
-    email: 'tpolglase8@dmoz.org',
-    company: 'Voomm',
-    introduction: 'Actuary',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Valene Cicculini',
-    imageUrl:
-      'https://robohash.org/inciduntmolestiaeest.png?size=50x50&set=set1',
-    email: 'vcicculini9@noaa.gov',
-    company: 'Thoughtsphere',
-    introduction: 'Professor',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Bill Bartolozzi',
-    imageUrl:
-      'https://robohash.org/pariaturetreprehenderit.png?size=50x50&set=set1',
-    email: 'bbartolozzia@nationalgeographic.com',
-    company: 'Abatz',
-    introduction: 'Accountant III',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Cathie Cogar',
-    imageUrl: 'https://robohash.org/adbeataequae.png?size=50x50&set=set1',
-    email: 'ccogarb@photobucket.com',
-    company: 'Edgetag',
-    introduction: 'Compensation Analyst',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Trip Geall',
-    imageUrl: 'https://robohash.org/utsapientehic.png?size=50x50&set=set1',
-    email: 'tgeallc@shareasale.com',
-    company: 'Linkbridge',
-    introduction: 'Marketing Manager',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Katlin Mitrikhin',
-    imageUrl: 'https://robohash.org/providentestea.png?size=50x50&set=set1',
-    email: 'kmitrikhind@chron.com',
-    company: 'Vinte',
-    introduction: 'Web Designer II',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Donetta Slee',
-    imageUrl: 'https://robohash.org/autoditlaudantium.png?size=50x50&set=set1',
-    email: 'dsleee@mapquest.com',
-    company: 'Zoozzy',
-    introduction: 'VP Sales',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Yolanda Redfern',
-    imageUrl:
-      'https://robohash.org/veritatismolestiaeerror.png?size=50x50&set=set1',
-    email: 'yredfernf@hubpages.com',
-    company: 'Yotz',
-    introduction: 'Programmer III',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Adelind Knoller',
-    imageUrl: 'https://robohash.org/etomnisat.png?size=50x50&set=set1',
-    email: 'aknollerg@gravatar.com',
-    company: 'Jabberstorm',
-    introduction: 'Recruiter',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Sylvester Massimi',
-    imageUrl:
-      'https://robohash.org/omnisaccusantiumoccaecati.png?size=50x50&set=set1',
-    email: 'smassimih@army.mil',
-    company: 'Voomm',
-    introduction: 'Computer Systems Analyst II',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Noble Cadding',
-    imageUrl: 'https://robohash.org/solutacommodiaut.png?size=50x50&set=set1',
-    email: 'ncaddingi@networksolutions.com',
-    company: 'Gabvine',
-    introduction: 'Media Manager II',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Pierce Ball',
-    imageUrl:
-      'https://robohash.org/dolorumautcupiditate.png?size=50x50&set=set1',
-    email: 'pballj@weibo.com',
-    company: 'Topicware',
-    introduction: 'Accountant IV',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Sosanna Harhoff',
-    imageUrl: 'https://robohash.org/inadrem.png?size=50x50&set=set1',
-    email: 'sharhoff2p@slashdot.org',
-    company: 'Kwideo',
-    introduction: 'VP Quality Control',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Antonietta Earlam',
-    imageUrl: 'https://robohash.org/quiillumvoluptas.png?size=50x50&set=set1',
-    email: 'aearlam2q@macromedia.com',
-    company: 'Voonte',
-    introduction: 'VP Quality Control',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-  },
-  {
-    name: 'Celina Kintish',
-    imageUrl: 'https://robohash.org/estnoneius.png?size=50x50&set=set1',
-    email: 'ckintish2r@uol.com.br',
-    company: 'Divavu',
-    introduction: 'Web Designer III',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
+    name: 'Kelsey McMichan',
+    imageUrl: 'https://robohash.org/doloresfugitet.png?size=50x50&set=set1',
+    email: 'kmcmichan2@artisteer.com',
+    company: 'Rhyzio',
+    introduction: 'Technical Writer',
+    location:
+      '대구광역시 동구 동대구로 461(신천동) (재)대구경북디자인센터 1004호',
   },
 ];
 
@@ -255,16 +98,19 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
           철자와 띄어쓰기를 확인해주세요.
         </NotFoundUser>
       ) : (
-        userList.map(({ name, imageUrl, email, company, introduction }, i) => (
-          <UserCard
-            key={i}
-            name={name}
-            imageUrl={imageUrl}
-            email={email}
-            company={company}
-            introduction={introduction}
-          />
-        ))
+        userList.map(
+          ({ name, imageUrl, email, company, introduction, year }, i) => (
+            <UserCard
+              key={i}
+              name={name}
+              imageUrl={imageUrl}
+              email={email}
+              company={company}
+              introduction={introduction}
+              year={year}
+            />
+          ),
+        )
       )}
     </UserList>
   );

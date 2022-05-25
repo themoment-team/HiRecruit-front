@@ -42,6 +42,7 @@ const data: UserData[] = [
     email: 'bmapam0@netscape.com',
     company: 'Ozu',
     introduction: 'Software Consultant',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Sianna Inde',
@@ -49,6 +50,7 @@ const data: UserData[] = [
     email: 'sinde1@canalblog.com',
     company: 'Brightdog',
     introduction: 'Quality Control Specialist',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Kelsey McMichan',
@@ -56,6 +58,7 @@ const data: UserData[] = [
     email: 'kmcmichan2@artisteer.com',
     company: 'Rhyzio',
     introduction: 'Technical Writer',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Mortimer Hebner',
@@ -63,6 +66,7 @@ const data: UserData[] = [
     email: 'mhebner3@nps.gov',
     company: 'Eidel',
     introduction: 'Business Systems Development Analyst',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Maryanne Harriot',
@@ -70,6 +74,7 @@ const data: UserData[] = [
     email: 'mharriot4@amazon.de',
     company: 'Voonte',
     introduction: 'Developer IV',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Padraig Sparkes',
@@ -78,6 +83,7 @@ const data: UserData[] = [
     email: 'psparkes5@cbc.ca',
     company: 'Kwilith',
     introduction: 'Analog Circuit Design manager',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Lisette Cheson',
@@ -85,6 +91,7 @@ const data: UserData[] = [
     email: 'lcheson6@nhs.uk',
     company: 'Youbridge',
     introduction: 'Financial Advisor',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Cob Orrobin',
@@ -93,6 +100,7 @@ const data: UserData[] = [
     email: 'corrobin7@taobao.com',
     company: 'Avavee',
     introduction: 'Product Engineer',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Tris Polglase',
@@ -100,6 +108,7 @@ const data: UserData[] = [
     email: 'tpolglase8@dmoz.org',
     company: 'Voomm',
     introduction: 'Actuary',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Valene Cicculini',
@@ -108,6 +117,7 @@ const data: UserData[] = [
     email: 'vcicculini9@noaa.gov',
     company: 'Thoughtsphere',
     introduction: 'Professor',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Bill Bartolozzi',
@@ -116,6 +126,7 @@ const data: UserData[] = [
     email: 'bbartolozzia@nationalgeographic.com',
     company: 'Abatz',
     introduction: 'Accountant III',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Cathie Cogar',
@@ -123,6 +134,7 @@ const data: UserData[] = [
     email: 'ccogarb@photobucket.com',
     company: 'Edgetag',
     introduction: 'Compensation Analyst',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Trip Geall',
@@ -130,6 +142,7 @@ const data: UserData[] = [
     email: 'tgeallc@shareasale.com',
     company: 'Linkbridge',
     introduction: 'Marketing Manager',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Katlin Mitrikhin',
@@ -137,6 +150,7 @@ const data: UserData[] = [
     email: 'kmitrikhind@chron.com',
     company: 'Vinte',
     introduction: 'Web Designer II',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Donetta Slee',
@@ -144,6 +158,7 @@ const data: UserData[] = [
     email: 'dsleee@mapquest.com',
     company: 'Zoozzy',
     introduction: 'VP Sales',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Yolanda Redfern',
@@ -152,6 +167,7 @@ const data: UserData[] = [
     email: 'yredfernf@hubpages.com',
     company: 'Yotz',
     introduction: 'Programmer III',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Adelind Knoller',
@@ -159,6 +175,7 @@ const data: UserData[] = [
     email: 'aknollerg@gravatar.com',
     company: 'Jabberstorm',
     introduction: 'Recruiter',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Sylvester Massimi',
@@ -167,6 +184,7 @@ const data: UserData[] = [
     email: 'smassimih@army.mil',
     company: 'Voomm',
     introduction: 'Computer Systems Analyst II',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Noble Cadding',
@@ -174,6 +192,7 @@ const data: UserData[] = [
     email: 'ncaddingi@networksolutions.com',
     company: 'Gabvine',
     introduction: 'Media Manager II',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Pierce Ball',
@@ -182,6 +201,7 @@ const data: UserData[] = [
     email: 'pballj@weibo.com',
     company: 'Topicware',
     introduction: 'Accountant IV',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Sosanna Harhoff',
@@ -189,6 +209,7 @@ const data: UserData[] = [
     email: 'sharhoff2p@slashdot.org',
     company: 'Kwideo',
     introduction: 'VP Quality Control',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Antonietta Earlam',
@@ -196,6 +217,7 @@ const data: UserData[] = [
     email: 'aearlam2q@macromedia.com',
     company: 'Voonte',
     introduction: 'VP Quality Control',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
   {
     name: 'Celina Kintish',
@@ -203,6 +225,7 @@ const data: UserData[] = [
     email: 'ckintish2r@uol.com.br',
     company: 'Divavu',
     introduction: 'Web Designer III',
+    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
   },
 ];
 

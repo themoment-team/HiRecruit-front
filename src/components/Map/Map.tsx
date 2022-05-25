@@ -1,10 +1,12 @@
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { CustomOverlayMap, Map, MapMarker } from 'react-kakao-maps-sdk';
 import styled from '@emotion/styled';
 
 import { Logo } from 'assets/Logo';
 import { useState } from 'react';
-import useMarker from 'hooks/use-marker';
 import { UserData } from 'shared/Type';
+import useMapLevel from 'hooks/use-map-level';
+import useMarker from 'hooks/use-marker';
+import { CustomMapMarker } from 'components/CustomMapMarker';
 
 const data: UserData[] = [
   {
@@ -39,7 +41,7 @@ const data: UserData[] = [
     company: 'Rhyzio',
     introduction: 'Technical Writer',
     location:
-      '대구광역시 동구 동대구로 461(신천동) (재)대구경북디자인센터 1004호 (주)페르소나',
+      '대구광역시 동구 동대구로 461(신천동) (재)대구경북디자인센터 1004호',
   },
 ];
 
@@ -53,6 +55,16 @@ const LogoWrapper = styled.div`
 export const MapComponent: React.FC = () => {
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
   const markers = useMarker(data, map);
+  const level = useMapLevel(map);
+
+  const panTo = (lat: number, lng: number) => {
+    if (map) {
+      const moveCoord = new kakao.maps.LatLng(lat, lng);
+
+      map.setLevel(3);
+      map.panTo(moveCoord);
+    }
+  };
 
   return (
     <>
@@ -68,12 +80,26 @@ export const MapComponent: React.FC = () => {
           width: '100vw',
           height: '100vh',
         }}
-        onCreate={map => setMap(map)}
+        onCreate={setMap}
         level={12}
       >
-        {markers.map((marker, i) => (
-          <MapMarker key={i} position={marker.position} />
-        ))}
+        {markers.map((marker, i) =>
+          level > 3 ? (
+            <MapMarker
+              key={i}
+              position={marker.position}
+              onClick={() => panTo(marker.position.lat, marker.position.lng)}
+            />
+          ) : (
+            <CustomOverlayMap position={marker.position}>
+              <CustomMapMarker
+                companyName={marker.name}
+                companyUrl={marker.imageUrl}
+                imageUrl={marker.imageUrl}
+              />
+            </CustomOverlayMap>
+          ),
+        )}
       </Map>
     </>
   );

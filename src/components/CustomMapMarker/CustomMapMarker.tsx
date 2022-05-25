@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
@@ -8,22 +7,15 @@ import pallete from 'shared/Pallete';
 interface MarkerProps {
   companyName: string;
   companyUrl: string;
-  companyImgUrl: string;
+  imageUrl: string;
 }
 
-const ProfileImage = styled.div`
-  width: 3rem;
-  height: 3rem;
-  border-radius: 33%;
-  overflow: hidden;
-  background-color: ${pallete.scheme.gray};
-`;
-
-const Marker = styled.div`
-  padding: 0.6rem;
+const CustomMapMarker = styled.div`
+  min-width: 18.75rem;
+  padding: 0.75rem;
   background-color: ${pallete.scheme.white};
-  border-radius: 10px;
-  transform: translateY(-8px);
+  border-radius: 0.75rem;
+  transform: translateY(calc(-50% - 8px));
   .stilettos {
     position: absolute;
     top: 100%;
@@ -37,11 +29,21 @@ const Marker = styled.div`
   }
 `;
 
+const ProfileImage = styled.div`
+  width: 100%;
+  height: 8rem;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: ${pallete.scheme.gray};
+`;
+
 const CompanyIntroBox = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 0.4rem;
   .companyName {
-    font-size: 0.875rem;
+    font-size: 1rem;
+    font-weight: 600;
   }
   .companyProfile {
     display: flex;
@@ -64,7 +66,7 @@ const CompanyButton = styled.button<{ secondary?: boolean }>`
   border: none;
   width: 100%;
   height: 2rem;
-  margin-top: 0.6rem;
+  margin-top: 0.8rem;
   text-align: center;
   font-weight: 600;
   border-radius: 0.563rem;
@@ -76,20 +78,20 @@ const CompanyButton = styled.button<{ secondary?: boolean }>`
   }
 `;
 
-export const MarkerComponent: React.FC<MarkerProps> = ({
+export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
   companyName,
   companyUrl,
-  companyImgUrl,
+  imageUrl,
 }) => {
   const router = useRouter();
 
   return (
-    <Marker>
+    <CustomMapMarker>
       <div className="stilettos" />
       <CompanyIntroBox>
         <ProfileImage>
           <Image
-            src={companyImgUrl}
+            src={imageUrl}
             alt={`${companyName} 회사 로고`}
             width={40}
             height={40}
@@ -98,11 +100,14 @@ export const MarkerComponent: React.FC<MarkerProps> = ({
         </ProfileImage>
         <article className="companyProfile">
           <p className="companyName">{companyName}</p>
-          <Link href={companyUrl} passHref>
-            <a className="companyUrl" target="_blank" rel="noreferrer">
-              회사 웹사이트
-            </a>
-          </Link>
+          <a
+            className="companyUrl"
+            target="_blank"
+            href={companyUrl}
+            rel="noreferrer"
+          >
+            회사 웹사이트
+          </a>
         </article>
       </CompanyIntroBox>
       <CompanyButton
@@ -113,8 +118,8 @@ export const MarkerComponent: React.FC<MarkerProps> = ({
           });
         }}
       >
-        이 회사로 검색하기
+        회사 검색하기
       </CompanyButton>
-    </Marker>
+    </CustomMapMarker>
   );
 };

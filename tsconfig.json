@@ -15,11 +15,12 @@
     "jsx": "preserve",
     "incremental": true,
     "types": ["@emotion/react/types/css-prop", "kakao.maps.d.ts"],
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "components/*": ["./components/*"],
-      "hooks/*": ["./hooks/*"],
-      "shared/*": ["./shared/*"]
+      "components/*": ["./src/components/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "shared/*": ["./src/shared/*"],
+      "assets/*": ["./src/assets/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

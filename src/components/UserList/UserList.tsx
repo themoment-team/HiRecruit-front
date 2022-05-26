@@ -13,7 +13,7 @@ const UserList = styled.div`
   width: 100%;
   margin: 0 auto;
   padding-bottom: 1.5rem;
-  height: calc(100vh - 6rem);
+  height: calc(100vh - 10rem);
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -69,6 +69,14 @@ const data: UserData[] = [
     introduction: 'Technical Writer',
     location:
       '대구광역시 동구 동대구로 461(신천동) (재)대구경북디자인센터 1004호',
+  },
+  {
+    name: 'Kelsey McMichan',
+    imageUrl: 'https://robohash.org/doloresfugitet.png?size=50x50&set=set1',
+    email: 'kmcmichan2@artisteer.com',
+    company: 'Rhyzio',
+    introduction: 'Technical Writer',
+    location: '서울특별시 서초구 강남대로 311 드림플러스',
   },
 ];
 

@@ -1,7 +1,6 @@
 import { CustomOverlayMap, Map, MapMarker } from 'react-kakao-maps-sdk';
 import styled from '@emotion/styled';
 
-import { Logo } from 'assets/Logo';
 import { useState } from 'react';
 import { UserData } from 'shared/Type';
 import useMapLevel from 'hooks/use-map-level';
@@ -43,14 +42,15 @@ const data: UserData[] = [
     location:
       '대구광역시 동구 동대구로 461(신천동) (재)대구경북디자인센터 1004호',
   },
+  {
+    name: 'Kelsey McMichan',
+    imageUrl: 'https://robohash.org/doloresfugitet.png?size=50x50&set=set1',
+    email: 'kmcmichan2@artisteer.com',
+    company: 'Rhyzio',
+    introduction: 'Technical Writer',
+    location: '서울특별시 서초구 강남대로 311 드림플러스',
+  },
 ];
-
-const LogoWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-`;
 
 export const MapComponent: React.FC = () => {
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
@@ -68,9 +68,6 @@ export const MapComponent: React.FC = () => {
 
   return (
     <>
-      <LogoWrapper>
-        <Logo />
-      </LogoWrapper>
       <Map
         center={{
           lat: 36.658563176254795,

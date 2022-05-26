@@ -5,5 +5,5 @@ export interface UserData {
   company: string;
   introduction?: string;
   location: string;
-  year?: number;
+  devYear?: number;
 }

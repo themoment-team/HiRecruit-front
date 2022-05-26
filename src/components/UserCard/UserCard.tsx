@@ -80,7 +80,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
   company,
   introduction,
   location,
-  year,
+  devYear,
 }) => {
   const subString = useCallback((str: string, n: number): string => {
     return str.length > n ? `${str.substring(0, n)}...` : str;
@@ -105,7 +105,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
           </a>
           <p className="company">
             {subString(company, 18)}
-            {year && ` • ${year}년차`}
+            {devYear && ` • ${devYear}년차`}
           </p>
         </ProfileParagraph>
       </ProfileWrapper>

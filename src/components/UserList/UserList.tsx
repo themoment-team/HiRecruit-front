@@ -44,6 +44,7 @@ const data: UserData[] = [
     company: 'Ozu',
     introduction: 'Software Consultant',
     location: '서울 송파구 올림픽로300, 35층',
+    devYear: 7,
   },
   {
     name: 'Sianna Inde',
@@ -52,6 +53,7 @@ const data: UserData[] = [
     company: 'Brightdog',
     introduction: 'Quality Control Specialist',
     location: '서울 구로구 디지털로31길 53 1101호',
+    devYear: 7,
   },
   {
     name: 'Kelsey McMichan',
@@ -60,6 +62,7 @@ const data: UserData[] = [
     company: 'Rhyzio',
     introduction: 'Technical Writer',
     location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
+    devYear: 7,
   },
   {
     name: 'Kelsey McMichan',
@@ -69,6 +72,7 @@ const data: UserData[] = [
     introduction: 'Technical Writer',
     location:
       '대구광역시 동구 동대구로 461(신천동) (재)대구경북디자인센터 1004호',
+    devYear: 7,
   },
   {
     name: 'Kelsey McMichan',
@@ -77,6 +81,7 @@ const data: UserData[] = [
     company: 'Rhyzio',
     introduction: 'Technical Writer',
     location: '서울특별시 서초구 강남대로 311 드림플러스',
+    devYear: 7,
   },
 ];
 
@@ -108,7 +113,7 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
       ) : (
         userList.map(
           (
-            { name, imageUrl, email, company, introduction, year, location },
+            { name, imageUrl, email, company, introduction, devYear, location },
             i,
           ) => (
             <UserCard
@@ -119,7 +124,7 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
               company={company}
               introduction={introduction}
               location={location}
-              year={year}
+              devYear={devYear}
             />
           ),
         )

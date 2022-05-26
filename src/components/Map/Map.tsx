@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { UserData } from 'shared/Type';
 import useMarker from 'hooks/use-marker';
 import { SideBar } from 'components/SideBar';
-import { MarkerListComponent } from 'components/MarkerList/MarkerList';
+import { MarkerList } from 'components/MarkerList';
 
 const data: UserData[] = [
   {
@@ -73,7 +73,7 @@ export const MapComponent: React.FC = () => {
         onCreate={setMap}
         level={12}
       >
-        <MarkerListComponent markers={markers} />
+        <MarkerList markers={markers} />
         <SideBar />
       </Map>
     </>

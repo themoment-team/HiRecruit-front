@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
-import { SearchInput } from 'components/SearchInput';
 
+import { SearchInput } from 'components/SearchInput';
 import { UserList } from 'components/UserList';
 import { Logo } from 'assets/Logo';
 import pallete from 'shared/Pallete';
-import { useMap } from 'react-kakao-maps-sdk';
 
 const SideBar = styled.div`
   position: fixed;

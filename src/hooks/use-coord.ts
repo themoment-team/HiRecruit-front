@@ -20,7 +20,7 @@ const useCoord = (map: kakao.maps.Map | undefined, location: string) => {
         });
       }
     });
-  }, [map]);
+  }, [location, map]);
 
   return {
     lat: coord?.lat,

@@ -5,6 +5,7 @@ import { UserData } from 'shared/Type';
 import useMapLevel from 'hooks/use-map-level';
 import useMarker from 'hooks/use-marker';
 import { CustomMapMarker } from 'components/CustomMapMarker';
+import { SideBar } from 'components/SideBar';
 
 const data: UserData[] = [
   {
@@ -101,6 +102,7 @@ export const MapComponent: React.FC = () => {
             </CustomOverlayMap>
           ),
         )}
+        <SideBar />
       </Map>
     </>
   );

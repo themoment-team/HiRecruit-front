@@ -1,11 +1,10 @@
-import { CustomOverlayMap, Map, MapMarker } from 'react-kakao-maps-sdk';
+import { Map } from 'react-kakao-maps-sdk';
 
 import { useState } from 'react';
 import { UserData } from 'shared/Type';
-import useMapLevel from 'hooks/use-map-level';
 import useMarker from 'hooks/use-marker';
-import { CustomMapMarker } from 'components/CustomMapMarker';
 import { SideBar } from 'components/SideBar';
+import { MarkerListComponent } from 'components/MarkerList/MarkerList';
 
 const data: UserData[] = [
   {
@@ -60,16 +59,6 @@ const data: UserData[] = [
 export const MapComponent: React.FC = () => {
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
   const markers = useMarker(data, map);
-  const level = useMapLevel(map);
-
-  const panTo = (lat: number, lng: number) => {
-    if (map) {
-      const moveCoord = new kakao.maps.LatLng(lat, lng);
-
-      map.setLevel(3);
-      map.panTo(moveCoord);
-    }
-  };
 
   return (
     <>
@@ -85,23 +74,7 @@ export const MapComponent: React.FC = () => {
         onCreate={setMap}
         level={12}
       >
-        {markers.map((marker, i) =>
-          level > 3 ? (
-            <MapMarker
-              key={i}
-              position={marker.position}
-              onClick={() => panTo(marker.position.lat, marker.position.lng)}
-            />
-          ) : (
-            <CustomOverlayMap position={marker.position}>
-              <CustomMapMarker
-                companyName={marker.name}
-                companyUrl={marker.imageUrl}
-                imageUrl={marker.imageUrl}
-              />
-            </CustomOverlayMap>
-          ),
-        )}
+        <MarkerListComponent markers={markers} />
         <SideBar />
       </Map>
     </>

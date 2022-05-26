@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { useCallback } from 'react';
+import { useMap } from 'react-kakao-maps-sdk';
 
 import pallete from 'shared/Pallete';
 import { UserData as UserCardProps } from 'shared/Type';
 import { Button } from 'components/common/Button';
+import useCoord from 'hooks/use-coord';
 
 const UserCard = styled.div`
   width: 100%;
@@ -82,9 +84,21 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
   location,
   devYear,
 }) => {
+  const map = useMap();
+  const { lat, lng } = useCoord(map, location);
+
   const subString = useCallback((str: string, n: number): string => {
     return str.length > n ? `${str.substring(0, n)}...` : str;
   }, []);
+
+  const panTo = (lat: number, lng: number) => {
+    if (map) {
+      const moveCoord = new kakao.maps.LatLng(lat, lng);
+
+      map.setLevel(3);
+      map.panTo(moveCoord);
+    }
+  };
 
   return (
     <UserCard>
@@ -115,8 +129,13 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
         </IntroduceCard>
       )}
       <UserButtonWrapper>
-        <Button>회사 위치</Button>
-        <Button secondary>연결 신청</Button>
+        <Button
+          onClick={() => {
+            if (lat && lng) panTo(lat, lng);
+          }}
+        >
+          회사 위치
+        </Button>
       </UserButtonWrapper>
     </UserCard>
   );

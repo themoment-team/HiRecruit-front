@@ -1,5 +1,4 @@
 import { CustomOverlayMap, Map, MapMarker } from 'react-kakao-maps-sdk';
-import styled from '@emotion/styled';
 
 import { useState } from 'react';
 import { UserData } from 'shared/Type';

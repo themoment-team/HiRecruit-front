@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import pallete from 'shared/Pallete';
+import { Button } from 'components/common/Button';
 
 interface MarkerProps {
   companyName: string;
@@ -40,18 +41,17 @@ const ProfileImage = styled.div`
 const CompanyIntroBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  .companyName {
-    font-size: 1rem;
-    font-weight: 600;
-  }
   .companyProfile {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
-    margin-top: 0.4rem;
+    margin: 0.6rem 0;
   }
-  .companyUrl {
+  #companyName {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  #companyUrl {
     width: fit-content;
     font-size: 0.75rem;
     color: ${pallete.scheme.blue};
@@ -59,22 +59,6 @@ const CompanyIntroBox = styled.div`
     &:hover {
       text-decoration: underline;
     }
-  }
-`;
-
-const CompanyButton = styled.button<{ secondary?: boolean }>`
-  border: none;
-  width: 100%;
-  height: 2rem;
-  margin-top: 0.8rem;
-  text-align: center;
-  font-weight: 600;
-  border-radius: 0.563rem;
-  cursor: pointer;
-  color: ${pallete.scheme.white};
-  background-color: ${pallete.scheme.blue};
-  &:active {
-    transform: scale(0.98);
   }
 `;
 
@@ -88,29 +72,24 @@ export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
   return (
     <CustomMapMarker>
       <div className="stilettos" />
+      <ProfileImage>
+        <Image
+          src={imageUrl}
+          alt={`${companyName} 회사 로고`}
+          width={40}
+          height={40}
+          layout="responsive"
+        />
+      </ProfileImage>
       <CompanyIntroBox>
-        <ProfileImage>
-          <Image
-            src={imageUrl}
-            alt={`${companyName} 회사 로고`}
-            width={40}
-            height={40}
-            layout="responsive"
-          />
-        </ProfileImage>
         <article className="companyProfile">
-          <p className="companyName">{companyName}</p>
-          <a
-            className="companyUrl"
-            target="_blank"
-            href={companyUrl}
-            rel="noreferrer"
-          >
+          <p id="companyName">{companyName}</p>
+          <a id="companyUrl" target="_blank" href={companyUrl} rel="noreferrer">
             회사 웹사이트
           </a>
         </article>
       </CompanyIntroBox>
-      <CompanyButton
+      <Button
         onClick={() => {
           router.push({
             pathname: `/`,
@@ -119,7 +98,7 @@ export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
         }}
       >
         회사 검색하기
-      </CompanyButton>
+      </Button>
     </CustomMapMarker>
   );
 };

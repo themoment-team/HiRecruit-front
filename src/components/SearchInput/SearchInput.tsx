@@ -1,30 +1,8 @@
-import styled from '@emotion/styled';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
-import pallete from 'shared/Pallete';
 
-const SearchInput = styled.input`
-  width: 100%;
-  height: 2.75rem;
-  margin: 1.75rem 0;
-  border: none;
-  font-size: 0.925rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 0.625rem;
-  color: ${pallete.scheme.paragraph};
-  caret-color: ${pallete.scheme.paragraph};
-  font-weight: 500;
-  &::placeholder {
-    font-weight: initial;
-    transition: opacity 0.18s;
-  }
-  &:focus {
-    outline: 2px solid ${pallete.scheme.blue};
-    &::placeholder {
-      opacity: 0;
-    }
-  }
-`;
+import { Input as SearchInput } from 'components/common/Input';
+import { css } from '@emotion/react';
 
 interface Props {
   setSearchState: React.Dispatch<React.SetStateAction<string>>;
@@ -49,6 +27,9 @@ export const SearchInputComponent: React.FC<Props> = ({ setSearchState }) => {
 
   return (
     <SearchInput
+      css={css`
+        margin: 1.75rem 0;
+      `}
       ref={inputEl}
       type="text"
       placeholder="이름 또는 회사로 검색"

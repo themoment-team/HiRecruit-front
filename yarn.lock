@@ -2399,6 +2399,7 @@ __metadata:
     prettier: ^2.6.0
     react: 17.0.2
     react-dom: 17.0.2
+    react-hook-form: ^7.31.3
     react-kakao-maps-sdk: ^1.0.6
     typescript: 4.6.2
   languageName: unknown
@@ -2738,6 +2739,15 @@ __metadata:
   peerDependencies:
     react: 17.0.2
   checksum: 1c1eaa3bca7c7228d24b70932e3d7c99e70d1d04e13bb0843bbf321582bc25d7961d6b8a6978a58a598af2af496d1cedcfb1bf65f6b0960a0a8161cb8dab743c
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.31.3":
+  version: 7.31.3
+  resolution: "react-hook-form@npm:7.31.3"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: 01601c904c39dea8f617d0fc35ff62ab6e8c4968b2007990ce88952f1c24063c025eb169703edcf596dc38439669268175b9f5fb7a5d553e46fdc8bb7523ed63
   languageName: node
   linkType: hard
 

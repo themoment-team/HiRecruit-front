@@ -5,6 +5,7 @@ import { SearchInput } from 'components/SearchInput';
 import { UserList } from 'components/UserList';
 import { Logo } from 'assets/Logo';
 import pallete from 'shared/Pallete';
+import Link from 'next/link';
 
 const SideBar = styled.div`
   position: fixed;
@@ -29,12 +30,19 @@ const SearchBar = styled.div`
 const NavBar = styled.nav`
   padding: 1rem;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
   background-color: ${pallete.scheme.blue};
   border-bottom-left-radius: 14px;
   border-bottom-right-radius: 14px;
   backdrop-filter: saturate(180%) blur(20px);
+`;
+
+const SignUpAnchor = styled.a`
+  color: ${pallete.scheme.white};
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
 `;
 
 export const SideBarComponent: React.FC = () => {
@@ -44,6 +52,9 @@ export const SideBarComponent: React.FC = () => {
     <SideBar>
       <NavBar>
         <Logo logoColor="white" />
+        <Link href={`/auth/signup`} passHref>
+          <SignUpAnchor>회원가입</SignUpAnchor>
+        </Link>
       </NavBar>
       <SearchBar>
         <SearchInput setSearchState={setSearchState} />

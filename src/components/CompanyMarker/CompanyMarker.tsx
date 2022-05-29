@@ -1,24 +1,16 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
 import pallete from 'shared/Pallete';
 import { Button } from 'components/common/Button';
+import { ProfileImage } from 'components/common/ProfileImage';
 
 interface CompanyMarkerProps {
   companyName: string;
   companyUrl: string;
   companyImgUrl: string;
 }
-
-const ProfileImage = styled.div`
-  width: 3rem;
-  height: 3rem;
-  border-radius: 33%;
-  overflow: hidden;
-  background-color: ${pallete.scheme.gray};
-`;
 
 const CompanyMarker = styled.div`
   padding: 0.6rem;
@@ -72,15 +64,10 @@ export const CompanyMarkerComponent: React.FC<CompanyMarkerProps> = ({
     <CompanyMarker>
       <div className="stilettos" />
       <CompanyIntroBox>
-        <ProfileImage>
-          <Image
-            src={companyImgUrl}
-            alt={`${companyName} 회사 로고`}
-            width={40}
-            height={40}
-            layout="responsive"
-          />
-        </ProfileImage>
+        <ProfileImage
+          imageUrl={companyImgUrl}
+          alt={`${companyName}회사 프로필 사진`}
+        />
         <article className="companyProfile">
           <p className="companyName">{companyName}</p>
           <Link href={companyUrl} passHref>

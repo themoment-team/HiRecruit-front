@@ -5,7 +5,6 @@ import pallete from 'shared/Pallete';
 export const InputComponent = styled.input`
   width: 100%;
   height: 2.75rem;
-  margin: 1.75rem 0;
   border: none;
   font-size: 0.925rem;
   padding: 0.25rem 0.75rem;

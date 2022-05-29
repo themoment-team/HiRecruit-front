@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 
 import { Input as SearchInput } from 'components/common/Input';
+import { css } from '@emotion/react';
 
 interface Props {
   setSearchState: React.Dispatch<React.SetStateAction<string>>;
@@ -26,6 +27,9 @@ export const SearchInputComponent: React.FC<Props> = ({ setSearchState }) => {
 
   return (
     <SearchInput
+      css={css`
+        margin: 1.75rem 0;
+      `}
       ref={inputEl}
       type="text"
       placeholder="이름 또는 회사로 검색"

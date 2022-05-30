@@ -6,6 +6,7 @@ import { UserList } from 'components/UserList';
 import { Logo } from 'assets/Logo';
 import pallete from 'shared/Pallete';
 import { Modal } from 'components/common/Modal';
+import { Form } from 'components/Form';
 
 const SideBar = styled.div`
   position: fixed;
@@ -56,7 +57,7 @@ export const SideBarComponent: React.FC = () => {
         <NavBar>
           <Logo logoColor="white" />
           <SignUpAnchor onClick={() => setIsHelpModal(true)}>
-            회원가입
+            회원가입/로그인
           </SignUpAnchor>
         </NavBar>
         <SearchBar>
@@ -64,7 +65,11 @@ export const SideBarComponent: React.FC = () => {
           <UserList searchState={searchState} />
         </SearchBar>
       </SideBar>
-      {isHelpModal && <Modal set={setIsHelpModal}>modal</Modal>}
+      {isHelpModal && (
+        <Modal set={setIsHelpModal}>
+          <Form />
+        </Modal>
+      )}
     </>
   );
 };

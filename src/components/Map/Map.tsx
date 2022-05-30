@@ -5,6 +5,7 @@ import { UserData } from 'types/worker.type';
 import useMarker from 'hooks/use-marker';
 import { SideBar } from 'components/SideBar';
 import { MarkerList } from 'components/MarkerList';
+import { CompanyData } from 'types/company.type';
 
 const data: UserData[] = [
   {
@@ -25,9 +26,19 @@ const data: UserData[] = [
   },
 ];
 
+const companyData: CompanyData[] = [
+  {
+    companyId: 12,
+    name: 'Ozu',
+    location: '서울 송파구 올림픽로300, 35층',
+    homepageUri: 'https://www.ozu.ac.kr/',
+    companyImgUri: 'https://github.com/sunwoo0706.png',
+  },
+];
+
 export const MapComponent: React.FC = () => {
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
-  const markers = useMarker(data, map);
+  const markers = useMarker(companyData, map);
 
   return (
     <>

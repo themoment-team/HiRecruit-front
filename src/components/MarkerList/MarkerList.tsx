@@ -36,7 +36,7 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
             onClick={() => panTo(marker.position.lat, marker.position.lng)}
           />
         ) : (
-          <CustomOverlayMap position={marker.position}>
+          <CustomOverlayMap key={i} position={marker.position}>
             <CustomMapMarker
               companyName={marker.name}
               companyUrl={marker.imageUrl}

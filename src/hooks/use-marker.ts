@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { UserData } from 'types/worker.type';
+import { CompanyData } from 'types/company.type';
 
-const useMarker = (data: UserData[], map: kakao.maps.Map | undefined) => {
+const useMarker = (data: CompanyData[], map: kakao.maps.Map | undefined) => {
   const [markers, setMarkers] = useState<any[]>([]);
 
   useEffect(() => {

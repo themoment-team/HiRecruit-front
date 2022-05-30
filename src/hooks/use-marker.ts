@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { UserData } from 'shared/Type';
+import { UserData } from 'types/worker.type';
 
 const useMarker = (data: UserData[], map: kakao.maps.Map | undefined) => {
   const [markers, setMarkers] = useState<any[]>([]);

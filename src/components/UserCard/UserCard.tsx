@@ -138,7 +138,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
       {!!introduction && (
         <IntroduceCard>
           <p>
-            <UserPosition>{`• ${devYear}년차 ${position}`}</UserPosition>
+            <UserPosition>{`${devYear}년차 ${position}`}</UserPosition>
             {introduction}
           </p>
         </IntroduceCard>

@@ -1,6 +1,6 @@
 import { CompanyData } from './company.type';
 
-export interface UserData {
+export interface WorkerData {
   workerId: number;
   name: string;
   email: string;

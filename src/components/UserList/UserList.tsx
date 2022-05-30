@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-import { UserData } from 'types/worker.type';
+import { WorkerData } from 'types/worker.type';
 import { UserCard } from 'components/UserCard';
 import pallete from 'shared/Pallete';
 
 interface UserListProps {
   searchState: string;
+  workerList: WorkerData[];
 }
 
 const UserList = styled.div`
@@ -35,34 +36,18 @@ const NotFoundUser = styled.p`
   color: ${pallete.scheme.paragraph};
 `;
 
-const data: UserData[] = [
-  {
-    workerId: 12,
-    name: 'Berkley Mapam',
-    email: 'bmapam0@netscape.com',
-    introduction: '안녕하세요 정시원입니다.',
-    profileImgUri: 'https://github.com/sunwoo0706.png',
-    devYear: 7,
-    position: '프론트엔드',
-    company: {
-      companyId: 12,
-      name: 'Ozu',
-      location: '서울 송파구 올림픽로300, 35층',
-      homepageUri: 'https://www.ozu.ac.kr/',
-      companyImgUri: 'https://avatars.githubusercontent.com/u/62932968?v=4',
-    },
-  },
-];
-
-export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
-  const [userList, setUserList] = useState<UserData[]>(data);
+export const UserListComponent: React.FC<UserListProps> = ({
+  searchState,
+  workerList,
+}) => {
+  const [userList, setUserList] = useState<WorkerData[]>(workerList);
 
   useEffect(() => {
     if (searchState === '') {
-      setUserList(data);
+      setUserList(workerList);
     } else {
       setUserList(
-        data.filter(
+        workerList.filter(
           user =>
             user.name.includes(searchState) ||
             user.company.name.includes(searchState),

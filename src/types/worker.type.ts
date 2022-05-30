@@ -1,9 +1,13 @@
+import { CompanyData } from './company.type';
+
 export interface UserData {
+  workerId: number;
   name: string;
-  imageUrl: string;
   email: string;
-  company: string;
-  introduction?: string;
-  location: string;
-  devYear?: number;
+  introduction: string;
+  profileImgUri: string;
+  giveLink?: string;
+  devYear: number;
+  position: string;
+  company: CompanyData;
 }

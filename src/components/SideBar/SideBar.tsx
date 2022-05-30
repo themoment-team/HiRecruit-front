@@ -5,7 +5,7 @@ import { SearchInput } from 'components/SearchInput';
 import { UserList } from 'components/UserList';
 import { Logo } from 'assets/Logo';
 import pallete from 'shared/Pallete';
-import Link from 'next/link';
+import { Modal } from 'components/common/Modal';
 
 const SideBar = styled.div`
   position: fixed;
@@ -43,23 +43,28 @@ const SignUpAnchor = styled.a`
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
 `;
 
 export const SideBarComponent: React.FC = () => {
   const [searchState, setSearchState] = useState<string>('');
+  const [isHelpModal, setIsHelpModal] = useState<boolean>(false);
 
   return (
-    <SideBar>
-      <NavBar>
-        <Logo logoColor="white" />
-        <Link href={`/auth/signup`} passHref>
-          <SignUpAnchor>회원가입</SignUpAnchor>
-        </Link>
-      </NavBar>
-      <SearchBar>
-        <SearchInput setSearchState={setSearchState} />
-        <UserList searchState={searchState} />
-      </SearchBar>
-    </SideBar>
+    <>
+      <SideBar>
+        <NavBar>
+          <Logo logoColor="white" />
+          <SignUpAnchor onClick={() => setIsHelpModal(true)}>
+            회원가입
+          </SignUpAnchor>
+        </NavBar>
+        <SearchBar>
+          <SearchInput setSearchState={setSearchState} />
+          <UserList searchState={searchState} />
+        </SearchBar>
+      </SideBar>
+      {isHelpModal && <Modal set={setIsHelpModal}>modal</Modal>}
+    </>
   );
 };

@@ -97,7 +97,7 @@ export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
           });
         }}
       >
-        회사 검색하기
+        이 회사에 재직중인 사람들
       </Button>
     </CustomMapMarker>
   );

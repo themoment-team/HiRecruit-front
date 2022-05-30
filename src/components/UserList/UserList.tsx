@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-import { UserData } from 'shared/Type';
+import { UserData } from 'types/worker.type';
 import { UserCard } from 'components/UserCard';
 import pallete from 'shared/Pallete';
 
@@ -37,50 +37,20 @@ const NotFoundUser = styled.p`
 
 const data: UserData[] = [
   {
+    workerId: 12,
     name: 'Berkley Mapam',
-    imageUrl: 'https://github.com/sunwoo0706.png',
     email: 'bmapam0@netscape.com',
-    company: 'Ozu',
-    introduction: 'Software Consultant',
-    location: '서울 송파구 올림픽로300, 35층',
+    introduction: '안녕하세요 정시원입니다.',
+    profileImgUri: 'https://github.com/sunwoo0706.png',
     devYear: 7,
-  },
-  {
-    name: 'Sianna Inde',
-    imageUrl: 'https://github.com/siwony.png',
-    email: 'sinde1@canalblog.com',
-    company: 'Brightdog',
-    introduction: 'Quality Control Specialist',
-    location: '서울 구로구 디지털로31길 53 1101호',
-    devYear: 7,
-  },
-  {
-    name: 'Kelsey McMichan',
-    imageUrl: 'https://github.com/jyeonjyan.png',
-    email: 'kmcmichan2@artisteer.com',
-    company: 'Rhyzio',
-    introduction: 'Technical Writer',
-    location: '서울 강남구 삼성1동 봉은사로86길 6 (602호)',
-    devYear: 7,
-  },
-  {
-    name: 'Kelsey McMichan',
-    imageUrl: 'https://github.com/codnstj.png',
-    email: 'kmcmichan2@artisteer.com',
-    company: 'Rhyzio',
-    introduction: 'Technical Writer',
-    location:
-      '대구광역시 동구 동대구로 461(신천동) (재)대구경북디자인센터 1004호',
-    devYear: 7,
-  },
-  {
-    name: 'Kelsey McMichan',
-    imageUrl: 'https://github.com/hyeongrok7874.png',
-    email: 'kmcmichan2@artisteer.com',
-    company: 'Rhyzio',
-    introduction: 'Technical Writer',
-    location: '서울특별시 서초구 강남대로 311 드림플러스',
-    devYear: 7,
+    position: '프론트엔드',
+    company: {
+      companyId: 12,
+      name: 'Ozu',
+      location: '서울 송파구 올림픽로300, 35층',
+      homepageUri: 'https://www.ozu.ac.kr/',
+      companyImgUri: 'https://avatars.githubusercontent.com/u/62932968?v=4',
+    },
   },
 ];
 
@@ -95,7 +65,7 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
         data.filter(
           user =>
             user.name.includes(searchState) ||
-            user.company.includes(searchState),
+            user.company.name.includes(searchState),
         ),
       );
     }
@@ -110,23 +80,19 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
           철자와 띄어쓰기를 확인해주세요.
         </NotFoundUser>
       ) : (
-        userList.map(
-          (
-            { name, imageUrl, email, company, introduction, devYear, location },
-            i,
-          ) => (
-            <UserCard
-              key={i}
-              name={name}
-              imageUrl={imageUrl}
-              email={email}
-              company={company}
-              introduction={introduction}
-              location={location}
-              devYear={devYear}
-            />
-          ),
-        )
+        userList.map(info => (
+          <UserCard
+            key={info.workerId}
+            name={info.name}
+            email={info.email}
+            introduction={info.introduction}
+            profileImgUri={info.profileImgUri}
+            devYear={info.devYear}
+            position={info.position}
+            companyName={info.company.name}
+            location={info.company.location}
+          />
+        ))
       )}
     </UserList>
   );

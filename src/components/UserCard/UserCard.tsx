@@ -4,9 +4,19 @@ import { useCallback } from 'react';
 import { useMap } from 'react-kakao-maps-sdk';
 
 import pallete from 'shared/Pallete';
-import { UserData as UserCardProps } from 'shared/Type';
 import { Button } from 'components/common/Button';
 import useCoord from 'hooks/use-coord';
+
+interface UserCardProps {
+  name: string;
+  email: string;
+  introduction: string;
+  profileImgUri: string;
+  devYear: number;
+  position: string;
+  companyName: string;
+  location: string;
+}
 
 const UserCard = styled.div`
   width: 100%;
@@ -75,20 +85,25 @@ const UserButtonWrapper = styled.div`
   gap: 0.8rem;
 `;
 
+const UserPosition = styled.div`
+  color: ${pallete.scheme.blue};
+`;
+
 export const UserCardComponent: React.FC<UserCardProps> = ({
   name,
-  imageUrl,
   email,
-  company,
   introduction,
-  location,
+  profileImgUri,
   devYear,
+  position,
+  companyName,
+  location,
 }) => {
   const map = useMap();
   const { lat, lng } = useCoord(map, location);
 
   const subString = useCallback((str: string, n: number): string => {
-    return str.length > n ? `${str.substring(0, n)}...` : str;
+    return str?.length > n ? `${str.substring(0, n)}...` : str;
   }, []);
 
   const panTo = (lat: number, lng: number) => {
@@ -105,7 +120,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
       <ProfileWrapper>
         <ProfileImage>
           <Image
-            src={imageUrl}
+            src={profileImgUri}
             alt={`${name}님의 프로필 사진`}
             width={60}
             height={60}
@@ -117,15 +132,15 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
           <a className="email" href={`mailto:${email}`}>
             {subString(email, 25)}
           </a>
-          <p className="company">
-            {subString(company, 18)}
-            {devYear && ` • ${devYear}년차`}
-          </p>
+          <p className="company">{subString(companyName, 18)}</p>
         </ProfileParagraph>
       </ProfileWrapper>
       {!!introduction && (
         <IntroduceCard>
-          <p>{introduction}</p>
+          <p>
+            <UserPosition>{`• ${devYear}년차 ${position}`}</UserPosition>
+            {introduction}
+          </p>
         </IntroduceCard>
       )}
       <UserButtonWrapper>

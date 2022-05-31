@@ -85,7 +85,7 @@ const UserButtonWrapper = styled.div`
   gap: 0.8rem;
 `;
 
-const UserPosition = styled.div`
+const UserPosition = styled.span`
   color: ${pallete.scheme.blue};
 `;
 
@@ -139,6 +139,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
         <IntroduceCard>
           <p>
             <UserPosition>{`${devYear}년차 ${position}`}</UserPosition>
+            <br />
             {introduction}
           </p>
         </IntroduceCard>

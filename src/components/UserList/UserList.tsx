@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { WorkerData } from 'types/worker.type';
 import { UserCard } from 'components/UserCard';
 import pallete from 'shared/Pallete';
+import { getWorkerList } from 'libs/api/worker.api';
 
 interface UserListProps {
   searchState: string;

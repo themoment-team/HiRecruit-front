@@ -1,28 +1,20 @@
 import { Map } from 'react-kakao-maps-sdk';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { WorkerData } from 'types/worker.type';
 import useMarker from 'hooks/use-marker';
 import { SideBar } from 'components/SideBar';
 import { MarkerList } from 'components/MarkerList';
-import { CompanyData } from 'types/company.type';
+import useCompanyList from 'hooks/api/company/use-company-list';
 
 interface MapProps {
   workerList: WorkerData[];
 }
 
-const companyData: CompanyData[] = [
-  {
-    companyId: 12,
-    name: 'Ozu',
-    location: '서울 송파구 올림픽로300, 35층',
-    homepageUri: 'https://www.ozu.ac.kr/',
-    companyImgUri: 'https://github.com/sunwoo0706.png',
-  },
-];
-
 export const MapComponent: React.FC<MapProps> = ({ workerList }) => {
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
+  const companyData = useCompanyList();
+
   const markers = useMarker(companyData, map);
 
   return (

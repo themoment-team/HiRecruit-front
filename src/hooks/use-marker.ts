@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
-import { UserData } from 'shared/Type';
+import { CompanyData } from 'types/company.type';
 
-const useMarker = (data: UserData[], map: kakao.maps.Map | undefined) => {
+const useMarker = (
+  data: CompanyData[] | undefined,
+  map: kakao.maps.Map | undefined,
+) => {
   const [markers, setMarkers] = useState<any[]>([]);
 
   useEffect(() => {
-    if (!map) return;
+    if (!(map && data)) return;
     const gc = new kakao.maps.services.Geocoder();
 
     data.forEach(info => {
@@ -28,7 +31,7 @@ const useMarker = (data: UserData[], map: kakao.maps.Map | undefined) => {
         }
       });
     });
-  }, [map]);
+  }, [map, data]);
 
   return markers;
 };

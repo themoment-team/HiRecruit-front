@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 
@@ -33,6 +32,9 @@ const CustomMapMarker = styled.div`
 const ProfileImage = styled.div`
   width: 100%;
   height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 14px;
   overflow: hidden;
   background-color: ${pallete.scheme.gray};
@@ -73,13 +75,7 @@ export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
     <CustomMapMarker>
       <div className="stilettos" />
       <ProfileImage>
-        <Image
-          src={imageUrl}
-          alt={`${companyName} 회사 로고`}
-          width={40}
-          height={40}
-          layout="responsive"
-        />
+        <img src={imageUrl} alt={`${companyName} 회사 로고`} height="100%" />
       </ProfileImage>
       <CompanyIntroBox>
         <article className="companyProfile">

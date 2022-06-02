@@ -10,14 +10,9 @@ export interface InputListType {
   devYear: string;
 }
 
-export interface PositionOptionType {
-  value: string;
-  label: string;
-}
-
 export type KeyListType = InputListType;
 
-export const positionOptionList: PositionOptionType[] = [
+export const positionOptionList = [
   { value: '', label: '직군' },
   { value: '서버/백엔드', label: '서버/백엔드' },
   { value: '프론트엔드', label: '프론트엔드' },

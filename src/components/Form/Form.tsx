@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 
-import { Input as commonInput } from 'components/common/Input';
 import pallete from 'shared/Pallete';
+import { Input as commonInput } from 'components/common/Input';
+import { Select } from 'components/common/Select';
+
 import { positionOptionList, onSubmit, InputListType } from './container';
 
 const FormWrapper = styled.span`
@@ -42,23 +44,6 @@ const Input = styled(commonInput)`
   }
 `;
 
-const SelectInput = styled.select`
-  width: 100%;
-  height: 2.75rem;
-  font-size: 0.925rem;
-  font-weight: 500;
-  color: ${pallete.scheme.paragraph};
-  caret-color: ${pallete.scheme.paragraph};
-  padding: 0.25rem 0.5rem;
-  margin: 1rem 0;
-  border-radius: 0.625rem;
-  border: 2px solid ${pallete.scheme.blue};
-  outline: none;
-  option {
-    color: ${pallete.scheme.paragraph};
-  }
-`;
-
 const SubmitInput = styled.input`
   width: 100%;
   border-radius: 1.5rem;
@@ -74,11 +59,7 @@ const SubmitInput = styled.input`
 `;
 
 export const FormComponent = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<InputListType>();
+  const { register, handleSubmit } = useForm<InputListType>();
 
   return (
     <FormWrapper>
@@ -96,13 +77,7 @@ export const FormComponent = () => {
           type="email"
           maxLength={100}
         />
-        <SelectInput {...register('position')}>
-          {positionOptionList.map(({ value, label }) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </SelectInput>
+        <Select {...register('position')} optionList={positionOptionList} />
         <Input
           placeholder="연차"
           {...register('devYear')}
@@ -119,7 +94,7 @@ export const FormComponent = () => {
           placeholder="회사 도로명 주소"
           {...register('companyLocation')}
           type="address"
-          maxLength={100}
+          disabled
         />
         <Input
           placeholder="한줄 소개"

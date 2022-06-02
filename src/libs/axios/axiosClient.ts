@@ -1,9 +1,9 @@
 import axios, { AxiosInstance as AxiosClient } from 'axios';
 
-const URL_PREFIX = '/api/v1';
+const URL_POSTFIX = '/api/v1';
 
 const axiosClient: AxiosClient = axios.create({
-  baseURL: process.env.baseUrl + URL_PREFIX,
+  baseURL: process.env.baseUrl + URL_POSTFIX,
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',

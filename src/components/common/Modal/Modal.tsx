@@ -9,17 +9,6 @@ interface ModalProps {
   set: Dispatch<SetStateAction<boolean>>;
 }
 
-const ModalContent = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: ${pallete.scheme.white};
-  border-radius: 10px;
-  max-width: 1060px;
-  max-height: 680px;
-`;
-
 const ModalBackground = styled.div`
   position: fixed;
   top: 0;
@@ -46,7 +35,7 @@ export const ModalComponent = ({ children, set }: ModalProps): JSX.Element => {
 
   return (
     <ModalBackground>
-      <ModalContent ref={el}>{children}</ModalContent>
+      <span ref={el}>{children}</span>
     </ModalBackground>
   );
 };

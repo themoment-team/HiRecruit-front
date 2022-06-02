@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 
-import pallete from 'shared/Pallete';
 import { Input as commonInput } from 'components/common/Input';
-import { Select } from 'components/common/Select';
-
+import pallete from 'shared/Pallete';
 import { positionOptionList, onSubmit, InputListType } from './container';
 
 const FormWrapper = styled.span`
@@ -44,6 +42,20 @@ const Input = styled(commonInput)`
   }
 `;
 
+const SelectInput = styled.select`
+  width: 100%;
+  height: 2.75rem;
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: ${pallete.scheme.paragraph};
+  caret-color: ${pallete.scheme.paragraph};
+  padding: 0.25rem 0.5rem;
+  margin: 1rem 0;
+  border-radius: 0.625rem;
+  border: 2px solid ${pallete.scheme.blue};
+  outline: none;
+`;
+
 const SubmitInput = styled.input`
   width: 100%;
   border-radius: 1.5rem;
@@ -77,7 +89,14 @@ export const FormComponent = () => {
           type="email"
           maxLength={100}
         />
-        <Select {...register('position')} optionList={positionOptionList} />
+        <SelectInput {...register('position')}>
+          {positionOptionList.map((opt, i) => (
+            // option의 첫번째 값은 기본값으로 빈값을 반환
+            <option key={opt} value={i !== 0 ? opt : ''}>
+              {opt}
+            </option>
+          ))}
+        </SelectInput>
         <Input
           placeholder="연차"
           {...register('devYear')}

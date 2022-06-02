@@ -1,14 +1,12 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-import { WorkerData } from 'types/worker.type';
 import { UserCard } from 'components/UserCard';
 import pallete from 'shared/Pallete';
-import { getWorkerList } from 'libs/api/worker.api';
+import useWorkerList from 'hooks/api/worker/use-worker-list';
 
 interface UserListProps {
   searchState: string;
-  workerList: WorkerData[];
 }
 
 const UserList = styled.div`
@@ -37,36 +35,35 @@ const NotFoundUser = styled.p`
   color: ${pallete.scheme.paragraph};
 `;
 
-export const UserListComponent: React.FC<UserListProps> = ({
-  searchState,
-  workerList,
-}) => {
-  const [userList, setUserList] = useState<WorkerData[]>(workerList);
+export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
+  const initialWorkerList = useWorkerList();
+  const [userList, setUserList] = useState(initialWorkerList);
 
   useEffect(() => {
+    if (!initialWorkerList) return;
     if (searchState === '') {
-      setUserList(workerList);
+      setUserList(initialWorkerList);
     } else {
       setUserList(
-        workerList.filter(
+        initialWorkerList.filter(
           user =>
             user.name.includes(searchState) ||
             user.company.name.includes(searchState),
         ),
       );
     }
-  }, [searchState]);
+  }, [userList, searchState, initialWorkerList]);
 
   return (
     <UserList>
-      {userList.length === 0 ? (
+      {userList?.length === 0 ? (
         <NotFoundUser>
           찾으시는 결과가 존재하지 않습니다.
           <br />
           철자와 띄어쓰기를 확인해주세요.
         </NotFoundUser>
       ) : (
-        userList.map(info => (
+        userList?.map(info => (
           <UserCard
             key={info.workerId}
             name={info.name}

@@ -7,11 +7,6 @@ import { Logo } from 'assets/Logo';
 import pallete from 'shared/Pallete';
 import { Modal } from 'components/common/Modal';
 import { Form } from 'components/Form';
-import { WorkerData } from 'types/worker.type';
-
-interface SideBarProps {
-  workerList: WorkerData[];
-}
 
 const SideBar = styled.div`
   position: fixed;
@@ -52,7 +47,7 @@ const SignUpAnchor = styled.a`
   cursor: pointer;
 `;
 
-export const SideBarComponent: React.FC<SideBarProps> = ({ workerList }) => {
+export const SideBarComponent: React.FC = () => {
   const [searchState, setSearchState] = useState<string>('');
   const [isHelpModal, setIsHelpModal] = useState<boolean>(false);
 
@@ -67,7 +62,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ workerList }) => {
         </NavBar>
         <SearchBar>
           <SearchInput setSearchState={setSearchState} />
-          <UserList searchState={searchState} workerList={workerList} />
+          <UserList searchState={searchState} />
         </SearchBar>
       </SideBar>
       {isHelpModal && (

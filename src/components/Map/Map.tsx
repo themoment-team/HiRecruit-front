@@ -1,17 +1,12 @@
 import { Map } from 'react-kakao-maps-sdk';
 
-import { useEffect, useState } from 'react';
-import { WorkerData } from 'types/worker.type';
+import { useState } from 'react';
 import useMarker from 'hooks/use-marker';
 import { SideBar } from 'components/SideBar';
 import { MarkerList } from 'components/MarkerList';
 import useCompanyList from 'hooks/api/company/use-company-list';
 
-interface MapProps {
-  workerList: WorkerData[];
-}
-
-export const MapComponent: React.FC<MapProps> = ({ workerList }) => {
+export const MapComponent: React.FC = () => {
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
   const companyData = useCompanyList();
 
@@ -32,7 +27,7 @@ export const MapComponent: React.FC<MapProps> = ({ workerList }) => {
         level={12}
       >
         <MarkerList markers={markers} />
-        <SideBar workerList={workerList} />
+        <SideBar />
       </Map>
     </>
   );

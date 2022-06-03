@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 
@@ -6,6 +7,7 @@ import { Button } from 'components/common/Button';
 import pallete from 'shared/Pallete';
 
 import { positionOptionList, onSubmit, InputListType } from './container';
+import { PostCode } from 'components/common/Postcode';
 
 const FormWrapper = styled.span`
   display: inline-flex;
@@ -15,7 +17,6 @@ const FormWrapper = styled.span`
   background-color: ${pallete.scheme.white};
   border-radius: 10px;
   max-width: 1060px;
-  max-height: 680px;
 `;
 
 const Form = styled.form`
@@ -85,6 +86,8 @@ const SubmitInput = styled.input`
 
 export const FormComponent = () => {
   const { register, handleSubmit } = useForm<InputListType>();
+  const [address, setAddress] = useState<string>('');
+  const [isPostCode, setIsPostCode] = useState<boolean>(false);
 
   return (
     <FormWrapper>
@@ -127,9 +130,15 @@ export const FormComponent = () => {
             placeholder="회사 도로명 주소"
             {...register('companyLocation')}
             type="address"
+            value={address}
           />
-          <AddressButton type="button">주소 찾기</AddressButton>
+          <AddressButton type="button" onClick={() => setIsPostCode(true)}>
+            주소 찾기
+          </AddressButton>
         </AddressWrapper>
+        {isPostCode && (
+          <PostCode key="key1" set={setAddress} setVisible={setIsPostCode} />
+        )}
         <Input
           placeholder="한줄 소개"
           {...register('introduction')}

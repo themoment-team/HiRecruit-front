@@ -3,6 +3,7 @@ import { Address } from 'react-daum-postcode';
 
 export interface PostCodeProps {
   set: Dispatch<SetStateAction<string>>;
+  setVisible: Dispatch<SetStateAction<boolean>>;
 }
 
 export const handleComplete = (

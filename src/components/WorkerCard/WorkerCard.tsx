@@ -7,7 +7,7 @@ import pallete from 'shared/Pallete';
 import { Button } from 'components/common/Button';
 import useCoord from 'hooks/use-coord';
 
-interface UserCardProps {
+interface WorkerCardProps {
   name: string;
   email: string;
   introduction: string;
@@ -18,7 +18,7 @@ interface UserCardProps {
   location: string;
 }
 
-const UserCard = styled.div`
+const WorkerCard = styled.div`
   width: 100%;
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -77,7 +77,7 @@ const IntroduceCard = styled.div`
   }
 `;
 
-const UserButtonWrapper = styled.div`
+const WorkerButtonWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -85,11 +85,11 @@ const UserButtonWrapper = styled.div`
   gap: 0.8rem;
 `;
 
-const UserPosition = styled.span`
+const WorkerPosition = styled.span`
   color: ${pallete.scheme.blue};
 `;
 
-export const UserCardComponent: React.FC<UserCardProps> = ({
+export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
   name,
   email,
   introduction,
@@ -116,7 +116,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
   };
 
   return (
-    <UserCard>
+    <WorkerCard>
       <ProfileWrapper>
         <ProfileImage>
           <Image
@@ -138,13 +138,13 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
       {!!introduction && (
         <IntroduceCard>
           <p>
-            <UserPosition>{`${devYear}년차 ${position}`}</UserPosition>
+            <WorkerPosition>{`${devYear}년차 ${position}`}</WorkerPosition>
             <br />
             {introduction}
           </p>
         </IntroduceCard>
       )}
-      <UserButtonWrapper>
+      <WorkerButtonWrapper>
         <Button
           onClick={() => {
             if (lat && lng) panTo(lat, lng);
@@ -152,7 +152,7 @@ export const UserCardComponent: React.FC<UserCardProps> = ({
         >
           회사 위치
         </Button>
-      </UserButtonWrapper>
-    </UserCard>
+      </WorkerButtonWrapper>
+    </WorkerCard>
   );
 };

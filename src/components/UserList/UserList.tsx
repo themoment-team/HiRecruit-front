@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-import { UserCard } from 'components/UserCard';
+import { WorkerCard } from 'components/WorkerCard';
 import pallete from 'shared/Pallete';
 import useWorkerList from 'hooks/api/worker/use-worker-list';
 
@@ -64,7 +64,7 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
         </NotFoundUser>
       ) : (
         workerList?.map(info => (
-          <UserCard
+          <WorkerCard
             key={info.workerId}
             name={info.name}
             email={info.email}

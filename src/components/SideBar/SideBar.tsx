@@ -49,14 +49,14 @@ const SignUpAnchor = styled.a`
 
 export const SideBarComponent: React.FC = () => {
   const [searchState, setSearchState] = useState<string>('');
-  const [isHelpModal, setIsHelpModal] = useState<boolean>(false);
+  const [isSignUpFormModal, setIsSignUpFormModal] = useState<boolean>(false);
 
   return (
     <>
       <SideBar>
         <NavBar>
           <Logo logoColor="white" />
-          <SignUpAnchor onClick={() => setIsHelpModal(true)}>
+          <SignUpAnchor onClick={() => setIsSignUpFormModal(true)}>
             회원가입/로그인
           </SignUpAnchor>
         </NavBar>
@@ -65,8 +65,8 @@ export const SideBarComponent: React.FC = () => {
           <UserList searchState={searchState} />
         </SearchBar>
       </SideBar>
-      {isHelpModal && (
-        <Modal set={setIsHelpModal}>
+      {isSignUpFormModal && (
+        <Modal set={setIsSignUpFormModal}>
           <Form />
         </Modal>
       )}

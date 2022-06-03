@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { SearchInput } from 'components/SearchInput';
-import { UserList } from 'components/UserList';
+import { WorkerList } from 'components/WorkerList';
 import { Logo } from 'assets/Logo';
 import pallete from 'shared/Pallete';
 import { Modal } from 'components/common/Modal';
@@ -62,7 +62,7 @@ export const SideBarComponent: React.FC = () => {
         </NavBar>
         <SearchBar>
           <SearchInput setSearchState={setSearchState} />
-          <UserList searchState={searchState} />
+          <WorkerList searchState={searchState} />
         </SearchBar>
       </SideBar>
       {isSignUpFormModal && (

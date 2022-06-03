@@ -2,7 +2,9 @@ import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 
 import { Input as commonInput } from 'components/common/Input';
+import { Button } from 'components/common/Button';
 import pallete from 'shared/Pallete';
+
 import { positionOptionList, onSubmit, InputListType } from './container';
 
 const FormWrapper = styled.span`
@@ -54,6 +56,17 @@ const SelectInput = styled.select`
   border-radius: 0.625rem;
   border: 2px solid ${pallete.scheme.blue};
   outline: none;
+`;
+
+const AddressWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+`;
+
+const AddressButton = styled(Button)`
+  width: 6rem;
+  height: 2.75rem;
 `;
 
 const SubmitInput = styled.input`
@@ -109,12 +122,14 @@ export const FormComponent = () => {
           type="text"
           maxLength={100}
         />
-        <Input
-          placeholder="회사 도로명 주소"
-          {...register('companyLocation')}
-          type="address"
-          disabled
-        />
+        <AddressWrapper>
+          <Input
+            placeholder="회사 도로명 주소"
+            {...register('companyLocation')}
+            type="address"
+          />
+          <AddressButton type="button">주소 찾기</AddressButton>
+        </AddressWrapper>
         <Input
           placeholder="한줄 소개"
           {...register('introduction')}

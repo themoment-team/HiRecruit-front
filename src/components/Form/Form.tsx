@@ -84,7 +84,7 @@ const SubmitInput = styled.input`
   cursor: pointer;
 `;
 
-export const FormComponent = () => {
+export const FormComponent: React.FC = () => {
   const { register, handleSubmit } = useForm<InputListType>();
   const [address, setAddress] = useState<string>('');
   const [isPostCode, setIsPostCode] = useState<boolean>(false);

@@ -35,7 +35,7 @@ const ProfileImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 14px;
+  border-radius: 1.75rem;
   overflow: hidden;
   background-color: ${pallete.scheme.gray};
 `;

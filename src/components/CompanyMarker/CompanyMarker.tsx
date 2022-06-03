@@ -15,7 +15,7 @@ interface CompanyMarkerProps {
 const CompanyMarker = styled.div`
   padding: 0.6rem;
   background-color: ${pallete.scheme.white};
-  border-radius: 10px;
+  border-radius: 0.625rem;
   transform: translateY(-8px);
   .stilettos {
     position: absolute;

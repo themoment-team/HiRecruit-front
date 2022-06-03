@@ -37,14 +37,14 @@ const NotFoundUser = styled.p`
 
 export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
   const initialWorkerList = useWorkerList();
-  const [userList, setUserList] = useState(initialWorkerList);
+  const [workerList, setWorkerList] = useState(initialWorkerList);
 
   useEffect(() => {
     if (!initialWorkerList) return;
     if (searchState === '') {
-      setUserList(initialWorkerList);
+      setWorkerList(initialWorkerList);
     } else {
-      setUserList(
+      setWorkerList(
         initialWorkerList.filter(
           user =>
             user.name.includes(searchState) ||
@@ -52,18 +52,18 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
         ),
       );
     }
-  }, [userList, searchState, initialWorkerList]);
+  }, [workerList, searchState, initialWorkerList]);
 
   return (
     <UserList>
-      {userList?.length === 0 ? (
+      {workerList?.length === 0 ? (
         <NotFoundUser>
           찾으시는 결과가 존재하지 않습니다.
           <br />
           철자와 띄어쓰기를 확인해주세요.
         </NotFoundUser>
       ) : (
-        userList?.map(info => (
+        workerList?.map(info => (
           <UserCard
             key={info.workerId}
             name={info.name}

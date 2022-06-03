@@ -131,6 +131,7 @@ export const FormComponent = () => {
             {...register('companyLocation')}
             type="address"
             value={address}
+            onChange={e => setAddress(e.target.value)}
           />
           <AddressButton type="button" onClick={() => setIsPostCode(true)}>
             주소 찾기

@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="./src/assets/img/HR_Transparent.png" width="100px">
+    <img src="https://github.com/themoment-team/HiRecruit-server/raw/master/assets/img/HR_Transparent.png" width="100px">
 </h1>
 
 ## Description
@@ -19,6 +19,7 @@ Details here
   Typescript
   emotion
   kakao-map-sdk
+  react-daum-postcode
 ```
 
 ## Licence

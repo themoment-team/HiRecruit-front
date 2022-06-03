@@ -1,15 +1,15 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-import { UserCard } from 'components/UserCard';
+import { WorkerCard } from 'components/WorkerCard';
 import pallete from 'shared/Pallete';
 import useWorkerList from 'hooks/api/worker/use-worker-list';
 
-interface UserListProps {
+interface WorkerListProps {
   searchState: string;
 }
 
-const UserList = styled.div`
+const WorkerList = styled.div`
   width: 100%;
   margin: 0 auto;
   padding-bottom: 1.5rem;
@@ -27,7 +27,7 @@ const UserList = styled.div`
   gap: 1.5rem;
 `;
 
-const NotFoundUser = styled.p`
+const StatusMessage = styled.p`
   font-size: 1rem;
   font-weight: 500;
   text-align: center;
@@ -35,36 +35,38 @@ const NotFoundUser = styled.p`
   color: ${pallete.scheme.paragraph};
 `;
 
-export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
+export const WorkerListComponent: React.FC<WorkerListProps> = ({
+  searchState,
+}) => {
   const initialWorkerList = useWorkerList();
-  const [userList, setUserList] = useState(initialWorkerList);
+  const [workerList, setWorkerList] = useState(initialWorkerList);
 
   useEffect(() => {
     if (!initialWorkerList) return;
     if (searchState === '') {
-      setUserList(initialWorkerList);
+      setWorkerList(initialWorkerList);
     } else {
-      setUserList(
+      setWorkerList(
         initialWorkerList.filter(
-          user =>
-            user.name.includes(searchState) ||
-            user.company.name.includes(searchState),
+          worker =>
+            worker.name.includes(searchState) ||
+            worker.company.name.includes(searchState),
         ),
       );
     }
-  }, [userList, searchState, initialWorkerList]);
+  }, [workerList, searchState, initialWorkerList]);
 
   return (
-    <UserList>
-      {userList?.length === 0 ? (
-        <NotFoundUser>
+    <WorkerList>
+      {workerList?.length === 0 ? (
+        <StatusMessage>
           찾으시는 결과가 존재하지 않습니다.
           <br />
           철자와 띄어쓰기를 확인해주세요.
-        </NotFoundUser>
+        </StatusMessage>
       ) : (
-        userList?.map(info => (
-          <UserCard
+        workerList?.map(info => (
+          <WorkerCard
             key={info.workerId}
             name={info.name}
             email={info.email}
@@ -77,6 +79,6 @@ export const UserListComponent: React.FC<UserListProps> = ({ searchState }) => {
           />
         ))
       )}
-    </UserList>
+    </WorkerList>
   );
 };

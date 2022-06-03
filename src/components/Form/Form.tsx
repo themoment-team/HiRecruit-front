@@ -16,7 +16,7 @@ const FormWrapper = styled.span`
   align-items: center;
   background-color: ${pallete.scheme.white};
   border-radius: 10px;
-  max-width: 1060px;
+  max-width: 66.25rem;
 `;
 
 const Form = styled.form`
@@ -84,7 +84,7 @@ const SubmitInput = styled.input`
   cursor: pointer;
 `;
 
-export const FormComponent = () => {
+export const FormComponent: React.FC = () => {
   const { register, handleSubmit } = useForm<InputListType>();
   const [address, setAddress] = useState<string>('');
   const [isPostCode, setIsPostCode] = useState<boolean>(false);

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { SearchInput } from 'components/SearchInput';
-import { UserList } from 'components/UserList';
+import { WorkerList } from 'components/WorkerList';
 import { Logo } from 'assets/Logo';
 import pallete from 'shared/Pallete';
 import { Modal } from 'components/common/Modal';
@@ -22,8 +22,8 @@ const SearchBar = styled.div`
   width: 28rem;
   padding: 0 3.125rem;
   height: calc(100vh - 4rem);
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
+  border-top-left-radius: 0.875rem;
+  border-top-right-radius: 0.875rem;
   background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: saturate(180%) blur(20px);
 `;
@@ -34,8 +34,8 @@ const NavBar = styled.nav`
   align-items: center;
   justify-content: space-between;
   background-color: ${pallete.scheme.blue};
-  border-bottom-left-radius: 14px;
-  border-bottom-right-radius: 14px;
+  border-bottom-left-radius: 0.875rem;
+  border-bottom-right-radius: 0.875rem;
   backdrop-filter: saturate(180%) blur(20px);
 `;
 
@@ -62,7 +62,7 @@ export const SideBarComponent: React.FC = () => {
         </NavBar>
         <SearchBar>
           <SearchInput setSearchState={setSearchState} />
-          <UserList searchState={searchState} />
+          <WorkerList searchState={searchState} />
         </SearchBar>
       </SideBar>
       {isSignUpFormModal && (

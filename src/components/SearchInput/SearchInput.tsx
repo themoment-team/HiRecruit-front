@@ -4,11 +4,13 @@ import { useEffect, useRef } from 'react';
 import { Input as SearchInput } from 'components/common/Input';
 import { css } from '@emotion/react';
 
-interface Props {
+interface SearchInputProps {
   setSearchState: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const SearchInputComponent: React.FC<Props> = ({ setSearchState }) => {
+export const SearchInputComponent: React.FC<SearchInputProps> = ({
+  setSearchState,
+}) => {
   const router = useRouter();
   const inputEl = useRef<HTMLInputElement>(null);
 
@@ -23,6 +25,7 @@ export const SearchInputComponent: React.FC<Props> = ({ setSearchState }) => {
 
       setSearchState(router.query.search as string);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.search]);
 
   return (

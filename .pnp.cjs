@@ -57,6 +57,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-daum-postcode", "npm:3.0.3"],\
             ["react-dom", "virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:17.0.2"],\
             ["react-hook-form", "virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:7.31.3"],\
+            ["react-hot-toast", "virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:2.2.0"],\
             ["react-kakao-maps-sdk", "virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:1.0.6"],\
             ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
           ],\
@@ -2661,6 +2662,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["goober", [\
+        ["npm:2.1.9", {\
+          "packageLocation": "./.yarn/cache/goober-npm-2.1.9-899db49bd2-bb986e2f9a.zip/node_modules/goober/",\
+          "packageDependencies": [\
+            ["goober", "npm:2.1.9"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:b824e290e87b2a4d85a96903398638eac56874ba5a8f944f34c7e31f1ce8c5c1fad2f0a3608d837d35ac99dc93732b8bd0bb662ca82c159bb0654bdf9811b62f#npm:2.1.9", {\
+          "packageLocation": "./.yarn/__virtual__/goober-virtual-8988d52ff6/0/cache/goober-npm-2.1.9-899db49bd2-bb986e2f9a.zip/node_modules/goober/",\
+          "packageDependencies": [\
+            ["goober", "virtual:b824e290e87b2a4d85a96903398638eac56874ba5a8f944f34c7e31f1ce8c5c1fad2f0a3608d837d35ac99dc93732b8bd0bb662ca82c159bb0654bdf9811b62f#npm:2.1.9"],\
+            ["@types/csstype", null],\
+            ["csstype", null]\
+          ],\
+          "packagePeers": [\
+            "@types/csstype",\
+            "csstype"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["has", [\
         ["npm:1.0.3", {\
           "packageLocation": "./.yarn/cache/has-npm-1.0.3-b7f00631c1-b9ad53d53b.zip/node_modules/has/",\
@@ -3305,6 +3328,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-daum-postcode", "npm:3.0.3"],\
             ["react-dom", "virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:17.0.2"],\
             ["react-hook-form", "virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:7.31.3"],\
+            ["react-hot-toast", "virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:2.2.0"],\
             ["react-kakao-maps-sdk", "virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:1.0.6"],\
             ["typescript", "patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=bda367"]\
           ],\
@@ -3681,6 +3705,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "packagePeers": [\
             "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-hot-toast", [\
+        ["npm:2.2.0", {\
+          "packageLocation": "./.yarn/cache/react-hot-toast-npm-2.2.0-bb9861336b-bb34ddc8ad.zip/node_modules/react-hot-toast/",\
+          "packageDependencies": [\
+            ["react-hot-toast", "npm:2.2.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:2.2.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-hot-toast-virtual-b824e290e8/0/cache/react-hot-toast-npm-2.2.0-bb9861336b-bb34ddc8ad.zip/node_modules/react-hot-toast/",\
+          "packageDependencies": [\
+            ["react-hot-toast", "virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:2.2.0"],\
+            ["@types/react", "npm:17.0.40"],\
+            ["@types/react-dom", null],\
+            ["goober", "virtual:b824e290e87b2a4d85a96903398638eac56874ba5a8f944f34c7e31f1ce8c5c1fad2f0a3608d837d35ac99dc93732b8bd0bb662ca82c159bb0654bdf9811b62f#npm:2.1.9"],\
+            ["react", "npm:17.0.2"],\
+            ["react-dom", "virtual:667fc3bc009d94bd89802c17be78c5d8b9aa817ae0618e89437e8ac21704beccd2f6b2bde6f1eaaa148b7090ada91a1366cf44bcdd07d63f6653447b1d2e5af9#npm:17.0.2"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
             "react"\
           ],\
           "linkType": "HARD"\

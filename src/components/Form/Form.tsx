@@ -3,11 +3,9 @@ import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
 
 import { Input as commonInput } from 'components/common/Input';
-import { Button } from 'components/common/Button';
-import pallete from 'shared/Pallete';
-
-import { positionOptionList, onSubmit, InputListType } from './container';
 import { PostCode } from 'components/common/Postcode';
+import pallete from 'shared/Pallete';
+import { positionOptionList, onSubmit, InputListType } from './container';
 
 const FormWrapper = styled.span`
   display: inline-flex;
@@ -59,17 +57,6 @@ const SelectInput = styled.select`
   outline: none;
 `;
 
-const AddressWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-`;
-
-const AddressButton = styled(Button)`
-  width: 6rem;
-  height: 2.75rem;
-`;
-
 const SubmitInput = styled.input`
   width: 100%;
   border-radius: 1.5rem;
@@ -117,6 +104,8 @@ export const FormComponent: React.FC = () => {
           placeholder="연차"
           {...register('devYear')}
           type="number"
+          defaultValue={0}
+          min={0}
           maxLength={100}
         />
         <Input
@@ -125,18 +114,13 @@ export const FormComponent: React.FC = () => {
           type="text"
           maxLength={100}
         />
-        <AddressWrapper>
-          <Input
-            placeholder="회사 도로명 주소"
-            {...register('companyLocation')}
-            type="address"
-            value={address}
-            onChange={e => setAddress(e.target.value)}
-          />
-          <AddressButton type="button" onClick={() => setIsPostCode(true)}>
-            주소 찾기
-          </AddressButton>
-        </AddressWrapper>
+        <Input
+          placeholder="회사 도로명 주소"
+          {...register('companyLocation')}
+          type="address"
+          value={address}
+          onClick={() => setIsPostCode(true)}
+        />
         {isPostCode && (
           <PostCode key="key1" set={setAddress} setVisible={setIsPostCode} />
         )}

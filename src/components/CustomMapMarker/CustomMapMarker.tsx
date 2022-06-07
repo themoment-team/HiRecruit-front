@@ -6,8 +6,8 @@ import { Button } from 'components/common/Button';
 
 interface MarkerProps {
   companyName: string;
-  companyUrl: string;
-  imageUrl: string;
+  companyUri: string;
+  imageUri: string;
 }
 
 const CustomMapMarker = styled.div`
@@ -40,6 +40,12 @@ const ProfileImage = styled.div`
   background-color: ${pallete.scheme.gray};
 `;
 
+const ProfileImageAltText = styled.p`
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: ${pallete.scheme.darkgray};
+`;
+
 const CompanyIntroBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -53,7 +59,7 @@ const CompanyIntroBox = styled.div`
     font-size: 1rem;
     font-weight: 600;
   }
-  #companyUrl {
+  #companyUri {
     width: fit-content;
     font-size: 0.75rem;
     color: ${pallete.scheme.blue};
@@ -66,8 +72,8 @@ const CompanyIntroBox = styled.div`
 
 export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
   companyName,
-  companyUrl,
-  imageUrl,
+  companyUri,
+  imageUri,
 }) => {
   const router = useRouter();
 
@@ -75,12 +81,18 @@ export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
     <CustomMapMarker>
       <div className="stilettos" />
       <ProfileImage>
-        <img src={imageUrl} alt={`${companyName} 회사 로고`} height="100%" />
+        {imageUri ? (
+          <img src={imageUri} alt={`${companyName} 회사 로고`} height="100%" />
+        ) : (
+          <ProfileImageAltText>
+            회사 이미지가 존재하지 않아요
+          </ProfileImageAltText>
+        )}
       </ProfileImage>
       <CompanyIntroBox>
         <article className="companyProfile">
           <p id="companyName">{companyName}</p>
-          <a id="companyUrl" target="_blank" href={companyUrl} rel="noreferrer">
+          <a id="companyUri" target="_blank" href={companyUri} rel="noreferrer">
             회사 웹사이트
           </a>
         </article>

@@ -160,9 +160,18 @@ export const CompanyFormComponent: React.FC = () => {
           value={address}
           onClick={() => setIsPostCode(true)}
         />
-        {isPostCode && (
-          <PostCode key="key1" set={setAddress} setVisible={setIsPostCode} />
-        )}
+        <SlideAnimation
+          css={css`
+            ${isPostCode &&
+            css`
+              height: 26rem;
+            `}
+          `}
+        >
+          {isPostCode && (
+            <PostCode set={setAddress} setVisible={setIsPostCode} />
+          )}
+        </SlideAnimation>
         <SubmitInput type="submit" value={'완료'} />
       </Form>
     </FormWrapper>

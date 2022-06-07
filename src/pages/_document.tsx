@@ -16,6 +16,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link rel="icon" href="/static/HR_Transparent.png" type="image/png" />
           <link
             rel="stylesheet"
             type="text/css"

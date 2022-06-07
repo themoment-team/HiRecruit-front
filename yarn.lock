@@ -1953,6 +1953,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"goober@npm:^2.1.1":
+  version: 2.1.9
+  resolution: "goober@npm:2.1.9"
+  peerDependencies:
+    csstype: ^3.0.10
+  checksum: bb986e2f9a451e278986f530f3b1a389f2b95f41770fc94ff35338d1f1732998e423c7a858597e37378d97f278ccd1802d0842e5ef809daca62b867cc676c999
+  languageName: node
+  linkType: hard
+
 "has-bigints@npm:^1.0.1":
   version: 1.0.1
   resolution: "has-bigints@npm:1.0.1"
@@ -2472,6 +2481,7 @@ __metadata:
     react-daum-postcode: ^3.0.3
     react-dom: 17.0.2
     react-hook-form: ^7.31.3
+    react-hot-toast: ^2.2.0
     react-kakao-maps-sdk: ^1.0.6
     typescript: 4.6.2
   languageName: unknown
@@ -2830,6 +2840,18 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
   checksum: 01601c904c39dea8f617d0fc35ff62ab6e8c4968b2007990ce88952f1c24063c025eb169703edcf596dc38439669268175b9f5fb7a5d553e46fdc8bb7523ed63
+  languageName: node
+  linkType: hard
+
+"react-hot-toast@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "react-hot-toast@npm:2.2.0"
+  dependencies:
+    goober: ^2.1.1
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: bb34ddc8ada14cbd75a37f14d2563412174e23276eb05e9fb23a031b6d8374ca190cefa1940692f4371529ddafeb2d4b8d3e5023187c2851ec8cb247461553ee
   languageName: node
   linkType: hard
 

@@ -1,19 +1,19 @@
 import { SubmitHandler } from 'react-hook-form';
 
 export interface InputListType {
-  company: string;
+  companyName: string;
   companyLocation: string;
-  homepage: string;
-  companyImg: string;
+  homepageUri: string;
+  companyImgUri: string;
 }
 
 export type KeyListType = InputListType;
 
 export const keyList: KeyListType = {
-  company: '회사명',
+  companyName: '회사명',
   companyLocation: '회사 도로명 주소',
-  homepage: '회사 홈페이지 uri',
-  companyImg: '회사 이미지 uri',
+  homepageUri: '회사 홈페이지 uri',
+  companyImgUri: '회사 이미지 uri',
 };
 
 export const onSubmit: SubmitHandler<InputListType> = data => {

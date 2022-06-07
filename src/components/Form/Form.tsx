@@ -86,18 +86,8 @@ export const FormComponent: React.FC = () => {
     <FormWrapper>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormHeader>회원가입</FormHeader>
-        <Input
-          placeholder="이름"
-          {...register('name')}
-          type="name"
-          maxLength={100}
-        />
-        <Input
-          placeholder="이메일"
-          {...register('email')}
-          type="email"
-          maxLength={100}
-        />
+        <Input placeholder="이름" {...register('name')} type="name" />
+        <Input placeholder="이메일" {...register('email')} type="email" />
         <SelectInput {...register('position')}>
           {positionOptionList.map((opt, i) => (
             // option의 첫번째 값은 기본값으로 빈값을 반환
@@ -112,13 +102,11 @@ export const FormComponent: React.FC = () => {
           type="number"
           defaultValue={0}
           min={0}
-          maxLength={100}
         />
         <Input
           placeholder="회사명"
           {...register('company')}
-          type="text"
-          maxLength={100}
+          type="company-name"
         />
         <Input
           placeholder="회사 도로명 주소"
@@ -143,7 +131,6 @@ export const FormComponent: React.FC = () => {
           placeholder="한줄 소개"
           {...register('introduction')}
           type="text"
-          maxLength={100}
         />
         <SubmitInput type="submit" value={'완료'} />
       </Form>

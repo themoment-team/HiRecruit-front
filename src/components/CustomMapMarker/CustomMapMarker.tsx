@@ -82,6 +82,7 @@ export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
       <div className="stilettos" />
       <ProfileImage>
         {imageUri ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img src={imageUri} alt={`${companyName} 회사 로고`} height="100%" />
         ) : (
           <ProfileImageAltText>

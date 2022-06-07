@@ -114,21 +114,18 @@ export const CompanyFormComponent: React.FC = () => {
         <Input
           placeholder="회사명"
           {...register('companyName')}
-          type="name"
-          maxLength={100}
+          type="company-name"
         />
         <Input
           placeholder="회사 홈페이지 링크"
           {...register('homepageUri')}
-          type="email"
-          maxLength={100}
+          type="url"
         />
         <ButtonWrapper>
           <Input
             placeholder="회사 이미지 링크"
             {...register('companyImgUri')}
-            type="text"
-            maxLength={100}
+            type="url"
             onChange={e => {
               setPreviewCompanyImgUri(e.target.value);
             }}
@@ -146,6 +143,7 @@ export const CompanyFormComponent: React.FC = () => {
           `}
         >
           <ProfileImage>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={previewCompanyImgUri} alt="회사 이미지" height="100%" />
           </ProfileImage>
           <WarningAlert>

@@ -1,4 +1,11 @@
-type ColorToken = 'white' | 'black' | 'gray' | 'darkgray' | 'paragraph' | 'blue' | 'warning';
+type ColorToken =
+  | 'white'
+  | 'black'
+  | 'gray'
+  | 'darkgray'
+  | 'paragraph'
+  | 'blue'
+  | 'warning';
 
 type ColorTheme = {
   scheme: Record<ColorToken, string>;

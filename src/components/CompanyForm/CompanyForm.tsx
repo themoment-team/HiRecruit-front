@@ -4,7 +4,10 @@ import { useForm } from 'react-hook-form';
 
 import { Input as commonInput } from 'components/common/Input';
 import { PostCode } from 'components/common/Postcode';
+import { Button as commonBtn } from 'components/common/Button';
+
 import pallete from 'shared/Pallete';
+
 import { onSubmit, InputListType } from './container';
 
 const FormWrapper = styled.span`
@@ -28,6 +31,29 @@ const FormHeader = styled.div`
   text-align: center;
   margin-bottom: 0.75rem;
   color: ${pallete.scheme.paragraph};
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+`;
+
+const Button = styled(commonBtn)`
+  width: 6rem;
+  height: 2.75rem;
+`;
+
+const ProfileImage = styled.div`
+  width: 17.25rem;
+  height: 8rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.75rem;
+  overflow: hidden;
+  background-color: ${pallete.scheme.gray};
 `;
 
 const Input = styled(commonInput)`
@@ -59,7 +85,10 @@ const SubmitInput = styled.input`
 export const CompanyFormComponent: React.FC = () => {
   const { register, handleSubmit } = useForm<InputListType>();
   const [address, setAddress] = useState<string>('');
+  const [previewCompanyImgUri, setPreviewCompanyImgUri] = useState<string>('');
+
   const [isPostCode, setIsPostCode] = useState<boolean>(false);
+  const [isPreview, setIsPreview] = useState<boolean>(false);
 
   return (
     <FormWrapper>
@@ -77,12 +106,25 @@ export const CompanyFormComponent: React.FC = () => {
           type="email"
           maxLength={100}
         />
-        <Input
-          placeholder="회사 이미지 링크"
-          {...register('companyImgUri')}
-          type="text"
-          maxLength={100}
-        />
+        <ButtonWrapper>
+          <Input
+            placeholder="회사 이미지 링크"
+            {...register('companyImgUri')}
+            type="text"
+            maxLength={100}
+            onChange={e => {
+              setPreviewCompanyImgUri(e.target.value);
+            }}
+          />
+          <Button type="button" onClick={() => setIsPreview(prev => !prev)}>
+            미리보기
+          </Button>
+        </ButtonWrapper>
+        {isPreview && (
+          <ProfileImage>
+            <img src={previewCompanyImgUri} alt="회사 이미지" height="100%" />
+          </ProfileImage>
+        )}
         <Input
           placeholder="회사 도로명 주소"
           {...register('companyLocation')}

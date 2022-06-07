@@ -1,7 +1,8 @@
 import type { NextPage } from 'next';
+import Head from 'next/head';
+import { Toaster } from 'react-hot-toast';
 
 import { Map } from 'components/Map';
-import Head from 'next/head';
 
 const Home: NextPage = () => {
   return (
@@ -16,6 +17,7 @@ const Home: NextPage = () => {
         />
       </Head>
       <Map />
+      <Toaster />
     </>
   );
 };

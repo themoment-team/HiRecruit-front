@@ -14,7 +14,6 @@ const FormWrapper = styled.span`
   align-items: center;
   background-color: ${pallete.scheme.white};
   border-radius: 10px;
-  max-width: 66.25rem;
 `;
 
 const Form = styled.form`

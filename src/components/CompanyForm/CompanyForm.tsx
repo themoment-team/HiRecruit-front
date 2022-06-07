@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { useForm } from 'react-hook-form';
 
 import { Input as commonInput } from 'components/common/Input';
 import { PostCode } from 'components/common/Postcode';
 import { Button as commonBtn } from 'components/common/Button';
-
 import pallete from 'shared/Pallete';
+import { boundInDown } from 'shared/Animation.style';
+import { Warning } from 'assets/Warning';
 
 import { onSubmit, InputListType } from './container';
-import { Warning } from 'assets/Warning';
-import { css } from '@emotion/react';
-import { boundInDown } from 'shared/Animation.style';
 
 const FormWrapper = styled.span`
   display: inline-flex;
@@ -73,6 +72,7 @@ const WarningAlert = styled.div`
   justify-content: center;
   gap: 0.5rem;
   color: ${pallete.scheme.paragraph};
+  cursor: pointer;
 `;
 
 const Input = styled(commonInput)`
@@ -108,6 +108,7 @@ export const CompanyFormComponent: React.FC = () => {
 
   const [isPostCode, setIsPostCode] = useState<boolean>(false);
   const [isPreview, setIsPreview] = useState<boolean>(false);
+  const [isPicture, setIsPicture] = useState<boolean>(true);
 
   return (
     <FormWrapper>
@@ -130,6 +131,7 @@ export const CompanyFormComponent: React.FC = () => {
             type="url"
             onChange={e => {
               setPreviewCompanyImgUri(e.target.value);
+              setIsPicture(true);
             }}
           />
           <Button type="button" onClick={() => setIsPreview(prev => !prev)}>
@@ -140,18 +142,28 @@ export const CompanyFormComponent: React.FC = () => {
           css={css`
             ${isPreview &&
             css`
-              height: 12.25rem;
+              height: 10rem;
             `}
           `}
         >
           <ProfileImage>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={previewCompanyImgUri} alt="회사 이미지" height="100%" />
+            {isPicture ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={previewCompanyImgUri}
+                alt="회사 이미지"
+                height="100%"
+                onError={() => {
+                  setIsPicture(false);
+                }}
+              />
+            ) : (
+              <WarningAlert>
+                <Warning />
+                이미지가 적용되지 않나요?
+              </WarningAlert>
+            )}
           </ProfileImage>
-          <WarningAlert>
-            <Warning />
-            이미지가 적용되지 않나요?
-          </WarningAlert>
         </SlideAnimation>
         <Input
           placeholder="회사 도로명 주소"

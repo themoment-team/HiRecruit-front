@@ -9,6 +9,8 @@ import { Button as commonBtn } from 'components/common/Button';
 import pallete from 'shared/Pallete';
 
 import { onSubmit, InputListType } from './container';
+import { Warning } from 'assets/Warning';
+import { css } from '@emotion/react';
 
 const FormWrapper = styled.span`
   display: inline-flex;
@@ -44,16 +46,31 @@ const Button = styled(commonBtn)`
   height: 2.75rem;
 `;
 
+const SlideAnimation = styled.div`
+  transition: height 0.5s ease;
+  overflow: hidden;
+  height: 0;
+`;
+
 const ProfileImage = styled.div`
   width: 17.25rem;
   height: 8rem;
-  margin: 0 auto;
+  margin: 1rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 1.75rem;
   overflow: hidden;
   background-color: ${pallete.scheme.gray};
+`;
+
+const WarningAlert = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: ${pallete.scheme.paragraph};
 `;
 
 const Input = styled(commonInput)`
@@ -117,14 +134,25 @@ export const CompanyFormComponent: React.FC = () => {
             }}
           />
           <Button type="button" onClick={() => setIsPreview(prev => !prev)}>
-            미리보기
+            {isPreview ? '그만보기' : '미리보기'}
           </Button>
         </ButtonWrapper>
-        {isPreview && (
+        <SlideAnimation
+          css={css`
+            ${isPreview &&
+            css`
+              height: 12.25rem;
+            `}
+          `}
+        >
           <ProfileImage>
             <img src={previewCompanyImgUri} alt="회사 이미지" height="100%" />
           </ProfileImage>
-        )}
+          <WarningAlert>
+            <Warning />
+            이미지가 적용되지 않나요?
+          </WarningAlert>
+        </SlideAnimation>
         <Input
           placeholder="회사 도로명 주소"
           {...register('companyLocation')}

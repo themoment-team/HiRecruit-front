@@ -1,10 +1,4 @@
-type ColorToken =
-  | 'white'
-  | 'black'
-  | 'gray'
-  | 'paragraph'
-  | 'blue'
-  | 'darkgray';
+type ColorToken = 'white' | 'black' | 'gray' | 'darkgray' | 'paragraph' | 'blue' | 'warning';
 
 type ColorTheme = {
   scheme: Record<ColorToken, string>;
@@ -18,6 +12,7 @@ const pallete: Readonly<ColorTheme> = {
     darkgray: '#888',
     paragraph: '#333',
     blue: '#3d9cf7',
+    warning: '#F5A524',
   },
 };
 

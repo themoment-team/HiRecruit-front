@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import useModal from 'hooks/use-modal';
-import pallete from 'shared/Pallete';
 
 interface ModalProps {
   children: React.ReactNode;
@@ -15,8 +14,7 @@ const ModalBackground = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: ${pallete.scheme.gray + '55'};
-  backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;

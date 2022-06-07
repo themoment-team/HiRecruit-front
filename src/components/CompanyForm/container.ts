@@ -20,8 +20,13 @@ export const keyList: KeyListType = {
 export const onSubmit: SubmitHandler<InputListType> = data => {
   const entries = Object.entries(data);
   const allNotFilled = entries.some(([key, value]) => {
+    if (key === 'homepageUri') return false;
+    if (key === 'companyImgUri') return false;
+
     if (!value) {
-      toast.error(`${keyList[key as keyof KeyListType]}의 값이 비어있어요`);
+      toast.error(
+        `${keyList[key as keyof KeyListType]}은(는) 필수로 입력해야 해요`,
+      );
       return true;
     }
   });

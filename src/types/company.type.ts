@@ -3,5 +3,5 @@ export interface CompanyData {
   name: string;
   location: string;
   homepageUri: string;
-  companyImgUri: string;
+  companyImgUri?: string;
 }

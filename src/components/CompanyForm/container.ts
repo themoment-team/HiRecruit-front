@@ -1,4 +1,5 @@
 import { SubmitHandler } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 export interface InputListType {
   companyName: string;
@@ -18,15 +19,15 @@ export const keyList: KeyListType = {
 
 export const onSubmit: SubmitHandler<InputListType> = data => {
   const entries = Object.entries(data);
-  const allNotFilled = entries.some(([value]) => {
+  const allNotFilled = entries.some(([key, value]) => {
     if (!value) {
-      alert('값이 비어있습니다.');
+      toast.error(`${keyList[key as keyof KeyListType]}의 값이 비어있어요`);
       return true;
     }
   });
 
   if (!allNotFilled) {
     console.log(data);
-    alert('제출되었습니다.');
+    toast.success('제출되었습니다.');
   }
 };

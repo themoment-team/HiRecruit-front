@@ -9,7 +9,7 @@ const axiosClient: AxiosClient = axios.create({
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET,POST,DELETE,PATCH,PUT,OPTIONS',
     'Access-Control-Allow-Headers':
-      'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials',
+      'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials, Cookie, X-Authentication-Token',
   },
 });
 

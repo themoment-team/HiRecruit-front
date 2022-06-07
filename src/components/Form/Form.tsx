@@ -7,6 +7,7 @@ import { PostCode } from 'components/common/Postcode';
 import pallete from 'shared/Pallete';
 import { positionOptionList, onSubmit, InputListType } from './container';
 import { css } from '@emotion/react';
+import { boundInDown } from 'shared/Animation.style';
 
 const FormWrapper = styled.span`
   display: inline-flex;
@@ -15,6 +16,7 @@ const FormWrapper = styled.span`
   align-items: center;
   background-color: ${pallete.scheme.white};
   border-radius: 10px;
+  animation: ${boundInDown} 0.6s ease;
 `;
 
 const Form = styled.form`

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import pallete from 'shared/Pallete';
 
 interface ProfileImageProps {
-  imageUrl: string;
+  imageUri: string;
   alt: string;
 }
 
@@ -17,13 +17,13 @@ const ProfileImage = styled.div`
 `;
 
 export const ProfileImageComponent: React.FC<ProfileImageProps> = ({
-  imageUrl,
+  imageUri,
   alt,
 }) => {
   return (
     <ProfileImage>
       <Image
-        src={imageUrl}
+        src={imageUri}
         alt={alt}
         width={50}
         height={50}

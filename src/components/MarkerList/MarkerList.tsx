@@ -39,8 +39,8 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
           <CustomOverlayMap key={i} position={marker.position}>
             <CustomMapMarker
               companyName={marker.name}
-              companyUrl={marker.imageUrl}
-              imageUrl={marker.imageUrl}
+              companyUri={marker.imageUri}
+              imageUri={marker.imageUri}
             />
           </CustomOverlayMap>
         ),

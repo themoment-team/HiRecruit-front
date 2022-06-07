@@ -6,6 +6,7 @@ import { Input as commonInput } from 'components/common/Input';
 import { PostCode } from 'components/common/Postcode';
 import pallete from 'shared/Pallete';
 import { positionOptionList, onSubmit, InputListType } from './container';
+import { css } from '@emotion/react';
 
 const FormWrapper = styled.span`
   display: inline-flex;
@@ -40,6 +41,12 @@ const Input = styled(commonInput)`
   &:focus {
     outline: none;
   }
+`;
+
+const SlideAnimation = styled.div`
+  transition: height 0.5s ease;
+  overflow: hidden;
+  height: 0;
 `;
 
 const SelectInput = styled.select`
@@ -120,9 +127,18 @@ export const FormComponent: React.FC = () => {
           value={address}
           onClick={() => setIsPostCode(true)}
         />
-        {isPostCode && (
-          <PostCode key="key1" set={setAddress} setVisible={setIsPostCode} />
-        )}
+        <SlideAnimation
+          css={css`
+            ${isPostCode &&
+            css`
+              height: 26rem;
+            `}
+          `}
+        >
+          {isPostCode && (
+            <PostCode set={setAddress} setVisible={setIsPostCode} />
+          )}
+        </SlideAnimation>
         <Input
           placeholder="한줄 소개"
           {...register('introduction')}

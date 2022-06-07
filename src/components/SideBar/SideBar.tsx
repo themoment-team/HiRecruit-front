@@ -7,6 +7,7 @@ import { Logo } from 'assets/Logo';
 import pallete from 'shared/Pallete';
 import { Modal } from 'components/common/Modal';
 import { Form } from 'components/Form';
+import { CompanyForm } from 'components/CompanyForm';
 
 const SideBar = styled.div`
   position: fixed;
@@ -50,13 +51,14 @@ const SignUpAnchor = styled.a`
 export const SideBarComponent: React.FC = () => {
   const [searchState, setSearchState] = useState<string>('');
   const [isSignUpFormModal, setIsSignUpFormModal] = useState<boolean>(false);
+  const [isCompanyFormModal, setIsCompanyFormModal] = useState<boolean>(false);
 
   return (
     <>
       <SideBar>
         <NavBar>
           <Logo logoColor="white" />
-          <SignUpAnchor onClick={() => setIsSignUpFormModal(true)}>
+          <SignUpAnchor onClick={() => setIsCompanyFormModal(true)}>
             회원가입/로그인
           </SignUpAnchor>
         </NavBar>
@@ -65,9 +67,14 @@ export const SideBarComponent: React.FC = () => {
           <WorkerList searchState={searchState} />
         </SearchBar>
       </SideBar>
-      {isSignUpFormModal && (
+      {/* {isSignUpFormModal && (
         <Modal set={setIsSignUpFormModal}>
           <Form />
+        </Modal>
+      )} */}
+      {isCompanyFormModal && (
+        <Modal set={setIsCompanyFormModal}>
+          <CompanyForm />
         </Modal>
       )}
     </>

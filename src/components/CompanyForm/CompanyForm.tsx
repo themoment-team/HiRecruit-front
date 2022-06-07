@@ -84,6 +84,7 @@ const ImgButton = styled(Button)`
 const ProfileImage = styled.div`
   width: 100%;
   height: 8rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -96,7 +97,13 @@ const ProfileImage = styled.div`
 const WraningWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  margin-top: 1rem;
+  height: 3rem;
+  gap: 0.5rem;
+  justify-content: center;
+  font-size: 1rem;
+  color: ${pallete.scheme.black};
+  cursor: pointer;
 `;
 
 export const CompanyFormComponent: React.FC = () => {
@@ -156,6 +163,7 @@ export const CompanyFormComponent: React.FC = () => {
         )}
         <WraningWrapper>
           <Warning />
+          회사 로고를 찾을 수 없나요 ?
         </WraningWrapper>
         <SubmitInput type="submit" value={'완료'} />
       </Form>

@@ -92,7 +92,7 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
   location,
 }) => {
   const map = useMap();
-  const { lat, lng } = useCoord(map, location);
+  const [lat, lng] = useCoord(map, location);
 
   const subString = useCallback((str: string, n: number): string => {
     return str?.length > n ? `${str.substring(0, n)}...` : str;

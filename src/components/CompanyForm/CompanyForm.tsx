@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { useForm } from 'react-hook-form';
 
@@ -9,7 +9,7 @@ import * as S from './CompanyForm.styles';
 import { onSubmit, InputListType } from './container';
 
 export const CompanyFormComponent: React.FC = () => {
-  const { register, handleSubmit } = useForm<InputListType>();
+  const { register, handleSubmit, setValue } = useForm<InputListType>();
 
   const [address, setAddress] = useState<string>('');
   const [previewCompanyImgUri, setPreviewCompanyImgUri] = useState<string>('');
@@ -17,6 +17,10 @@ export const CompanyFormComponent: React.FC = () => {
   const [postCodeVisible, setPostCodeVisible] = useState<boolean>(false);
   const [isPreview, setIsPreview] = useState<boolean>(false);
   const [isPicture, setIsPicture] = useState<boolean>(true);
+
+  useEffect(() => {
+    setValue('companyLocation', address);
+  }, [address]);
 
   return (
     <S.FormModalBackground>
@@ -77,7 +81,6 @@ export const CompanyFormComponent: React.FC = () => {
           placeholder="회사 도로명 주소"
           {...register('companyLocation')}
           type="address"
-          value={address}
           onClick={() => setPostCodeVisible(true)}
         />
         <S.SlideAnimation

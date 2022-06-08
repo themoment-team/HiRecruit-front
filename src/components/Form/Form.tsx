@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { useForm } from 'react-hook-form';
 
@@ -8,9 +8,13 @@ import * as S from './Form.styles';
 import { positionOptionList, onSubmit, InputListType } from './container';
 
 export const FormComponent: React.FC = () => {
-  const { register, handleSubmit } = useForm<InputListType>();
+  const { register, handleSubmit, setValue } = useForm<InputListType>();
   const [address, setAddress] = useState<string>('');
   const [postCodeVisible, setPostCodeVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    setValue('companyLocation', address);
+  }, [address]);
 
   return (
     <S.FormWrapper>

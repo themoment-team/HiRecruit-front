@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import Image from 'next/image';
 import { useCallback } from 'react';
 import { useMap } from 'react-kakao-maps-sdk';
 
 import pallete from 'shared/Pallete';
 import { Button } from 'components/common/Button';
 import useCoord from 'hooks/use-coord';
+import { WorkerProfileImage } from 'components/common/WorkerProfileImage';
 
 interface WorkerCardProps {
   name: string;
@@ -23,14 +23,6 @@ const WorkerCard = styled.div`
   border-radius: 0.5rem;
   padding: 1.5rem;
   background: ${pallete.scheme.white};
-`;
-
-const ProfileImage = styled.div`
-  width: 4.25rem;
-  height: 4.25rem;
-  border-radius: 33%;
-  overflow: hidden;
-  background-color: ${pallete.scheme.gray};
 `;
 
 const ProfileWrapper = styled.div`
@@ -118,15 +110,10 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
   return (
     <WorkerCard>
       <ProfileWrapper>
-        <ProfileImage>
-          <Image
-            src={profileImgUri}
-            alt={`${name}님의 프로필 사진`}
-            width={60}
-            height={60}
-            layout="responsive"
-          />
-        </ProfileImage>
+        <WorkerProfileImage
+          imageUri={profileImgUri}
+          alt={`${name}님의 프로필 사진`}
+        />
         <ProfileParagraph>
           <p className="name">{subString(name, 14)}</p>
           <a className="email" href={`mailto:${email}`}>

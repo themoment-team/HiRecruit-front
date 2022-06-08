@@ -22,10 +22,7 @@ const useCoord = (map: kakao.maps.Map | undefined, location: string) => {
     });
   }, [location, map]);
 
-  return {
-    lat: coord?.lat,
-    lng: coord?.lng,
-  };
+  return [coord?.lat, coord?.lng];
 };
 
 export default useCoord;

@@ -1,25 +1,12 @@
-import styled from '@emotion/styled';
+import { forwardRef, InputHTMLAttributes } from 'react';
 
-import pallete from 'shared/Pallete';
+import * as S from './Input.styles';
 
-export const InputComponent = styled.input`
-  width: 100%;
-  height: 2.75rem;
-  border: none;
-  font-size: 0.925rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 0.625rem;
-  color: ${pallete.scheme.paragraph};
-  caret-color: ${pallete.scheme.paragraph};
-  font-weight: 500;
-  &::placeholder {
-    font-weight: initial;
-    transition: opacity 0.18s;
-  }
-  &:focus {
-    outline: 2px solid ${pallete.scheme.blue};
-    &::placeholder {
-      opacity: 0;
-    }
-  }
-`;
+type InputProps = InputHTMLAttributes<HTMLInputElement>;
+
+// eslint-disable-next-line react/display-name
+export const InputComponent = forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => {
+    return <S.Input {...props} ref={ref} />;
+  },
+);

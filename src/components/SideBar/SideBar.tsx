@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { SearchInput } from 'components/SearchInput';
 import { WorkerList } from 'components/WorkerList';
-import { Logo } from 'assets/Logo';
+import { Logo } from 'assets/icons/Logo';
 import pallete from 'shared/Pallete';
 import { Modal } from 'components/common/Modal';
 import { Form } from 'components/Form';

@@ -1,12 +1,13 @@
 import pallete from 'shared/Pallete';
 
-export const Warning: React.FC<React.SVGProps<SVGSVGElement>> = () => {
+export const Warning: React.FC<React.SVGProps<SVGSVGElement>> = props => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="20"
       viewBox="0 0 24 24"
+      {...props}
     >
       <path
         fill={pallete.scheme.warning}

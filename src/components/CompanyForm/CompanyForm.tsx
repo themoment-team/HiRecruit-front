@@ -8,7 +8,7 @@ import { PostCode } from 'components/common/Postcode';
 import { Button as commonBtn } from 'components/common/Button';
 import pallete from 'shared/Pallete';
 import { boundInDown } from 'shared/Animation.style';
-import { Warning } from 'assets/Warning';
+import { Warning } from 'assets/icons/Warning';
 
 import { onSubmit, InputListType } from './container';
 

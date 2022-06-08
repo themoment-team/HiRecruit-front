@@ -7,17 +7,17 @@ import {
 } from 'react';
 
 const useModal = (
-  set: Dispatch<SetStateAction<boolean>>,
+  setModalVisible: Dispatch<SetStateAction<boolean>>,
 ): [RefObject<HTMLDivElement>, (e: MouseEvent) => void] => {
   const el: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
 
   const clickOutside = useCallback(
     (e: MouseEvent): void => {
       if (el.current && !el.current.contains(e.target as Node)) {
-        set(false);
+        setModalVisible(false);
       }
     },
-    [set],
+    [setModalVisible],
   );
 
   return [el, clickOutside];

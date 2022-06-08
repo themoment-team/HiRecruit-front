@@ -106,7 +106,7 @@ export const CompanyFormComponent: React.FC = () => {
   const [address, setAddress] = useState<string>('');
   const [previewCompanyImgUri, setPreviewCompanyImgUri] = useState<string>('');
 
-  const [isPostCode, setIsPostCode] = useState<boolean>(false);
+  const [postCodeVisible, setPostCodeVisible] = useState<boolean>(false);
   const [isPreview, setIsPreview] = useState<boolean>(false);
   const [isPicture, setIsPicture] = useState<boolean>(true);
 
@@ -170,18 +170,21 @@ export const CompanyFormComponent: React.FC = () => {
           {...register('companyLocation')}
           type="address"
           value={address}
-          onClick={() => setIsPostCode(true)}
+          onClick={() => setPostCodeVisible(true)}
         />
         <SlideAnimation
           css={css`
-            ${isPostCode &&
+            ${postCodeVisible &&
             css`
               height: 26rem;
             `}
           `}
         >
-          {isPostCode && (
-            <PostCode set={setAddress} setVisible={setIsPostCode} />
+          {postCodeVisible && (
+            <PostCode
+              setAddress={setAddress}
+              setPostCodeVisible={setPostCodeVisible}
+            />
           )}
         </SlideAnimation>
         <SubmitInput type="submit" value={'완료'} />

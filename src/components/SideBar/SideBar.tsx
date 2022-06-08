@@ -73,7 +73,7 @@ export const SideBarComponent: React.FC = () => {
         </Modal>
       )} */}
       {isCompanyFormModal && (
-        <Modal set={setIsCompanyFormModal}>
+        <Modal setModalVisible={setIsCompanyFormModal}>
           <CompanyForm />
         </Modal>
       )}

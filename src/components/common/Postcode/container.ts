@@ -2,13 +2,13 @@ import { Dispatch, SetStateAction } from 'react';
 import { Address } from 'react-daum-postcode';
 
 export interface PostCodeProps {
-  set: Dispatch<SetStateAction<string>>;
-  setVisible: Dispatch<SetStateAction<boolean>>;
+  setAddress: Dispatch<SetStateAction<string>>;
+  setPostCodeVisible: Dispatch<SetStateAction<boolean>>;
 }
 
 export const handleComplete = (
   data: Address,
-  set: Dispatch<SetStateAction<string>>,
+  setAddress: Dispatch<SetStateAction<string>>,
 ) => {
   let fullAddress = data.address;
   let extraAddress = '';
@@ -24,5 +24,5 @@ export const handleComplete = (
     fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
   }
 
-  set(fullAddress);
+  setAddress(fullAddress);
 };

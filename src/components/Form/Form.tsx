@@ -82,7 +82,7 @@ const SubmitInput = styled.input`
 export const FormComponent: React.FC = () => {
   const { register, handleSubmit } = useForm<InputListType>();
   const [address, setAddress] = useState<string>('');
-  const [isPostCode, setIsPostCode] = useState<boolean>(false);
+  const [postCodeVisible, setPostCodeVisible] = useState<boolean>(false);
 
   return (
     <FormWrapper>
@@ -115,18 +115,21 @@ export const FormComponent: React.FC = () => {
           {...register('companyLocation')}
           type="address"
           value={address}
-          onClick={() => setIsPostCode(true)}
+          onClick={() => setPostCodeVisible(true)}
         />
         <SlideAnimation
           css={css`
-            ${isPostCode &&
+            ${postCodeVisible &&
             css`
               height: 26rem;
             `}
           `}
         >
-          {isPostCode && (
-            <PostCode set={setAddress} setVisible={setIsPostCode} />
+          {postCodeVisible && (
+            <PostCode
+              setAddress={setAddress}
+              setPostCodeVisible={setPostCodeVisible}
+            />
           )}
         </SlideAnimation>
         <Input

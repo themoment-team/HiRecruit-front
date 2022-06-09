@@ -1,12 +1,13 @@
+import axiosClient from 'libs/axios/axiosClient';
 import { SubmitHandler } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { WorkerReqData } from 'types/worker.type';
 
 export interface InputListType {
   name: string;
   email: string;
   position: string;
   company: string;
-  companyLocation: string;
   introduction: string;
   devYear: string;
 }
@@ -45,7 +46,6 @@ export const keyList: KeyListType = {
   email: '이메일',
   position: '직군',
   company: '회사명',
-  companyLocation: '회사 도로명 주소',
   introduction: '한줄 소개',
   devYear: '연차',
 };
@@ -62,7 +62,25 @@ export const onSubmit: SubmitHandler<InputListType> = data => {
   });
 
   if (!allNotFilled) {
-    console.log(data);
+    // TODO: post 로직 고도화
+    const reqData: WorkerReqData = {
+      email: data.email,
+      name: data.name,
+      worker: {
+        companyId: 3,
+        devYear: parseInt(data.devYear),
+        introduction: data.introduction,
+        position: data.position,
+      },
+    };
+    axiosClient
+      .post('/auth/registration', reqData)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     toast.success('회원가입이 완료되었어요');
   }
 };

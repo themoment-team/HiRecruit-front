@@ -1,24 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import { SearchInput } from 'components/SearchInput';
 import { WorkerList } from 'components/WorkerList';
-import { Logo } from 'assets/icons/Logo';
+import { Form } from 'components/Form';
 import { Modal } from 'components/common/Modal';
-import { CompanyForm } from 'components/CompanyForm';
+import { Logo } from 'assets/icons/Logo';
 
 import * as S from './SideBar.styles';
+import { handleAuth } from './container';
 
 export const SideBarComponent: React.FC = () => {
   const [searchState, setSearchState] = useState<string>('');
-  const [isSignUpFormModal, setIsSignUpFormModal] = useState<boolean>(false);
-  const [isCompanyFormModal, setIsCompanyFormModal] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.query.is_first) {
+      setModalVisible(true);
+    }
+  }, [router.query.is_first]);
 
   return (
     <>
       <S.SideBar>
         <S.NavBar>
           <Logo logoColor="white" />
-          <S.SignUpAnchor onClick={() => setIsCompanyFormModal(true)}>
+          <S.SignUpAnchor onClick={() => handleAuth()}>
             회원가입/로그인
           </S.SignUpAnchor>
         </S.NavBar>
@@ -27,14 +36,9 @@ export const SideBarComponent: React.FC = () => {
           <WorkerList searchState={searchState} />
         </S.SearchBar>
       </S.SideBar>
-      {/* {isSignUpFormModal && (
-        <Modal set={setIsSignUpFormModal}>
+      {modalVisible && (
+        <Modal setModalVisible={setModalVisible}>
           <Form />
-        </Modal>
-      )} */}
-      {isCompanyFormModal && (
-        <Modal setModalVisible={setIsCompanyFormModal}>
-          <CompanyForm />
         </Modal>
       )}
     </>

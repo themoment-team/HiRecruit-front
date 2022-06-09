@@ -5,3 +5,5 @@ export interface CompanyData {
   homepageUri: string;
   companyImgUri?: string;
 }
+
+export type CompanyReqData = Omit<CompanyData, 'companyId'>;

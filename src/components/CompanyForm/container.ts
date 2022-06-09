@@ -1,5 +1,8 @@
+import axiosClient from 'libs/axios/axiosClient';
 import { SubmitHandler } from 'react-hook-form';
 import toast from 'react-hot-toast';
+
+import { CompanyReqData } from 'types/company.type';
 
 export interface InputListType {
   companyName: string;
@@ -32,7 +35,23 @@ export const onSubmit: SubmitHandler<InputListType> = data => {
   });
 
   if (!allNotFilled) {
-    console.log(data);
+    // TODO: post 로직 고도화
+    const reqData: CompanyReqData = {
+      name: data.companyName,
+      location: data.companyLocation,
+      homepageUri: data.homepageUri,
+      companyImgUri: data.companyImgUri,
+    };
+
+    axiosClient
+      .post('/company', reqData)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
     toast.success('제출되었습니다.');
   }
 };

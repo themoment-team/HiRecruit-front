@@ -11,3 +11,15 @@ export interface WorkerData {
   position: string;
   company: CompanyData;
 }
+
+export interface WorkerReqData {
+  email: string;
+  name: string;
+  worker: {
+    companyId: number;
+    devYear: number;
+    giveLink?: string;
+    introduction: string;
+    position: string;
+  };
+}

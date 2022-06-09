@@ -62,7 +62,25 @@ export const onSubmit: SubmitHandler<InputListType> = data => {
   });
 
   if (!allNotFilled) {
-    console.log(data);
+    // TODO: post 로직 고도화
+    const reqData: WorkerReqData = {
+      email: data.email,
+      name: data.name,
+      worker: {
+        companyId: 3,
+        devYear: parseInt(data.devYear),
+        introduction: data.introduction,
+        position: data.position,
+      },
+    };
+    axiosClient
+      .post('/auth/registration', reqData)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     toast.success('회원가입이 완료되었어요');
   }
 };

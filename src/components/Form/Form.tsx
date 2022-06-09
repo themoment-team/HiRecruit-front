@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { css } from '@emotion/react';
@@ -18,9 +18,15 @@ import {
   keyList,
 } from './container';
 
-export const FormComponent: React.FC = () => {
+interface SignUpFormProps {
+  setSignUpFormVisible: Dispatch<SetStateAction<boolean>>;
+}
+
+export const FormComponent: React.FC<SignUpFormProps> = ({
+  setSignUpFormVisible,
+}) => {
   const { register, handleSubmit } = useForm<InputListType>();
-  const [companyModalVisible, setCompanyModalVisible] =
+  const [companyFormModalVisible, setCompanyFormModalVisible] =
     useState<boolean>(false);
 
   const router = useRouter();
@@ -60,6 +66,7 @@ export const FormComponent: React.FC = () => {
         .post('/auth/registration', reqData)
         .then(function (response) {
           toast.success('회원가입이 완료되었어요');
+          setSignUpFormVisible(false);
         })
         .catch(function (error) {
           toast.error(error);
@@ -95,7 +102,7 @@ export const FormComponent: React.FC = () => {
         </S.SelectInput>
         <S.CompanyRegister
           onClick={() => {
-            setCompanyModalVisible(true);
+            setCompanyFormModalVisible(true);
           }}
         >
           회사 등록하기
@@ -126,9 +133,11 @@ export const FormComponent: React.FC = () => {
         />
         <S.Submit type="submit" value={'완료'} />
       </S.Form>
-      {companyModalVisible && (
-        <Modal setModalVisible={setCompanyModalVisible}>
-          <CompanyForm />
+      {companyFormModalVisible && (
+        <Modal setModalVisible={setCompanyFormModalVisible}>
+          <CompanyForm
+            setCompanyFormModalVisible={setCompanyFormModalVisible}
+          />
         </Modal>
       )}
     </S.FormWrapper>

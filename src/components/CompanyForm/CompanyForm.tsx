@@ -1,14 +1,23 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import { PostCode } from 'components/common/Postcode';
 import { Warning } from 'assets/icons/Warning';
+import { CompanyReqData } from 'types/company.type';
+import axiosClient from 'libs/axios/axiosClient';
 
 import * as S from './CompanyForm.styles';
-import { onSubmit, InputListType } from './container';
+import { InputListType, keyList, KeyListType } from './container';
 
-export const CompanyFormComponent: React.FC = () => {
+interface CompanyFormProps {
+  setCompanyFormModalVisible: Dispatch<SetStateAction<boolean>>;
+}
+
+export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
+  setCompanyFormModalVisible,
+}) => {
   const { register, handleSubmit, setValue } = useForm<InputListType>();
 
   const [address, setAddress] = useState<string>('');
@@ -21,6 +30,41 @@ export const CompanyFormComponent: React.FC = () => {
   useEffect(() => {
     setValue('companyLocation', address);
   }, [address]);
+
+  const onSubmit: SubmitHandler<InputListType> = data => {
+    const entries = Object.entries(data);
+    const allNotFilled = entries.some(([key, value]) => {
+      if (key === 'homepageUri') return false;
+      if (key === 'companyImgUri') return false;
+
+      if (!value) {
+        toast.error(
+          `${keyList[key as keyof KeyListType]}은(는) 필수로 입력해야 해요`,
+        );
+        return true;
+      }
+    });
+
+    if (!allNotFilled) {
+      // TODO: post 로직 고도화
+      const reqData: CompanyReqData = {
+        name: data.companyName,
+        location: data.companyLocation,
+        homepageUri: data.homepageUri,
+        companyImgUri: data.companyImgUri,
+      };
+
+      axiosClient
+        .post('/company', reqData)
+        .then(function (response) {
+          toast.success('회사 등록이 완료되었어요');
+          setCompanyFormModalVisible(false);
+        })
+        .catch(function (error) {
+          toast.error(error);
+        });
+    }
+  };
 
   return (
     <S.FormModalBackground>

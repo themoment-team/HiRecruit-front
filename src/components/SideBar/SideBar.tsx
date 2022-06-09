@@ -38,7 +38,7 @@ export const SideBarComponent: React.FC = () => {
       </S.SideBar>
       {modalVisible && (
         <Modal setModalVisible={setModalVisible}>
-          <Form />
+          <Form setSignUpFormVisible={setModalVisible} />
         </Modal>
       )}
     </>

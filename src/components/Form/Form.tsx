@@ -93,6 +93,11 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
           `}
           onClick={() => onClickSelectInput()}
         >
+          {!companyList && (
+            <option key={'회사명'} value={''}>
+              회사명
+            </option>
+          )}
           {companyList?.map((company, i) => (
             <>
               {i === 0 && (

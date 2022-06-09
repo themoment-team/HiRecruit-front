@@ -1,10 +1,14 @@
 import { useForm } from 'react-hook-form';
 
 import * as S from './Form.styles';
+import useCompanyList from 'hooks/api/company/use-company-list';
+
 import { positionOptionList, onSubmit, InputListType } from './container';
 
 export const FormComponent: React.FC = () => {
   const { register, handleSubmit } = useForm<InputListType>();
+
+  const companyData = useCompanyList();
 
   return (
     <S.FormWrapper>
@@ -26,11 +30,21 @@ export const FormComponent: React.FC = () => {
           type="number"
           min={0}
         />
-        <S.Input
-          placeholder="회사명"
-          {...register('company')}
-          type="company-name"
-        />
+        <S.SelectInput {...register('company')}>
+          {companyData?.map((company, i) => (
+            <>
+              {i === 0 && (
+                // option의 첫번째 값은 기본값으로 빈값을 반환
+                <option key={'회사명'} value={''}>
+                  회사명
+                </option>
+              )}
+              <option key={company.name} value={company.name}>
+                {company.name}
+              </option>
+            </>
+          ))}
+        </S.SelectInput>
         <S.Input
           placeholder="한줄 소개"
           {...register('introduction')}

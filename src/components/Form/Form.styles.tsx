@@ -60,6 +60,15 @@ export const SelectInput = styled.select`
   outline: none;
 `;
 
+export const CompanyRegister = styled.a`
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: 1rem;
+  transform: translateY(1rem);
+  color: ${pallete.scheme.blue};
+  cursor: pointer;
+`;
+
 export const Submit = styled.input`
   width: 100%;
   border-radius: 1.5rem;

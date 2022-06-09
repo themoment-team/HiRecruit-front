@@ -1,12 +1,13 @@
+import axiosClient from 'libs/axios/axiosClient';
 import { SubmitHandler } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { WorkerReqData } from 'types/worker.type';
 
 export interface InputListType {
   name: string;
   email: string;
   position: string;
   company: string;
-  companyLocation: string;
   introduction: string;
   devYear: string;
 }
@@ -45,7 +46,6 @@ export const keyList: KeyListType = {
   email: '이메일',
   position: '직군',
   company: '회사명',
-  companyLocation: '회사 도로명 주소',
   introduction: '한줄 소개',
   devYear: '연차',
 };

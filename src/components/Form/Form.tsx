@@ -1,20 +1,10 @@
-import { useEffect, useState } from 'react';
-import { css } from '@emotion/react';
 import { useForm } from 'react-hook-form';
-
-import { PostCode } from 'components/common/Postcode';
 
 import * as S from './Form.styles';
 import { positionOptionList, onSubmit, InputListType } from './container';
 
 export const FormComponent: React.FC = () => {
-  const { register, handleSubmit, setValue } = useForm<InputListType>();
-  const [address, setAddress] = useState<string>('');
-  const [postCodeVisible, setPostCodeVisible] = useState<boolean>(false);
-
-  useEffect(() => {
-    setValue('companyLocation', address);
-  }, [address]);
+  const { register, handleSubmit } = useForm<InputListType>();
 
   return (
     <S.FormWrapper>
@@ -42,28 +32,6 @@ export const FormComponent: React.FC = () => {
           {...register('company')}
           type="company-name"
         />
-        <S.Input
-          placeholder="회사 도로명 주소"
-          {...register('companyLocation')}
-          type="address"
-          value={address}
-          onClick={() => setPostCodeVisible(true)}
-        />
-        <S.SlideAnimation
-          css={css`
-            ${postCodeVisible &&
-            css`
-              height: 26rem;
-            `}
-          `}
-        >
-          {postCodeVisible && (
-            <PostCode
-              setAddress={setAddress}
-              setPostCodeVisible={setPostCodeVisible}
-            />
-          )}
-        </S.SlideAnimation>
         <S.Input
           placeholder="한줄 소개"
           {...register('introduction')}

@@ -1,3 +1,4 @@
+import { getCompanyList } from 'libs/api/company.api';
 import axiosClient from 'libs/axios/axiosClient';
 import { SubmitHandler } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -50,8 +51,10 @@ export const keyList: KeyListType = {
   devYear: '연차',
 };
 
-export const onSubmit: SubmitHandler<InputListType> = data => {
+export const onSubmit: SubmitHandler<InputListType> = async data => {
   const entries = Object.entries(data);
+  const companyList = await getCompanyList();
+
   const allNotFilled = entries.some(([key, value]) => {
     if (!value) {
       toast.error(
@@ -61,13 +64,19 @@ export const onSubmit: SubmitHandler<InputListType> = data => {
     }
   });
 
+  const getCompanyId = (companyName: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const company = companyList.find(company => company.name === companyName)!;
+    return company.companyId;
+  };
+
   if (!allNotFilled) {
     // TODO: post 로직 고도화
     const reqData: WorkerReqData = {
       email: data.email,
       name: data.name,
       worker: {
-        companyId: 3,
+        companyId: getCompanyId(data.name),
         devYear: parseInt(data.devYear),
         introduction: data.introduction,
         position: data.position,

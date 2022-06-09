@@ -11,6 +11,7 @@ const axiosClient: AxiosClient = axios.create({
     'Access-Control-Allow-Headers':
       'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials, Cookie, X-Authentication-Token',
   },
+  withCredentials: true,
 });
 
 export default axiosClient;

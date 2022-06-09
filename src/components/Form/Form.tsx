@@ -1,18 +1,32 @@
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
 
-import * as S from './Form.styles';
-import useCompanyList from 'hooks/api/company/use-company-list';
-
-import { positionOptionList, onSubmit, InputListType } from './container';
 import { Modal } from 'components/common/Modal';
 import { CompanyForm } from 'components/CompanyForm';
+import useCompanyList from 'hooks/api/company/use-company-list';
+import { WorkerReqData } from 'types/worker.type';
+import axiosClient from 'libs/axios/axiosClient';
 
-export const FormComponent: React.FC = () => {
+import * as S from './Form.styles';
+import {
+  positionOptionList,
+  InputListType,
+  KeyListType,
+  keyList,
+} from './container';
+
+interface SignUpFormProps {
+  setSignUpFormVisible: Dispatch<SetStateAction<boolean>>;
+}
+
+export const FormComponent: React.FC<SignUpFormProps> = ({
+  setSignUpFormVisible,
+}) => {
   const { register, handleSubmit } = useForm<InputListType>();
-  const [companyModalVisible, setCompanyModalVisible] =
+  const [companyFormModalVisible, setCompanyFormModalVisible] =
     useState<boolean>(false);
 
   const router = useRouter();
@@ -23,6 +37,43 @@ export const FormComponent: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const onSubmit: SubmitHandler<InputListType> = async data => {
+    const entries = Object.entries(data);
+
+    const allNotFilled = entries.some(([key, value]) => {
+      if (!value) {
+        toast.error(
+          `${keyList[key as keyof KeyListType]}은(는) 필수로 입력해야 해요`,
+        );
+        return true;
+      }
+    });
+
+    if (!allNotFilled) {
+      // TODO: post 로직 고도화
+      const reqData: WorkerReqData = {
+        email: data.email,
+        name: data.name,
+        worker: {
+          companyId: parseInt(data.companyId),
+          devYear: parseInt(data.devYear),
+          introduction: data.introduction,
+          position: data.position,
+        },
+      };
+
+      axiosClient
+        .post('/auth/registration', reqData)
+        .then(function (response) {
+          toast.success('회원가입이 완료되었어요');
+          setSignUpFormVisible(false);
+        })
+        .catch(function (error) {
+          toast.error(error);
+        });
+    }
+  };
+
   return (
     <S.FormWrapper>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
@@ -30,7 +81,7 @@ export const FormComponent: React.FC = () => {
         <S.Input placeholder="이름" {...register('name')} type="name" />
         <S.Input placeholder="이메일" {...register('email')} type="email" />
         <S.SelectInput
-          {...register('company')}
+          {...register('companyId')}
           css={css`
             margin-bottom: 0.4rem;
           `}
@@ -43,7 +94,7 @@ export const FormComponent: React.FC = () => {
                   회사명
                 </option>
               )}
-              <option key={company.name} value={company.name}>
+              <option key={company.name} value={company.companyId}>
                 {company.name}
               </option>
             </>
@@ -51,7 +102,7 @@ export const FormComponent: React.FC = () => {
         </S.SelectInput>
         <S.CompanyRegister
           onClick={() => {
-            setCompanyModalVisible(true);
+            setCompanyFormModalVisible(true);
           }}
         >
           회사 등록하기
@@ -82,9 +133,11 @@ export const FormComponent: React.FC = () => {
         />
         <S.Submit type="submit" value={'완료'} />
       </S.Form>
-      {companyModalVisible && (
-        <Modal setModalVisible={setCompanyModalVisible}>
-          <CompanyForm />
+      {companyFormModalVisible && (
+        <Modal setModalVisible={setCompanyFormModalVisible}>
+          <CompanyForm
+            setCompanyFormModalVisible={setCompanyFormModalVisible}
+          />
         </Modal>
       )}
     </S.FormWrapper>

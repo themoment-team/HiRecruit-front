@@ -1,9 +1,3 @@
-import { SubmitHandler } from 'react-hook-form';
-import toast from 'react-hot-toast';
-
-import axiosClient from 'libs/axios/axiosClient';
-import { WorkerReqData } from 'types/worker.type';
-
 export interface InputListType {
   name: string;
   email: string;
@@ -49,41 +43,4 @@ export const keyList: KeyListType = {
   position: '직군',
   introduction: '한줄 소개',
   devYear: '연차',
-};
-
-export const onSubmit: SubmitHandler<InputListType> = async data => {
-  const entries = Object.entries(data);
-
-  const allNotFilled = entries.some(([key, value]) => {
-    if (!value) {
-      toast.error(
-        `${keyList[key as keyof KeyListType]}은(는) 필수로 입력해야 해요`,
-      );
-      return true;
-    }
-  });
-
-  if (!allNotFilled) {
-    // TODO: post 로직 고도화
-    const reqData: WorkerReqData = {
-      email: data.email,
-      name: data.name,
-      worker: {
-        // data.company 는 'toss_1'의 형태
-        companyId: parseInt(data.companyId),
-        devYear: parseInt(data.devYear),
-        introduction: data.introduction,
-        position: data.position,
-      },
-    };
-    axiosClient
-      .post('/auth/registration', reqData)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    toast.success('회원가입이 완료되었어요');
-  }
 };

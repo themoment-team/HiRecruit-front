@@ -24,7 +24,6 @@ export const FormComponent: React.FC = () => {
           placeholder="연차"
           {...register('devYear')}
           type="number"
-          defaultValue={0}
           min={0}
         />
         <S.Input

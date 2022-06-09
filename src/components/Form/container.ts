@@ -44,8 +44,8 @@ export const positionOptionList = [
 export const keyList: KeyListType = {
   name: '이름',
   email: '이메일',
-  position: '직군',
   company: '회사명',
+  position: '직군',
   introduction: '한줄 소개',
   devYear: '연차',
 };

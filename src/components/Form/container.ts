@@ -1,14 +1,14 @@
-import { getCompanyList } from 'libs/api/company.api';
-import axiosClient from 'libs/axios/axiosClient';
 import { SubmitHandler } from 'react-hook-form';
 import toast from 'react-hot-toast';
+
+import axiosClient from 'libs/axios/axiosClient';
 import { WorkerReqData } from 'types/worker.type';
 
 export interface InputListType {
   name: string;
   email: string;
   position: string;
-  company: string;
+  companyId: string;
   introduction: string;
   devYear: string;
 }
@@ -45,7 +45,7 @@ export const positionOptionList = [
 export const keyList: KeyListType = {
   name: '이름',
   email: '이메일',
-  company: '회사명',
+  companyId: '회사명',
   position: '직군',
   introduction: '한줄 소개',
   devYear: '연차',
@@ -53,7 +53,6 @@ export const keyList: KeyListType = {
 
 export const onSubmit: SubmitHandler<InputListType> = async data => {
   const entries = Object.entries(data);
-  const companyList = await getCompanyList();
 
   const allNotFilled = entries.some(([key, value]) => {
     if (!value) {
@@ -64,19 +63,14 @@ export const onSubmit: SubmitHandler<InputListType> = async data => {
     }
   });
 
-  const getCompanyId = (companyName: string) => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const company = companyList.find(company => company.name === companyName)!;
-    return company.companyId;
-  };
-
   if (!allNotFilled) {
     // TODO: post 로직 고도화
     const reqData: WorkerReqData = {
       email: data.email,
       name: data.name,
       worker: {
-        companyId: getCompanyId(data.name),
+        // data.company 는 'toss_1'의 형태
+        companyId: parseInt(data.companyId),
         devYear: parseInt(data.devYear),
         introduction: data.introduction,
         position: data.position,

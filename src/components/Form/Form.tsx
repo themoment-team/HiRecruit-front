@@ -30,7 +30,7 @@ export const FormComponent: React.FC = () => {
         <S.Input placeholder="이름" {...register('name')} type="name" />
         <S.Input placeholder="이메일" {...register('email')} type="email" />
         <S.SelectInput
-          {...register('company')}
+          {...register('companyId')}
           css={css`
             margin-bottom: 0.4rem;
           `}
@@ -43,7 +43,7 @@ export const FormComponent: React.FC = () => {
                   회사명
                 </option>
               )}
-              <option key={company.name} value={company.name}>
+              <option key={company.name} value={company.companyId}>
                 {company.name}
               </option>
             </>

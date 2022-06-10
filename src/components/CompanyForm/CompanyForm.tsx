@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useSWRConfig } from 'swr';
 
 import { PostCode } from 'components/common/Postcode';
 import { Warning } from 'assets/icons/Warning';
@@ -19,6 +20,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
   setCompanyFormModalVisible,
 }) => {
   const { register, handleSubmit, setValue } = useForm<InputListType>();
+  const { mutate } = useSWRConfig();
 
   const [address, setAddress] = useState<string>('');
   const [previewCompanyImgUri, setPreviewCompanyImgUri] = useState<string>('');
@@ -59,6 +61,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
         .then(function (response) {
           toast.success('회사 등록이 완료되었어요');
           setCompanyFormModalVisible(false);
+          mutate('/company');
         })
         .catch(function (error) {
           toast.error(error);

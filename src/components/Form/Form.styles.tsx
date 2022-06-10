@@ -62,11 +62,15 @@ export const SelectInput = styled.select`
 
 export const CompanyRegister = styled.a`
   font-size: 0.8rem;
-  font-weight: 600;
   margin-left: 1rem;
+  font-weight: 600;
   transform: translateY(1rem);
   color: ${pallete.scheme.blue};
   cursor: pointer;
+  span {
+    font-weight: 400;
+    color: ${pallete.scheme.paragraph};
+  }
 `;
 
 export const Submit = styled.input`

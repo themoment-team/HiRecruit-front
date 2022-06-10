@@ -104,7 +104,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
             setCompanyFormModalVisible(true);
           }}
         >
-          회사 등록하기
+          <span>회사를 찾을 수 없나요?</span> 회사를 등록해주세요
         </S.CompanyRegister>
         <S.SelectInput
           {...register('position')}

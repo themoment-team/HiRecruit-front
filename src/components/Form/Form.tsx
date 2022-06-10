@@ -20,10 +20,12 @@ import useCompanyList from 'hooks/api/company/use-company-list';
 
 interface SignUpFormProps {
   setSignUpFormVisible: Dispatch<SetStateAction<boolean>>;
+  setIsSigned: Dispatch<SetStateAction<boolean>>;
 }
 
 export const FormComponent: React.FC<SignUpFormProps> = ({
   setSignUpFormVisible,
+  setIsSigned,
 }) => {
   const { register, handleSubmit } = useForm<InputListType>();
   const [companyFormModalVisible, setCompanyFormModalVisible] =
@@ -66,6 +68,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
         .then(function (response) {
           toast.success('회원가입이 완료되었어요');
           setSignUpFormVisible(false);
+          setIsSigned(true);
         })
         .catch(function (error) {
           toast.error(error);

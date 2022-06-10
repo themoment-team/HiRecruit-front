@@ -1,25 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
+import useSWR from 'swr';
 
+import apiClient from 'libs/axios/axiosClient';
 import { WorkerData } from 'types/worker.type';
-import { getWorkerList } from 'libs/api/worker.api';
+
+interface UseWorkerList {
+  data: WorkerData[];
+}
 
 const useWorkerList = () => {
-  const [WorkerList, setWorkerList] = useState<WorkerData[]>();
+  const { data, error } = useSWR<UseWorkerList>(`/worker`, apiClient.get);
 
-  const handleGetWorkerList = useCallback(async () => {
-    try {
-      const data = await getWorkerList();
-      setWorkerList(data);
-    } catch (e: any) {
-      console.log(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    handleGetWorkerList();
-  }, [handleGetWorkerList]);
-
-  return WorkerList;
+  return {
+    data: data?.data,
+    isLoading: !error && !data,
+    isError: error,
+  };
 };
 
 export default useWorkerList;

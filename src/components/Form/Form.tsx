@@ -8,8 +8,6 @@ import { Modal } from 'components/common/Modal';
 import { CompanyForm } from 'components/CompanyForm';
 import { WorkerReqData } from 'types/worker.type';
 import axiosClient from 'libs/axios/axiosClient';
-import { getCompanyList } from 'libs/api/company.api';
-import { CompanyData } from 'types/company.type';
 
 import * as S from './Form.styles';
 import {
@@ -18,6 +16,7 @@ import {
   KeyListType,
   keyList,
 } from './container';
+import useCompanyList from 'hooks/api/company/use-company-list';
 
 interface SignUpFormProps {
   setSignUpFormVisible: Dispatch<SetStateAction<boolean>>;
@@ -29,9 +28,8 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
   const { register, handleSubmit } = useForm<InputListType>();
   const [companyFormModalVisible, setCompanyFormModalVisible] =
     useState<boolean>(false);
-  const [companyList, setCompanyList] = useState<CompanyData[]>([]);
-
   const router = useRouter();
+  const { data } = useCompanyList();
 
   useEffect(() => {
     router.replace(router.pathname);
@@ -75,11 +73,6 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
     }
   };
 
-  const onClickSelectInput = async () => {
-    const data = await getCompanyList();
-    setCompanyList(data);
-  };
-
   return (
     <S.FormWrapper>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
@@ -91,14 +84,8 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
           css={css`
             margin-bottom: 0.4rem;
           `}
-          onClick={() => onClickSelectInput()}
         >
-          {!companyList && (
-            <option key={'회사명'} value={''}>
-              회사명
-            </option>
-          )}
-          {companyList?.map((company, i) => (
+          {data?.map((company, i) => (
             <>
               {i === 0 && (
                 // option의 첫번째 값은 기본값으로 빈값을 반환

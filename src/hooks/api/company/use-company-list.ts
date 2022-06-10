@@ -1,25 +1,20 @@
-import { useCallback, useEffect, useState } from 'react';
+import useSWR from 'swr';
 
-import { getCompanyList } from 'libs/api/company.api';
+import apiClient from 'libs/axios/axiosClient';
 import { CompanyData } from 'types/company.type';
 
+interface UseCompanyList {
+  data: CompanyData[];
+}
+
 const useCompanyList = () => {
-  const [companyList, setCompanyList] = useState<CompanyData[]>();
+  const { data, error } = useSWR<UseCompanyList>(`/company`, apiClient.get);
 
-  const handleGetCompanyList = useCallback(async () => {
-    try {
-      const data = await getCompanyList();
-      setCompanyList(data);
-    } catch (e: any) {
-      console.log(e);
-    }
-  }, []);
-
-  useEffect(() => {
-    handleGetCompanyList();
-  }, [handleGetCompanyList]);
-
-  return companyList;
+  return {
+    data: data?.data,
+    isLoading: !error && !data,
+    isError: error,
+  };
 };
 
 export default useCompanyList;

@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useReward } from 'react-rewards';
 import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
 
@@ -26,6 +27,8 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
   setSignUpFormVisible,
 }) => {
   const { register, handleSubmit } = useForm<InputListType>();
+  const { reward } = useReward('rewardId', 'confetti');
+
   const [companyFormModalVisible, setCompanyFormModalVisible] =
     useState<boolean>(false);
   const router = useRouter();
@@ -64,8 +67,9 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
       axiosClient
         .post('/auth/registration', reqData)
         .then(function (response) {
-          toast.success('회원가입이 완료되었어요');
           setSignUpFormVisible(false);
+          toast.success('회원가입이 완료되었어요');
+          reward();
         })
         .catch(function (error) {
           toast.error(error);
@@ -74,7 +78,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
   };
 
   return (
-    <S.FormWrapper>
+    <S.FormWrapper id="rewardId">
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.FormHeader>회원가입</S.FormHeader>
         <S.Input placeholder="이름" {...register('name')} type="name" />

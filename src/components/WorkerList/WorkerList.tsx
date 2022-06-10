@@ -12,7 +12,7 @@ interface WorkerListProps {
 export const WorkerListComponent: React.FC<WorkerListProps> = ({
   searchState,
 }) => {
-  const initialWorkerList = useWorkerList();
+  const { data: initialWorkerList } = useWorkerList();
   const [workerList, setWorkerList] = useState(initialWorkerList);
 
   useEffect(() => {

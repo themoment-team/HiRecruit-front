@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import cookie from 'react-cookies';
 import { useRouter } from 'next/router';
 
 import { SearchInput } from 'components/SearchInput';
@@ -13,6 +14,7 @@ import { handleAuth } from './container';
 export const SideBarComponent: React.FC = () => {
   const [searchState, setSearchState] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [isSigned, setIsSigned] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -21,6 +23,12 @@ export const SideBarComponent: React.FC = () => {
       setModalVisible(true);
     }
   }, [router.query.is_first]);
+
+  useEffect(() => {
+    if (cookie.load('HRSESSION')) {
+      setIsSigned(true);
+    }
+  }, []);
 
   return (
     <>

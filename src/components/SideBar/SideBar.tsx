@@ -13,6 +13,7 @@ import { handleAuth } from './container';
 export const SideBarComponent: React.FC = () => {
   const [searchState, setSearchState] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [isSigned, setIsSigned] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -22,14 +23,26 @@ export const SideBarComponent: React.FC = () => {
     }
   }, [router.query.is_first]);
 
+  useEffect(() => {
+    if (router.query.is_login) {
+      setIsSigned(true);
+    }
+  }, [router.query.is_login]);
+
   return (
     <>
       <S.SideBar>
         <S.NavBar>
           <Logo logoColor="white" />
-          <S.SignUpAnchor onClick={() => handleAuth()}>
-            회원가입/로그인
-          </S.SignUpAnchor>
+          {isSigned ? (
+            <S.SignUpAnchor onClick={() => handleAuth()}>
+              로그아웃
+            </S.SignUpAnchor>
+          ) : (
+            <S.SignUpAnchor onClick={() => handleAuth()}>
+              회원가입/로그인
+            </S.SignUpAnchor>
+          )}
         </S.NavBar>
         <S.SearchBar>
           <SearchInput setSearchState={setSearchState} />

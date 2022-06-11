@@ -26,7 +26,9 @@ export const SideBarComponent: React.FC = () => {
   useEffect(() => {
     if (router.query.is_login) {
       setIsSigned(true);
+      router.replace(router.pathname);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.is_login]);
 
   return (

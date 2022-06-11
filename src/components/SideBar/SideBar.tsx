@@ -8,11 +8,12 @@ import { Modal } from 'components/common/Modal';
 import { Logo } from 'assets/icons/Logo';
 
 import * as S from './SideBar.styles';
-import { handleAuth } from './container';
+import { handleAuth, handleLogout } from './container';
 
 export const SideBarComponent: React.FC = () => {
   const [searchState, setSearchState] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [isSigned, setIsSigned] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -22,14 +23,28 @@ export const SideBarComponent: React.FC = () => {
     }
   }, [router.query.is_first]);
 
+  useEffect(() => {
+    if (router.query.is_login) {
+      setIsSigned(true);
+      router.replace(router.pathname);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.is_login]);
+
   return (
     <>
       <S.SideBar>
         <S.NavBar>
           <Logo logoColor="white" />
-          <S.SignUpAnchor onClick={() => handleAuth()}>
-            회원가입/로그인
-          </S.SignUpAnchor>
+          {isSigned ? (
+            <S.SignUpAnchor onClick={() => handleLogout()}>
+              로그아웃
+            </S.SignUpAnchor>
+          ) : (
+            <S.SignUpAnchor onClick={() => handleAuth()}>
+              회원가입/로그인
+            </S.SignUpAnchor>
+          )}
         </S.NavBar>
         <S.SearchBar>
           <SearchInput setSearchState={setSearchState} />
@@ -38,7 +53,10 @@ export const SideBarComponent: React.FC = () => {
       </S.SideBar>
       {modalVisible && (
         <Modal setModalVisible={setModalVisible}>
-          <Form setSignUpFormVisible={setModalVisible} />
+          <Form
+            setSignUpFormVisible={setModalVisible}
+            setIsSigned={setIsSigned}
+          />
         </Modal>
       )}
     </>

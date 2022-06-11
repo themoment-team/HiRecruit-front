@@ -6,3 +6,12 @@ export const companyUrl = {
     return `/company`;
   },
 };
+
+/**
+ * worker url controller
+ */
+export const workerUrl = {
+  getAllWorker: () => {
+    return `/worker`;
+  },
+};

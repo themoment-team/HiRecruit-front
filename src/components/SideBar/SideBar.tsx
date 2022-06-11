@@ -8,7 +8,7 @@ import { Modal } from 'components/common/Modal';
 import { Logo } from 'assets/icons/Logo';
 
 import * as S from './SideBar.styles';
-import { handleAuth } from './container';
+import { handleAuth, handleLogout } from './container';
 
 export const SideBarComponent: React.FC = () => {
   const [searchState, setSearchState] = useState<string>('');
@@ -37,7 +37,7 @@ export const SideBarComponent: React.FC = () => {
         <S.NavBar>
           <Logo logoColor="white" />
           {isSigned ? (
-            <S.SignUpAnchor onClick={() => handleAuth()}>
+            <S.SignUpAnchor onClick={() => handleLogout()}>
               로그아웃
             </S.SignUpAnchor>
           ) : (

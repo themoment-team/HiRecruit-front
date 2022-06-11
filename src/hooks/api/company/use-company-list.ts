@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 
 import apiClient from 'libs/axios/axiosClient';
+import { companyUrl } from 'libs/api/apiUrlControllers';
 import { CompanyData } from 'types/company.type';
 
 interface UseCompanyList {
@@ -8,7 +9,10 @@ interface UseCompanyList {
 }
 
 const useCompanyList = () => {
-  const { data, error } = useSWR<UseCompanyList>(`/company`, apiClient.get);
+  const { data, error } = useSWR<UseCompanyList>(
+    companyUrl.getAllCompany(),
+    apiClient.get,
+  );
 
   return {
     data: data?.data,

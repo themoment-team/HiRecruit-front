@@ -8,6 +8,7 @@ import { PostCode } from 'components/common/Postcode';
 import { Warning } from 'assets/icons/Warning';
 import { CompanyReqData } from 'types/company.type';
 import axiosClient from 'libs/axios/axiosClient';
+import { companyUrl } from 'libs/api/apiUrlControllers';
 
 import * as S from './CompanyForm.styles';
 import { InputListType, keyList, KeyListType } from './container';
@@ -57,11 +58,11 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
       };
 
       axiosClient
-        .post('/company', reqData)
+        .post(companyUrl.getAllCompany(), reqData)
         .then(function (response) {
           toast.success('회사 등록이 완료되었어요');
           setCompanyFormModalVisible(false);
-          mutate('/company');
+          mutate(companyUrl.getAllCompany());
         })
         .catch(function (error) {
           toast.error(error);

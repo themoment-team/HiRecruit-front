@@ -18,7 +18,7 @@ export const SideBarComponent: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.query.is_first) {
+    if (router.query.is_first === 'true') {
       setModalVisible(true);
     }
   }, [router.query.is_first]);
@@ -53,10 +53,7 @@ export const SideBarComponent: React.FC = () => {
       </S.SideBar>
       {modalVisible && (
         <Modal setModalVisible={setModalVisible}>
-          <Form
-            setSignUpFormVisible={setModalVisible}
-            setIsSigned={setIsSigned}
-          />
+          <Form setSignUpFormVisible={setModalVisible} />
         </Modal>
       )}
     </>

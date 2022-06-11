@@ -19,7 +19,9 @@ const Home: NextPage = () => {
       </Head>
       <SWRConfig
         value={{
+          revalidateIfStale: false,
           revalidateOnFocus: false,
+          revalidateOnReconnect: false,
         }}
       >
         <Map />

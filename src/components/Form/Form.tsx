@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useSWRConfig } from 'swr';
 import toast from 'react-hot-toast';
 import { css } from '@emotion/react';
 import { useRouter } from 'next/router';
@@ -28,6 +29,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
   const { register, handleSubmit } = useForm<InputListType>();
   const [companyFormModalVisible, setCompanyFormModalVisible] =
     useState<boolean>(false);
+  const { mutate } = useSWRConfig();
   const router = useRouter();
   const { data } = useCompanyList();
 
@@ -65,6 +67,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
         .post('/auth/registration', reqData)
         .then(function (response) {
           toast.success('회원가입이 완료되었어요');
+          mutate('worker');
           setSignUpFormVisible(false);
         })
         .catch(function (error) {

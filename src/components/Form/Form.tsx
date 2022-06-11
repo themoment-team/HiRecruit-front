@@ -67,7 +67,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
         .post('/auth/registration', reqData)
         .then(function (response) {
           toast.success('회원가입이 완료되었어요');
-          mutate('worker');
+          mutate('/worker');
           setSignUpFormVisible(false);
         })
         .catch(function (error) {

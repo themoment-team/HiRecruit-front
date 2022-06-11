@@ -1,6 +1,11 @@
 import { CustomMapMarker } from 'components/CustomMapMarker';
 import useMapLevel from 'hooks/use-map-level';
-import { CustomOverlayMap, MapMarker, useMap } from 'react-kakao-maps-sdk';
+import {
+  CustomOverlayMap,
+  MapMarker,
+  MarkerClusterer,
+  useMap,
+} from 'react-kakao-maps-sdk';
 
 interface MarkerListComponentProps {
   markers: any[];
@@ -22,7 +27,10 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
   };
 
   return (
-    <>
+    <MarkerClusterer
+      averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+      minLevel={10} // 클러스터 할 최소 지도 레벨
+    >
       {markers.map((marker, i) =>
         level > 3 ? (
           <MapMarker
@@ -40,6 +48,6 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
           </CustomOverlayMap>
         ),
       )}
-    </>
+    </MarkerClusterer>
   );
 };

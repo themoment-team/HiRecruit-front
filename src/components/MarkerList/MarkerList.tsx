@@ -31,15 +31,18 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
       averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
       minLevel={10} // 클러스터 할 최소 지도 레벨
     >
-      {markers.map((marker, i) =>
+      {markers.map(marker =>
         level > 3 ? (
           <MapMarker
-            key={i}
+            key={`${marker.position.lat}-${marker.position.lng}`}
             position={marker.position}
             onClick={() => panTo(marker.position.lat, marker.position.lng)}
           />
         ) : (
-          <CustomOverlayMap key={i} position={marker.position}>
+          <CustomOverlayMap
+            key={`${marker.position.lat}-${marker.position.lng}`}
+            position={marker.position}
+          >
             <CustomMapMarker
               companyName={marker.name}
               companyUri={marker.homepageUri}

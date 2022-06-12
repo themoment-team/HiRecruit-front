@@ -4,13 +4,10 @@ import { useState } from 'react';
 import useMarker from 'hooks/use-marker';
 import { SideBar } from 'components/SideBar';
 import { MarkerList } from 'components/MarkerList';
-import useCompanyList from 'hooks/api/company/use-company-list';
 
 export const MapComponent: React.FC = () => {
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
-  const { data } = useCompanyList();
-
-  const markers = useMarker(data, map);
+  const markers = useMarker(map);
 
   return (
     <>

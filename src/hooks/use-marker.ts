@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { CompanyData } from 'types/company.type';
+import useCompanyList from './api/company/use-company-list';
 
-const useMarker = (
-  data: CompanyData[] | undefined,
-  map: kakao.maps.Map | undefined,
-) => {
+const useMarker = (map: kakao.maps.Map | undefined) => {
   const [markers, setMarkers] = useState<any[]>([]);
+  const { data } = useCompanyList();
 
   useEffect(() => {
     if (!(map && data)) return;
@@ -31,7 +29,7 @@ const useMarker = (
         }
       });
     });
-  }, [map, data]);
+  }, [map]);
 
   return markers;
 };

@@ -9,6 +9,8 @@ const useMarker = (map: kakao.maps.Map | undefined) => {
     if (!(map && data)) return;
     const gc = new kakao.maps.services.Geocoder();
 
+    setMarkers([]);
+
     data.forEach(info => {
       gc.addressSearch(info.location, (result, status) => {
         if (status === kakao.maps.services.Status.OK) {
@@ -29,7 +31,7 @@ const useMarker = (map: kakao.maps.Map | undefined) => {
         }
       });
     });
-  }, [map]);
+  }, [map, data]);
 
   return markers;
 };

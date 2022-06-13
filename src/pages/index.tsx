@@ -37,7 +37,7 @@ const Home: NextPage<HomeProps> = ({ session }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const session = `${ctx.req.cookies.SESSION}`;
+  const session = `${ctx.req.cookies.HRSESSION}`;
 
   return {
     props: {

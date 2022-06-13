@@ -126,12 +126,8 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
         </S.SlideAnimation>
         <S.Input
           placeholder="회사 도로명 주소"
-          {...(register('companyLocation'),
-          {
-            required: true,
-            readOnly: true,
-            onClick: () => setPostCodeVisible(true),
-          })}
+          onClick={() => setPostCodeVisible(true)}
+          {...register('companyLocation')}
         />
         <S.SlideAnimation
           css={css`

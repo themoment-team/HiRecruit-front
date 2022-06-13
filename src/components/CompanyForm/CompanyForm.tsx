@@ -17,7 +17,7 @@ import axiosClient from 'libs/axios/axiosClient';
 import { companyUrl } from 'libs/api/apiUrlControllers';
 
 import * as S from './CompanyForm.styles';
-import { InputListType, keyList, KeyListType } from './container';
+import { InputListType } from './container';
 
 interface CompanyFormProps {
   setCompanyFormModalVisible: Dispatch<SetStateAction<boolean>>;
@@ -41,39 +41,24 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
   }, [address]);
 
   const onSubmit: SubmitHandler<InputListType> = data => {
-    const entries = Object.entries(data);
-    const allNotFilled = entries.some(([key, value]) => {
-      if (key === 'homepageUri') return false;
-      if (key === 'companyImgUri') return false;
+    // TODO: post 로직 고도화
+    const reqData: CompanyReqData = {
+      name: data.companyName,
+      location: data.companyLocation,
+      homepageUri: data.homepageUri,
+      companyImgUri: data.companyImgUri,
+    };
 
-      if (!value) {
-        toast.error(
-          `${keyList[key as keyof KeyListType]}은(는) 필수로 입력해야 해요`,
-        );
-        return true;
-      }
-    });
-
-    if (!allNotFilled) {
-      // TODO: post 로직 고도화
-      const reqData: CompanyReqData = {
-        name: data.companyName,
-        location: data.companyLocation,
-        homepageUri: data.homepageUri,
-        companyImgUri: data.companyImgUri,
-      };
-
-      axiosClient
-        .post(companyUrl.getAllCompany(), reqData)
-        .then(function (response) {
-          toast.success('회사 등록이 완료되었어요');
-          setCompanyFormModalVisible(false);
-          mutate(companyUrl.getAllCompany());
-        })
-        .catch(function (error) {
-          toast.error(error);
-        });
-    }
+    axiosClient
+      .post(companyUrl.getAllCompany(), reqData)
+      .then(function (response) {
+        toast.success('회사 등록이 완료되었어요');
+        setCompanyFormModalVisible(false);
+        mutate(companyUrl.getAllCompany());
+      })
+      .catch(function (error) {
+        toast.error(error);
+      });
   };
 
   return (
@@ -81,25 +66,33 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.FormHeader>회사 등록</S.FormHeader>
         <S.Input
-          placeholder="회사명"
-          {...register('companyName')}
-          type="company-name"
-          maxLength={18}
+          {...(register('companyName'),
+          {
+            placeholder: '회사명',
+            maxLength: 20,
+            required: true,
+          })}
         />
         <S.Input
-          placeholder="회사 홈페이지 링크"
-          {...register('homepageUri')}
-          type="url"
+          {...(register('homepageUri'),
+          {
+            placeholder: '회사 홈페이지 링크',
+            required: true,
+            type: 'url',
+          })}
         />
         <S.ButtonWrapper>
           <S.Input
-            placeholder="회사 이미지 링크"
-            {...register('companyImgUri')}
-            type="url"
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setPreviewCompanyImgUri(e.target.value);
-              setIsPicture(true);
-            }}
+            {...(register('companyImgUri'),
+            {
+              placeholder: '회사 이미지 링크',
+              required: true,
+              type: 'url',
+              onChange: (e: ChangeEvent<HTMLInputElement>) => {
+                setPreviewCompanyImgUri(e.target.value);
+                setIsPicture(true);
+              },
+            })}
           />
           <S.Button type="button" onClick={() => setIsPreview(prev => !prev)}>
             {isPreview ? '그만보기' : '미리보기'}
@@ -133,10 +126,12 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
         </S.SlideAnimation>
         <S.Input
           placeholder="회사 도로명 주소"
-          {...register('companyLocation')}
-          type="address"
-          readOnly
-          onClick={() => setPostCodeVisible(true)}
+          {...(register('companyLocation'),
+          {
+            required: true,
+            readOnly: true,
+            onClick: () => setPostCodeVisible(true),
+          })}
         />
         <S.SlideAnimation
           css={css`

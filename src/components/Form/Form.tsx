@@ -13,12 +13,7 @@ import { workerUrl } from 'libs/api/apiUrlControllers';
 import useCompanyList from 'hooks/api/company/use-company-list';
 
 import * as S from './Form.styles';
-import {
-  positionOptionList,
-  InputListType,
-  KeyListType,
-  keyList,
-} from './container';
+import { positionOptionList, InputListType } from './container';
 
 interface SignUpFormProps {
   setSignUpFormVisible: Dispatch<SetStateAction<boolean>>;
@@ -40,51 +35,55 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
   }, []);
 
   const onSubmit: SubmitHandler<InputListType> = async data => {
-    const entries = Object.entries(data);
+    // TODO: post 로직 고도화
+    const reqData: WorkerReqData = {
+      email: data.email,
+      name: data.name,
+      worker: {
+        companyId: parseInt(data.companyId),
+        devYear: parseInt(data.devYear),
+        introduction: data.introduction,
+        position: data.position,
+      },
+    };
 
-    const allNotFilled = entries.some(([key, value]) => {
-      if (!value) {
-        toast.error(
-          `${keyList[key as keyof KeyListType]}은(는) 필수로 입력해야 해요`,
-        );
-        return true;
-      }
-    });
-
-    if (!allNotFilled) {
-      // TODO: post 로직 고도화
-      const reqData: WorkerReqData = {
-        email: data.email,
-        name: data.name,
-        worker: {
-          companyId: parseInt(data.companyId),
-          devYear: parseInt(data.devYear),
-          introduction: data.introduction,
-          position: data.position,
-        },
-      };
-
-      axiosClient
-        .post('/auth/registration', reqData)
-        .then(function (response) {
-          toast.success('회원가입이 완료되었어요');
-          mutate(workerUrl.getAllWorker());
-          setSignUpFormVisible(false);
-        })
-        .catch(function (error) {
-          toast.error(error);
-        });
-    }
+    axiosClient
+      .post('/auth/registration', reqData)
+      .then(function (response) {
+        toast.success('회원가입이 완료되었어요');
+        mutate(workerUrl.getAllWorker());
+        setSignUpFormVisible(false);
+      })
+      .catch(function (error) {
+        toast.error(error);
+      });
   };
 
   return (
     <S.FormWrapper>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.FormHeader>회원가입</S.FormHeader>
-        <S.Input placeholder="이름" {...register('name')} type="name" />
-        <S.Input placeholder="이메일" {...register('email')} type="email" />
+        <S.Input
+          {...(register('name'),
+          {
+            placeholder: '이름',
+            type: 'name',
+            required: true,
+          })}
+        />
+        <S.Input
+          {...(register('email'),
+          {
+            placeholder: '이메일',
+            type: 'email',
+            required: true,
+          })}
+        />
         <S.SelectInput
-          {...register('companyId')}
+          {...(register('companyId'),
+          {
+            required: true,
+          })}
           css={css`
             margin-bottom: 0.4rem;
           `}
@@ -111,7 +110,10 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
           <span>회사를 찾을 수 없나요?</span> 회사를 등록해주세요
         </S.CompanyRegister>
         <S.SelectInput
-          {...register('position')}
+          {...(register('position'),
+          {
+            required: true,
+          })}
           css={css`
             margin-top: 0.6rem;
           `}
@@ -124,17 +126,26 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
           ))}
         </S.SelectInput>
         <S.Input
-          placeholder="연차"
-          {...register('devYear')}
-          type="number"
-          min={0}
-          max={50}
+          {...(register('devYear'),
+          {
+            placeholder: '연차',
+            type: 'number',
+            min: 0,
+            max: 50,
+            validate: {
+              positive: (v: string) =>
+                parseInt(v) > 0 || '연차값은 0 이상이어야해요',
+            },
+            required: true,
+          })}
         />
         <S.Input
-          placeholder="한줄 소개"
-          {...register('introduction')}
-          type="text"
-          maxLength={100}
+          {...(register('introduction'),
+          {
+            placeholder: '연차 소개',
+            maxLength: 100,
+            required: true,
+          })}
         />
         <S.Submit type="submit" value={'완료'} />
       </S.Form>

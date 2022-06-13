@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 
 import { SearchInput } from 'components/SearchInput';
 import { WorkerList } from 'components/WorkerList';
-import { Form } from 'components/Form';
 import { Modal } from 'components/common/Modal';
 import { Menu } from 'components/Menu';
+import { Form } from 'components/Form';
 import { Burger } from 'assets/icons/Burger';
 import { Cancel } from 'assets/icons/Cancel';
 import { Logo } from 'assets/icons/Logo';

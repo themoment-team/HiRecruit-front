@@ -6,6 +6,8 @@ import { WorkerList } from 'components/WorkerList';
 import { Form } from 'components/Form';
 import { Modal } from 'components/common/Modal';
 import { Menu } from 'components/Menu';
+import { Burger } from 'assets/icons/Burger';
+import { Cancel } from 'assets/icons/Cancel';
 import { Logo } from 'assets/icons/Logo';
 
 import * as S from './SideBar.styles';
@@ -47,7 +49,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
                 setMenuVisible(prev => !prev);
               }}
             >
-              눌러
+              {menuVisible ? <Cancel /> : <Burger />}
             </div>
           ) : (
             <S.SignUpAnchor onClick={() => handleAuth()}>

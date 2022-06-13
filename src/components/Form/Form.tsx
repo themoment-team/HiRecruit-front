@@ -81,7 +81,12 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
     <S.FormWrapper>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.FormHeader>회원가입</S.FormHeader>
-        <S.Input placeholder="이름" {...register('name')} type="name" />
+        <S.Input
+          placeholder="이름"
+          {...register('name')}
+          type="name"
+          maxLength={10}
+        />
         <S.Input placeholder="이메일" {...register('email')} type="email" />
         <S.SelectInput
           {...register('companyId')}
@@ -128,11 +133,13 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
           {...register('devYear')}
           type="number"
           min={0}
+          max={50}
         />
         <S.Input
           placeholder="한줄 소개"
           {...register('introduction')}
           type="text"
+          maxLength={35}
         />
         <S.Submit type="submit" value={'완료'} />
       </S.Form>

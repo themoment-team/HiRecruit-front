@@ -1,4 +1,10 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import { css } from '@emotion/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -78,6 +84,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
           placeholder="회사명"
           {...register('companyName')}
           type="company-name"
+          maxLength={18}
         />
         <S.Input
           placeholder="회사 홈페이지 링크"
@@ -89,7 +96,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
             placeholder="회사 이미지 링크"
             {...register('companyImgUri')}
             type="url"
-            onChange={e => {
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setPreviewCompanyImgUri(e.target.value);
               setIsPicture(true);
             }}

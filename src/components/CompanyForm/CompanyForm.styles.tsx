@@ -56,6 +56,10 @@ export const ProfileImage = styled.div`
   border-radius: 1.75rem;
   overflow: hidden;
   background-color: ${pallete.scheme.gray};
+  img {
+    max-width: 276px;
+    max-height: 64px;
+  }
 `;
 
 export const WarningText = styled.div`

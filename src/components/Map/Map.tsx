@@ -5,7 +5,11 @@ import useMarker from 'hooks/use-marker';
 import { SideBar } from 'components/SideBar';
 import { MarkerList } from 'components/MarkerList';
 
-export const MapComponent: React.FC = () => {
+interface MapProps {
+  isSigned: boolean;
+}
+
+export const MapComponent: React.FC<MapProps> = ({ isSigned }) => {
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
   const markers = useMarker(map);
 
@@ -24,7 +28,7 @@ export const MapComponent: React.FC = () => {
         level={12}
       >
         <MarkerList markers={markers} />
-        <SideBar />
+        <SideBar isSigned={isSigned} />
       </Map>
     </>
   );

@@ -10,10 +10,13 @@ import { Logo } from 'assets/icons/Logo';
 import * as S from './SideBar.styles';
 import { handleAuth, handleLogout } from './container';
 
-export const SideBarComponent: React.FC = () => {
+interface SideBarProps {
+  isSigned: boolean;
+}
+
+export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
   const [searchState, setSearchState] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const [isSigned, setIsSigned] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -23,9 +26,9 @@ export const SideBarComponent: React.FC = () => {
     }
   }, [router.query.is_first]);
 
+  // TODO: 서버 레거시 코드에 대응하기 위한 코드 추후 삭제해야됨
   useEffect(() => {
     if (router.query.is_login) {
-      setIsSigned(true);
       router.replace(router.pathname);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

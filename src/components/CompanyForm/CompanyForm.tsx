@@ -69,7 +69,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
           {...(register('companyName'),
           {
             placeholder: '회사명',
-            maxLength: 20,
+            maxLength: 65,
             required: true,
           })}
         />

@@ -35,4 +35,8 @@ export const MenuListItem = styled.li`
 
 export const MenuListItemRed = styled(MenuListItem)`
   color: ${pallete.scheme.red};
+  &:hover {
+    background-color: ${pallete.scheme.red + '11'};
+    transition: background-color 0.2s;
+  }
 `;

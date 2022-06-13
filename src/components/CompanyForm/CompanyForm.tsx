@@ -119,7 +119,6 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
               <img
                 src={previewCompanyImgUri}
                 alt="회사 이미지"
-                height="100%"
                 onError={() => {
                   setIsPicture(false);
                 }}

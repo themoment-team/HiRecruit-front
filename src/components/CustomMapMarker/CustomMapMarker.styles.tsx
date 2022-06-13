@@ -30,6 +30,10 @@ export const ProfileImage = styled.div`
   border-radius: 1.75rem;
   overflow: hidden;
   background-color: ${pallete.scheme.gray};
+  img {
+    max-width: 17.25rem;
+    max-height: 8rem;
+  }
 `;
 
 export const ProfileImageAltText = styled.p`

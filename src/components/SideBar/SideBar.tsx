@@ -65,7 +65,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
           <Form setSignUpFormVisible={setModalVisible} />
         </Modal>
       )}
-      {menuVisible && <Menu />}
+      {menuVisible && <Menu setMenuVisible={setMenuVisible} />}
     </>
   );
 };

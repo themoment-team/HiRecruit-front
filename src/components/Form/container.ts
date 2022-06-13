@@ -7,8 +7,6 @@ export interface InputListType {
   devYear: string;
 }
 
-export type KeyListType = InputListType;
-
 export const positionOptionList = [
   '직군',
   '서버/백엔드',
@@ -36,12 +34,3 @@ export const positionOptionList = [
   '응용 프로그램',
   '블록 체인',
 ];
-
-export const keyList: KeyListType = {
-  name: '이름',
-  email: '이메일',
-  companyId: '회사명',
-  position: '직군',
-  introduction: '한줄 소개',
-  devYear: '연차',
-};

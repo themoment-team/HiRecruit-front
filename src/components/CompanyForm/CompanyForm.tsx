@@ -135,6 +135,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
           placeholder="회사 도로명 주소"
           {...register('companyLocation')}
           type="address"
+          readOnly
           onClick={() => setPostCodeVisible(true)}
         />
         <S.SlideAnimation

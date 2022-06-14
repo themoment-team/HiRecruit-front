@@ -63,27 +63,16 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
     <S.FormWrapper>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.FormHeader>회원가입</S.FormHeader>
+        <S.Input {...register('name')} placeholder="이름" required />
         <S.Input
-          {...(register('name'),
-          {
-            placeholder: '이름',
-            type: 'name',
-            required: true,
-          })}
-        />
-        <S.Input
-          {...(register('email'),
-          {
-            placeholder: '이메일',
-            type: 'email',
-            required: true,
-          })}
+          {...register('email')}
+          type="email"
+          placeholder="이메일"
+          required
         />
         <S.SelectInput
-          {...(register('companyId'),
-          {
-            required: true,
-          })}
+          {...register('companyId')}
+          required
           css={css`
             margin-bottom: 0.4rem;
           `}
@@ -110,10 +99,8 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
           <span>회사를 찾을 수 없나요?</span> 회사를 등록해주세요
         </S.CompanyRegister>
         <S.SelectInput
-          {...(register('position'),
-          {
-            required: true,
-          })}
+          {...register('position')}
+          required
           css={css`
             margin-top: 0.6rem;
           `}
@@ -126,22 +113,18 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
           ))}
         </S.SelectInput>
         <S.Input
-          {...(register('devYear'),
-          {
-            placeholder: '연차',
-            type: 'number',
-            min: 0,
-            max: 50,
-            required: true,
-          })}
+          {...register('devYear')}
+          placeholder="연차"
+          required
+          type="number"
+          min={0}
+          max={50}
         />
         <S.Input
-          {...(register('introduction'),
-          {
-            placeholder: '한줄 소개',
-            maxLength: 100,
-            required: true,
-          })}
+          {...register('introduction')}
+          placeholder="한줄 소개"
+          required
+          maxLength={100}
         />
         <S.Submit type="submit" value={'완료'} />
       </S.Form>

@@ -66,33 +66,26 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.FormHeader>회사 등록</S.FormHeader>
         <S.Input
-          {...(register('companyName'),
-          {
-            placeholder: '회사명',
-            maxLength: 65,
-            required: true,
-          })}
+          {...register('companyName')}
+          required
+          placeholder="회사명"
+          maxLength={65}
         />
         <S.Input
-          {...(register('homepageUri'),
-          {
-            placeholder: '회사 홈페이지 링크',
-            required: true,
-            type: 'url',
-          })}
+          {...register('homepageUri')}
+          required
+          placeholder="회사 홈페이지 링크"
+          type="url"
         />
         <S.ButtonWrapper>
           <S.Input
-            {...(register('companyImgUri'),
-            {
-              placeholder: '회사 이미지 링크',
-              required: true,
-              type: 'url',
-              onChange: (e: ChangeEvent<HTMLInputElement>) => {
-                setPreviewCompanyImgUri(e.target.value);
-                setIsPicture(true);
-              },
-            })}
+            {...register('companyImgUri')}
+            required
+            type="url"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setPreviewCompanyImgUri(e.target.value);
+              setIsPicture(true);
+            }}
           />
           <S.Button type="button" onClick={() => setIsPreview(prev => !prev)}>
             {isPreview ? '그만보기' : '미리보기'}

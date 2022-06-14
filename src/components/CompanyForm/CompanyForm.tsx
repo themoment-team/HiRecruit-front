@@ -105,6 +105,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
               <img
                 src={previewCompanyImgUri}
                 alt="회사 이미지"
+                draggable="false"
                 onError={() => {
                   setIsPicture(false);
                 }}

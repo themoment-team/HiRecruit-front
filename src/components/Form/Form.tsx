@@ -132,17 +132,13 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
             type: 'number',
             min: 0,
             max: 50,
-            validate: {
-              positive: (v: string) =>
-                parseInt(v) > 0 || '연차값은 0 이상이어야해요',
-            },
             required: true,
           })}
         />
         <S.Input
           {...(register('introduction'),
           {
-            placeholder: '연차 소개',
+            placeholder: '한줄 소개',
             maxLength: 100,
             required: true,
           })}

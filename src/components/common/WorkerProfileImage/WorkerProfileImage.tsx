@@ -19,6 +19,7 @@ export const WorkerProfileImageComponent: React.FC<WorkerProfileImageProps> = ({
         width={50}
         height={50}
         layout="responsive"
+        draggable="false"
       />
     </S.WorkerProfileImage>
   );

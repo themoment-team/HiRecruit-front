@@ -23,7 +23,11 @@ export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
       <S.ProfileImage>
         {imageUri ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={imageUri} alt={`${companyName} 회사 로고`} />
+          <img
+            src={imageUri}
+            alt={`${companyName} 회사 로고`}
+            draggable="false"
+          />
         ) : (
           <S.ProfileImageAltText>
             회사 이미지가 존재하지 않아요

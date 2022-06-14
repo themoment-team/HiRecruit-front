@@ -59,6 +59,7 @@ export const ProfileImage = styled.div`
   img {
     max-width: 17.25rem;
     max-height: 8rem;
+    -webkit-user-drag: none;
   }
 `;
 

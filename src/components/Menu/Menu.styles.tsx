@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+import { flipX } from 'shared/Animation.style';
 import pallete from 'shared/Pallete';
 
 export const MenuWrapper = styled.ul`
@@ -15,6 +16,7 @@ export const MenuWrapper = styled.ul`
   justify-content: center;
   background: ${pallete.scheme.white};
   box-shadow: 0px 12px 20px 6px ${pallete.scheme.black + '08'};
+  animation: ${flipX} 0.4s ease-in-out;
 `;
 
 export const MenuListItem = styled.li`

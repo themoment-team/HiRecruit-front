@@ -13,6 +13,12 @@ export const LauncherWrapper = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    button {
+      transition: transform 0.2s ease-in-out;
+      transform: rotate(45deg);
+    }
+  }
 `;
 
 export const LauncherButton = styled.button`

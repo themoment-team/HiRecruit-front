@@ -3,8 +3,9 @@ type ColorToken =
   | 'black'
   | 'gray'
   | 'darkgray'
-  | 'paragraph'
   | 'blue'
+  | 'red'
+  | 'paragraph'
   | 'warning';
 
 type ColorTheme = {
@@ -17,8 +18,9 @@ const pallete: Readonly<ColorTheme> = {
     black: '#000000',
     gray: '#f4f4f4',
     darkgray: '#888888',
-    paragraph: '#333333',
     blue: '#3d9cf7',
+    red: '#F31260',
+    paragraph: '#333333',
     warning: '#F5A524',
   },
 };

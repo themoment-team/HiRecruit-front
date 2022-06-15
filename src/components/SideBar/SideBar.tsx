@@ -3,12 +3,15 @@ import { useRouter } from 'next/router';
 
 import { SearchInput } from 'components/SearchInput';
 import { WorkerList } from 'components/WorkerList';
-import { Form } from 'components/Form';
 import { Modal } from 'components/common/Modal';
+import { Menu } from 'components/Menu';
+import { Form } from 'components/Form';
+import { Burger } from 'assets/icons/Burger';
+import { Cancel } from 'assets/icons/Cancel';
 import { Logo } from 'assets/icons/Logo';
 
 import * as S from './SideBar.styles';
-import { handleAuth, handleLogout } from './container';
+import { handleAuth } from './container';
 
 interface SideBarProps {
   isSigned: boolean;
@@ -17,6 +20,7 @@ interface SideBarProps {
 export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
   const [searchState, setSearchState] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [menuVisible, setMenuVisible] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -40,9 +44,13 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
         <S.NavBar>
           <Logo logoColor="white" />
           {isSigned ? (
-            <S.SignUpAnchor onClick={() => handleLogout()}>
-              로그아웃
-            </S.SignUpAnchor>
+            <div
+              onClick={() => {
+                setMenuVisible(prev => !prev);
+              }}
+            >
+              {menuVisible ? <Cancel /> : <Burger />}
+            </div>
           ) : (
             <S.SignUpAnchor onClick={() => handleAuth()}>
               회원가입/로그인
@@ -59,6 +67,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
           <Form setSignUpFormVisible={setModalVisible} />
         </Modal>
       )}
+      {menuVisible && <Menu setMenuVisible={setMenuVisible} />}
     </>
   );
 };

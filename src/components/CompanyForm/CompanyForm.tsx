@@ -57,7 +57,8 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
         mutate(companyUrl.getAllCompany());
       })
       .catch(function (error) {
-        toast.error(error);
+        console.log(error);
+        toast.error('회사 등록에 실패했어요');
       });
   };
 

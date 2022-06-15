@@ -55,7 +55,8 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
         setSignUpFormVisible(false);
       })
       .catch(function (error) {
-        toast.error(error);
+        console.log(error);
+        toast.error('회원가입에 실패했어요');
       });
   };
 

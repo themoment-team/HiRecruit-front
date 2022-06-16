@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(req: NextRequest) {
-  const fetchUrl =
-    'https://sheets.googleapis.com/v4/spreadsheets/1z65xVk7tqcp90SUVvOwl-XHozbydF5w5hyVjMVnxIkw/values/sheet1?key=AIzaSyDnEY-kE_ZCwuyQezxSuw1UO1dMOOgPYJw';
+  const fetchUrl = `https://sheets.googleapis.com/v4/spreadsheets/${process.env.gssIdKey}/values/sheet1?key=${process.env.gssApiKey}`;
   const res = await fetch(fetchUrl);
   const data = await res.json();
   const siteState = data?.values[1][0];

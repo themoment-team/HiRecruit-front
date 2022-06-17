@@ -45,7 +45,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
   }, [address]);
 
   const onSubmit: SubmitHandler<InputListType> = data => {
-    if (!uriRegex.test(previewCompanyImgUri)) {
+    if (!uriRegex.test(data.companyImgUri)) {
       toast.error('지원하지 않는 이미지 주소 형식이에요');
       return;
     }
@@ -91,6 +91,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
           <S.Input
             {...register('companyImgUri')}
             required
+            placeholder="회사 이미지 url"
             type="url"
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setPreviewCompanyImgUri(e.target.value);

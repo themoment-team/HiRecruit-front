@@ -20,7 +20,7 @@ export const MenuWrapper = styled.ul`
 `;
 
 export const MenuListItem = styled.li`
-  width: 8rem;
+  width: 9rem;
   padding: 1.25rem;
   color: ${pallete.scheme.paragraph};
   border-radius: 0.75rem;

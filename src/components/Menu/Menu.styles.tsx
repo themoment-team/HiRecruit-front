@@ -7,7 +7,7 @@ export const MenuWrapper = styled.ul`
   padding: 0.5rem;
   position: absolute;
   top: 4.65rem;
-  right: 1rem;
+  left: 18rem;
   border-radius: 1rem;
   z-index: 10;
   display: flex;

@@ -120,7 +120,15 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
           required
           maxLength={100}
         />
-        <S.Submit type="submit" value={'완료'} />
+        <S.ButtonWrapper>
+          <S.CancelButton
+            onClick={() => setSignUpFormVisible(false)}
+            type="button"
+          >
+            취소
+          </S.CancelButton>
+          <S.Submit type="submit" value={'완료'} />
+        </S.ButtonWrapper>
       </S.Form>
       {companyFormModalVisible && (
         <Modal setModalVisible={setCompanyFormModalVisible}>

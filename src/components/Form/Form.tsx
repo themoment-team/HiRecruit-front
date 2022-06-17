@@ -63,7 +63,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
   return (
     <S.FormWrapper>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
-        <S.FormHeader>회원가입</S.FormHeader>
+        <S.FormHeader>프로필 등록하기</S.FormHeader>
         <S.Input {...register('name')} placeholder="이름" required />
         <S.Input
           {...register('email')}

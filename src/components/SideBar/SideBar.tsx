@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
 
 import { SearchInput } from 'components/SearchInput';
 import { WorkerList } from 'components/WorkerList';
@@ -25,6 +27,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
   const [userRules, setUserRules] = useState<UserRule>('NO_AUTH_USER');
+  const router = useRouter();
 
   useEffect(() => {
     const { USER_TYPE, HRSESSION } = cookies;
@@ -35,6 +38,27 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
 
     if (USER_TYPE === 'WORKER' && HRSESSION) {
       setUserRules('WORKER');
+    }
+  }, []);
+
+  useEffect(() => {
+    switch (router.query.login) {
+      case 'fail':
+        if (router.query.server_error === 'true') {
+          toast.error(
+            '서버에서 인증에 실패했어요\nhirecruit@gsm.hs.kr에 문의해주세요',
+            { duration: Infinity },
+          );
+        } else {
+          toast.error(
+            '알수없는 이유로 인증에 실패했어요\nhirecruit@gsm.hs.kr에 문의해주세요',
+            { duration: Infinity },
+          );
+        }
+        break;
+      case 'cancel':
+        toast('인증을 취소했어요');
+        break;
     }
   }, []);
 

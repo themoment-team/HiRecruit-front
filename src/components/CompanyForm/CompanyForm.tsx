@@ -91,7 +91,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
           <S.Input
             {...register('companyImgUri')}
             required
-            placeholder="회사 이미지 url"
+            placeholder="회사 이미지 링크"
             type="url"
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setPreviewCompanyImgUri(e.target.value);

@@ -68,7 +68,11 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
         </Modal>
       )}
       {menuVisible && (
-        <Menu setMenuVisible={setMenuVisible} userRules={userRules} />
+        <Menu
+          setMenuVisible={setMenuVisible}
+          setModalVisible={setModalVisible}
+          userRules={userRules}
+        />
       )}
     </>
   );

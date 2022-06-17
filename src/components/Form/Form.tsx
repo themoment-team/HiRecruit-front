@@ -3,7 +3,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSWRConfig } from 'swr';
 import toast from 'react-hot-toast';
 import { css } from '@emotion/react';
-import { useRouter } from 'next/router';
 
 import { Modal } from 'components/common/Modal';
 import { CompanyForm } from 'components/CompanyForm';
@@ -26,13 +25,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
   const [companyFormModalVisible, setCompanyFormModalVisible] =
     useState<boolean>(false);
   const { mutate } = useSWRConfig();
-  const router = useRouter();
   const { data } = useCompanyList();
-
-  useEffect(() => {
-    router.replace(router.pathname);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const onSubmit: SubmitHandler<InputListType> = async data => {
     // TODO: post 로직 고도화
@@ -52,7 +45,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
       .then(function (response) {
         toast.success('회원가입이 완료되었어요');
         mutate(workerUrl.getAllWorker());
-        setSignUpFormVisible(false);
+        window.location.reload();
       })
       .catch(function (error) {
         console.log(error);
@@ -63,7 +56,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
   return (
     <S.FormWrapper>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
-        <S.FormHeader>회원가입</S.FormHeader>
+        <S.FormHeader>프로필 등록하기</S.FormHeader>
         <S.Input {...register('name')} placeholder="이름" required />
         <S.Input
           {...register('email')}
@@ -127,7 +120,15 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
           required
           maxLength={100}
         />
-        <S.Submit type="submit" value={'완료'} />
+        <S.ButtonWrapper>
+          <S.CancelButton
+            onClick={() => setSignUpFormVisible(false)}
+            type="button"
+          >
+            취소
+          </S.CancelButton>
+          <S.Submit type="submit" value={'완료'} />
+        </S.ButtonWrapper>
       </S.Form>
       {companyFormModalVisible && (
         <Modal setModalVisible={setCompanyFormModalVisible}>

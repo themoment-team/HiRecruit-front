@@ -26,6 +26,10 @@ interface CompanyFormProps {
 export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
   setCompanyFormModalVisible,
 }) => {
+  const uriRegex =
+    // eslint-disable-next-line no-useless-escape
+    /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}([\/a-z0-9-%#?&=\w])+(\.[a-z0-9]{2,4}(\?[\/a-z0-9-%#?&=\w]+)*)*/gi;
+
   const { register, handleSubmit, setValue } = useForm<InputListType>();
   const { mutate } = useSWRConfig();
 
@@ -41,6 +45,11 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
   }, [address]);
 
   const onSubmit: SubmitHandler<InputListType> = data => {
+    if (!uriRegex.test(data.companyImgUri)) {
+      toast.error('지원하지 않는 이미지 주소 형식이에요');
+      return;
+    }
+
     // TODO: post 로직 고도화
     const reqData: CompanyReqData = {
       name: data.companyName,
@@ -82,6 +91,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
           <S.Input
             {...register('companyImgUri')}
             required
+            placeholder="회사 이미지 url"
             type="url"
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setPreviewCompanyImgUri(e.target.value);

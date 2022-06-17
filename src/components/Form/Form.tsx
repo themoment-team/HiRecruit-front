@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { AxiosError, AxiosResponse } from 'axios';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useSWRConfig } from 'swr';
 import toast from 'react-hot-toast';
 import { css } from '@emotion/react';
 
@@ -8,7 +8,6 @@ import { Modal } from 'components/common/Modal';
 import { CompanyForm } from 'components/CompanyForm';
 import { WorkerReqData } from 'types/worker.type';
 import axiosClient from 'libs/axios/axiosClient';
-import { workerUrl } from 'libs/api/apiUrlControllers';
 import useCompanyList from 'hooks/api/company/use-company-list';
 
 import * as S from './Form.styles';
@@ -24,7 +23,6 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
   const { register, handleSubmit } = useForm<InputListType>();
   const [companyFormModalVisible, setCompanyFormModalVisible] =
     useState<boolean>(false);
-  const { mutate } = useSWRConfig();
   const { data } = useCompanyList();
 
   const onSubmit: SubmitHandler<InputListType> = async data => {
@@ -42,14 +40,31 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
 
     axiosClient
       .post('/auth/registration', reqData)
-      .then(function (response) {
+      .then(function (response: AxiosResponse) {
         toast.success('회원가입이 완료되었어요');
-        mutate(workerUrl.getAllWorker());
-        window.location.reload();
+        window.location.reload;
       })
-      .catch(function (error) {
+      .catch(function (error: AxiosError<{ message: string }>) {
         console.log(error);
-        toast.error('회원가입에 실패했어요');
+        if (error.response) {
+          switch (error.response.status) {
+            case 400:
+              toast.error(error.response.data.message);
+              break;
+            case 401:
+              toast.error(
+                '로그인 정보가 없어요\n새로고침 후 다시 한번 로그인 해주세요',
+              );
+              break;
+            case 403:
+              toast.error('이미 프로필이 등록되어있어요');
+              break;
+            default:
+              toast.error(
+                '알 수 없는 이유로 등록에 실패했어요\nhirecruit@gsm.hs.kr에 문의해주세요',
+              );
+          }
+        }
       });
   };
 

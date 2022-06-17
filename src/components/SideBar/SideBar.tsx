@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { SearchInput } from 'components/SearchInput';
 import { WorkerList } from 'components/WorkerList';
@@ -13,20 +13,41 @@ import * as S from './SideBar.styles';
 import { handleAuth } from './container';
 
 interface SideBarProps {
-  isSigned: boolean;
+  cookies: {
+    [key: string]: string;
+  };
 }
 
-export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
+type UserRule = 'GUEST' | 'WORKER' | 'NO_AUTH_USER';
+
+export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   const [searchState, setSearchState] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
+  const [userRules, setUserRules] = useState<UserRule>('NO_AUTH_USER');
+
+  useEffect(() => {
+    const { USER_TYPE, HRSESSION } = cookies;
+
+    if (USER_TYPE === 'GUEST' && HRSESSION) {
+      setUserRules('GUEST');
+    }
+
+    if (USER_TYPE === 'WORKER' && HRSESSION) {
+      setUserRules('WORKER');
+    }
+  }, []);
 
   return (
     <>
       <S.SideBar>
         <S.NavBar>
           <Logo logoColor="white" />
-          {isSigned ? (
+          {userRules === 'NO_AUTH_USER' ? (
+            <S.SignUpAnchor onClick={() => handleAuth()}>
+              회원가입/로그인
+            </S.SignUpAnchor>
+          ) : (
             <div
               onClick={() => {
                 setMenuVisible(prev => !prev);
@@ -34,10 +55,6 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
             >
               {menuVisible ? <Cancel /> : <Burger />}
             </div>
-          ) : (
-            <S.SignUpAnchor onClick={() => handleAuth()}>
-              회원가입/로그인
-            </S.SignUpAnchor>
           )}
         </S.NavBar>
         <S.SearchBar>
@@ -50,7 +67,9 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
           <Form setSignUpFormVisible={setModalVisible} />
         </Modal>
       )}
-      {menuVisible && <Menu setMenuVisible={setMenuVisible} />}
+      {menuVisible && (
+        <Menu setMenuVisible={setMenuVisible} userRules={userRules} />
+      )}
     </>
   );
 };

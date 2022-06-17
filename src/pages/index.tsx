@@ -3,22 +3,14 @@ import Head from 'next/head';
 import { Toaster } from 'react-hot-toast';
 
 import { Map } from 'components/Map';
-import { useEffect, useState } from 'react';
 
 interface HomeProps {
-  session: string | undefined;
+  cookies: {
+    [key: string]: string;
+  };
 }
 
-const Home: NextPage<HomeProps> = ({ session }) => {
-  const [isSigned, setIsSigned] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (session !== 'undefined') {
-      setIsSigned(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+const Home: NextPage<HomeProps> = ({ cookies }) => {
   return (
     <>
       <Head>
@@ -30,18 +22,18 @@ const Home: NextPage<HomeProps> = ({ session }) => {
           content="HiRecruit을 통해 보다 뛰어난 멘토를 찾고, 혁신적인 취업준비 경험을 느끼세요."
         />
       </Head>
-      <Map isSigned={isSigned} />
+      <Map cookies={cookies} />
       <Toaster />
     </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const session = `${ctx.req.cookies.HRSESSION}`;
+  const cookies = ctx.req.cookies;
 
   return {
     props: {
-      session,
+      cookies,
     },
   };
 };

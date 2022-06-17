@@ -7,10 +7,12 @@ import { MarkerList } from 'components/MarkerList';
 import { Launcher } from 'components/Launcher';
 
 interface MapProps {
-  isSigned: boolean;
+  cookies: {
+    [key: string]: string;
+  };
 }
 
-export const MapComponent: React.FC<MapProps> = ({ isSigned }) => {
+export const MapComponent: React.FC<MapProps> = ({ cookies }) => {
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
   const markers = useMarker(map);
 
@@ -29,7 +31,7 @@ export const MapComponent: React.FC<MapProps> = ({ isSigned }) => {
         level={12}
       >
         <MarkerList markers={markers} />
-        <SideBar isSigned={isSigned} />
+        <SideBar cookies={cookies} />
       </Map>
       <Launcher />
     </>

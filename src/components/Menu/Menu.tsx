@@ -9,9 +9,15 @@ import toast from 'react-hot-toast';
 
 interface MenuProps {
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
+  userRules: string;
 }
 
-export const MenuComponent: React.FC<MenuProps> = ({ setMenuVisible }) => {
+type UserRuleOmitNoAuth = 'GUEST' | 'WORKER';
+
+export const MenuComponent: React.FC<MenuProps> = ({
+  setMenuVisible,
+  userRules,
+}) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [el, clickOutside] = useModal(setMenuVisible);
 
@@ -34,8 +40,30 @@ export const MenuComponent: React.FC<MenuProps> = ({ setMenuVisible }) => {
     <>
       <div ref={el}>
         <S.MenuWrapper>
-          <S.MenuListItem onClick={onInfoEdit}>내 정보 수정</S.MenuListItem>
-          <S.MenuListItemRed onClick={onLogout}>로그아웃</S.MenuListItemRed>
+          {
+            {
+              WORKER: (
+                <>
+                  <S.MenuListItem onClick={onInfoEdit}>
+                    내 정보 수정
+                  </S.MenuListItem>
+                  <S.MenuListItemRed onClick={onLogout}>
+                    로그아웃
+                  </S.MenuListItemRed>
+                </>
+              ),
+              GUEST: (
+                <>
+                  <S.MenuListItem onClick={onInfoEdit}>
+                    프로필 등록하기
+                  </S.MenuListItem>
+                  <S.MenuListItemRed onClick={onLogout}>
+                    로그아웃
+                  </S.MenuListItemRed>
+                </>
+              ),
+            }[userRules as UserRuleOmitNoAuth]
+          }
         </S.MenuWrapper>
       </div>
       {modalVisible && (

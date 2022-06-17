@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 
 interface MenuProps {
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
+  setModalVisible: Dispatch<SetStateAction<boolean>>;
   userRules: string;
 }
 
@@ -16,9 +17,9 @@ type UserRuleOmitNoAuth = 'GUEST' | 'WORKER';
 
 export const MenuComponent: React.FC<MenuProps> = ({
   setMenuVisible,
+  setModalVisible,
   userRules,
 }) => {
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [el, clickOutside] = useModal(setMenuVisible);
 
   useEffect(() => {
@@ -34,6 +35,10 @@ export const MenuComponent: React.FC<MenuProps> = ({
 
   const onInfoEdit = () => {
     toast('기능 준비중입니다.');
+  };
+
+  const onRegisterProfile = () => {
+    setModalVisible(true);
   };
 
   return (
@@ -54,7 +59,7 @@ export const MenuComponent: React.FC<MenuProps> = ({
               ),
               GUEST: (
                 <>
-                  <S.MenuListItem onClick={onInfoEdit}>
+                  <S.MenuListItem onClick={onRegisterProfile}>
                     프로필 등록하기
                   </S.MenuListItem>
                   <S.MenuListItemRed onClick={onLogout}>
@@ -66,11 +71,6 @@ export const MenuComponent: React.FC<MenuProps> = ({
           }
         </S.MenuWrapper>
       </div>
-      {modalVisible && (
-        <Modal setModalVisible={setModalVisible}>
-          <div>asdf</div>
-        </Modal>
-      )}
     </>
   );
 };

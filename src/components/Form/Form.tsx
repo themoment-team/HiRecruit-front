@@ -42,7 +42,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
       .post('/auth/registration', reqData)
       .then(function (response: AxiosResponse) {
         toast.success('회원가입이 완료되었어요');
-        window.location.reload;
+        window.location.reload();
       })
       .catch(function (error: AxiosError<{ message: string }>) {
         console.log(error);

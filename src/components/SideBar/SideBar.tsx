@@ -66,7 +66,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   return (
     <>
       <S.SideBar>
-        <S.NavBar>
+        <S.SideBarHeader>
           <Logo logoColor="white" />
           {userRules === 'NO_AUTH_USER' ? (
             <S.SignUpAnchor onClick={() => handleAuth()}>
@@ -81,12 +81,23 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
               {menuVisible ? <Cancel /> : <Burger />}
             </div>
           )}
-        </S.NavBar>
-        <S.SearchBar>
+        </S.SideBarHeader>
+        <S.SideBarWrapper>
           <SearchInput setSearchState={setSearchState} />
-          <SideBarButton calloutText="내 프로필을 등록해볼까요?" />
+          {userRules === 'GUEST' && (
+            <SideBarButton
+              calloutText="내 프로필을 등록해볼까요?"
+              setProfileModalVisible={setModalVisible}
+            />
+          )}
+          {userRules === 'WORKER' && (
+            <SideBarButton
+              calloutText="멘토 등록하기"
+              setProfileModalVisible={setModalVisible}
+            />
+          )}
           <WorkerList searchState={searchState} />
-        </S.SearchBar>
+        </S.SideBarWrapper>
       </S.SideBar>
       {modalVisible && (
         <Modal setModalVisible={setModalVisible}>
@@ -94,11 +105,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
         </Modal>
       )}
       {menuVisible && (
-        <Menu
-          setMenuVisible={setMenuVisible}
-          setModalVisible={setModalVisible}
-          userRules={userRules}
-        />
+        <Menu setMenuVisible={setMenuVisible} userRules={userRules} />
       )}
     </>
   );

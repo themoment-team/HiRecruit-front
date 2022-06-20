@@ -13,14 +13,14 @@ import { Logo } from 'assets/icons/Logo';
 
 import * as S from './SideBar.styles';
 import { handleAuth } from './container';
+import { SideBarButton } from 'components/common/SideBarButton';
+import { UserRule } from 'types/site.type';
 
 interface SideBarProps {
   cookies: {
     [key: string]: string;
   };
 }
-
-type UserRule = 'GUEST' | 'WORKER' | 'NO_AUTH_USER';
 
 export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   const [searchState, setSearchState] = useState<string>('');
@@ -62,10 +62,18 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
     }
   }, []);
 
+  const handleProfileRegister = () => {
+    setModalVisible(true);
+  };
+
+  const handleMentorRegister = () => {
+    toast('기능 준비중입니다.');
+  };
+
   return (
     <>
       <S.SideBar>
-        <S.NavBar>
+        <S.SideBarHeader>
           <Logo logoColor="white" />
           {userRules === 'NO_AUTH_USER' ? (
             <S.SignUpAnchor onClick={() => handleAuth()}>
@@ -80,11 +88,23 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
               {menuVisible ? <Cancel /> : <Burger />}
             </div>
           )}
-        </S.NavBar>
-        <S.SearchBar>
+        </S.SideBarHeader>
+        <S.SideBarWrapper>
           <SearchInput setSearchState={setSearchState} />
-          <WorkerList searchState={searchState} />
-        </S.SearchBar>
+          {userRules === 'GUEST' && (
+            <SideBarButton
+              calloutText="내 프로필을 등록해볼까요?"
+              trigger={handleProfileRegister}
+            />
+          )}
+          {userRules === 'WORKER' && (
+            <SideBarButton
+              calloutText="멘토 등록하기"
+              trigger={handleMentorRegister}
+            />
+          )}
+          <WorkerList searchState={searchState} userRules={userRules} />
+        </S.SideBarWrapper>
       </S.SideBar>
       {modalVisible && (
         <Modal setModalVisible={setModalVisible}>
@@ -92,11 +112,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
         </Modal>
       )}
       {menuVisible && (
-        <Menu
-          setMenuVisible={setMenuVisible}
-          setModalVisible={setModalVisible}
-          userRules={userRules}
-        />
+        <Menu setMenuVisible={setMenuVisible} userRules={userRules} />
       )}
     </>
   );

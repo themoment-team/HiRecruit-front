@@ -1,6 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-
-import { Modal } from 'components/common/Modal';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
 import * as S from './Menu.styles';
 import { handleLogout } from './container';
@@ -9,7 +7,6 @@ import toast from 'react-hot-toast';
 
 interface MenuProps {
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
-  setModalVisible: Dispatch<SetStateAction<boolean>>;
   userRules: string;
 }
 
@@ -17,7 +14,6 @@ type UserRuleOmitNoAuth = 'GUEST' | 'WORKER';
 
 export const MenuComponent: React.FC<MenuProps> = ({
   setMenuVisible,
-  setModalVisible,
   userRules,
 }) => {
   const [el, clickOutside] = useModal(setMenuVisible);
@@ -29,16 +25,12 @@ export const MenuComponent: React.FC<MenuProps> = ({
     };
   }, [clickOutside]);
 
-  const onLogout = () => {
-    handleLogout();
-  };
-
-  const onInfoEdit = () => {
+  const onEditProfile = () => {
     toast('기능 준비중입니다.');
   };
 
-  const onRegisterProfile = () => {
-    setModalVisible(true);
+  const onLogout = () => {
+    handleLogout();
   };
 
   return (
@@ -49,8 +41,8 @@ export const MenuComponent: React.FC<MenuProps> = ({
             {
               WORKER: (
                 <>
-                  <S.MenuListItem onClick={onInfoEdit}>
-                    내 정보 수정
+                  <S.MenuListItem onClick={onEditProfile}>
+                    프로필 수정하기
                   </S.MenuListItem>
                   <S.MenuListItemRed onClick={onLogout}>
                     로그아웃
@@ -59,9 +51,6 @@ export const MenuComponent: React.FC<MenuProps> = ({
               ),
               GUEST: (
                 <>
-                  <S.MenuListItem onClick={onRegisterProfile}>
-                    프로필 등록하기
-                  </S.MenuListItem>
                   <S.MenuListItemRed onClick={onLogout}>
                     로그아웃
                   </S.MenuListItemRed>

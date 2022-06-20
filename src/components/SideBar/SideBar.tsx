@@ -62,6 +62,14 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
     }
   }, []);
 
+  const handleProfileRegister = () => {
+    setModalVisible(true);
+  };
+
+  const handleMentorRegister = () => {
+    toast('기능 준비중입니다.');
+  };
+
   return (
     <>
       <S.SideBar>
@@ -86,13 +94,13 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
           {userRules === 'GUEST' && (
             <SideBarButton
               calloutText="내 프로필을 등록해볼까요?"
-              setProfileModalVisible={setModalVisible}
+              trigger={handleProfileRegister}
             />
           )}
           {userRules === 'WORKER' && (
             <SideBarButton
               calloutText="멘토 등록하기"
-              setProfileModalVisible={setModalVisible}
+              trigger={handleMentorRegister}
             />
           )}
           <WorkerList searchState={searchState} userRules={userRules} />

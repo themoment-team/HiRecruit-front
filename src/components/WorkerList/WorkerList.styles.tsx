@@ -5,7 +5,8 @@ export const WorkerList = styled.div`
   width: 100%;
   margin: 0 auto;
   padding-bottom: 1.5rem;
-  height: calc(100vh - 10rem);
+  margin-top: 1rem;
+  height: calc(100% - 9.25rem);
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -16,7 +17,7 @@ export const WorkerList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.75rem;
 `;
 
 export const StatusMessage = styled.p`

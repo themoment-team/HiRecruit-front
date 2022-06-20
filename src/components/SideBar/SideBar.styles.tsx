@@ -5,14 +5,14 @@ import pallete from 'shared/Pallete';
 export const SideBar = styled.div`
   position: fixed;
   top: 0;
-  right: 0.5rem;
+  left: 0.5rem;
   z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 `;
 
-export const SearchBar = styled.div`
+export const SideBarWrapper = styled.div`
   width: 28rem;
   padding: 0 3.125rem;
   height: calc(100vh - 4rem);
@@ -22,7 +22,7 @@ export const SearchBar = styled.div`
   backdrop-filter: saturate(180%) blur(20px);
 `;
 
-export const NavBar = styled.nav`
+export const SideBarHeader = styled.header`
   padding: 1rem;
   display: flex;
   align-items: center;

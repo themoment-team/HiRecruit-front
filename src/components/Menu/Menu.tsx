@@ -1,6 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-
-import { Modal } from 'components/common/Modal';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
 import * as S from './Menu.styles';
 import { handleLogout } from './container';
@@ -9,10 +7,15 @@ import toast from 'react-hot-toast';
 
 interface MenuProps {
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
+  userRules: string;
 }
 
-export const MenuComponent: React.FC<MenuProps> = ({ setMenuVisible }) => {
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
+type UserRuleOmitNoAuth = 'GUEST' | 'WORKER';
+
+export const MenuComponent: React.FC<MenuProps> = ({
+  setMenuVisible,
+  userRules,
+}) => {
   const [el, clickOutside] = useModal(setMenuVisible);
 
   useEffect(() => {
@@ -22,27 +25,41 @@ export const MenuComponent: React.FC<MenuProps> = ({ setMenuVisible }) => {
     };
   }, [clickOutside]);
 
-  const onLogout = () => {
-    handleLogout();
+  const onEditProfile = () => {
+    toast('기능 준비중입니다.');
   };
 
-  const onInfoEdit = () => {
-    toast('기능 준비중입니다.');
+  const onLogout = () => {
+    handleLogout();
   };
 
   return (
     <>
       <div ref={el}>
         <S.MenuWrapper>
-          <S.MenuListItem onClick={onInfoEdit}>내 정보 수정</S.MenuListItem>
-          <S.MenuListItemRed onClick={onLogout}>로그아웃</S.MenuListItemRed>
+          {
+            {
+              WORKER: (
+                <>
+                  <S.MenuListItem onClick={onEditProfile}>
+                    프로필 수정하기
+                  </S.MenuListItem>
+                  <S.MenuListItemRed onClick={onLogout}>
+                    로그아웃
+                  </S.MenuListItemRed>
+                </>
+              ),
+              GUEST: (
+                <>
+                  <S.MenuListItemRed onClick={onLogout}>
+                    로그아웃
+                  </S.MenuListItemRed>
+                </>
+              ),
+            }[userRules as UserRuleOmitNoAuth]
+          }
         </S.MenuWrapper>
       </div>
-      {modalVisible && (
-        <Modal setModalVisible={setModalVisible}>
-          <div>asdf</div>
-        </Modal>
-      )}
     </>
   );
 };

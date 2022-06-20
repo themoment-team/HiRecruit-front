@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from 'react';
+import { AxiosError, AxiosResponse } from 'axios';
 import { css } from '@emotion/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -60,14 +61,24 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
 
     axiosClient
       .post(companyUrl.getAllCompany(), reqData)
-      .then(function (response) {
+      .then(function (response: AxiosResponse) {
         toast.success('회사 등록이 완료되었어요');
         setCompanyFormModalVisible(false);
         mutate(companyUrl.getAllCompany());
       })
-      .catch(function (error) {
+      .catch(function (error: AxiosError<{ message: string }>) {
         console.log(error);
-        toast.error('회사 등록에 실패했어요');
+        if (error.response) {
+          switch (error.response.status) {
+            case 400:
+              toast.error(error.response.data.message);
+              break;
+            default:
+              toast.error(
+                '알 수 없는 이유로 등록에 실패했어요\nhirecruit@gsm.hs.kr에 문의해주세요',
+              );
+          }
+        }
       });
   };
 
@@ -91,7 +102,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
           <S.Input
             {...register('companyImgUri')}
             required
-            placeholder="회사 이미지 url"
+            placeholder="회사 이미지 링크"
             type="url"
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setPreviewCompanyImgUri(e.target.value);

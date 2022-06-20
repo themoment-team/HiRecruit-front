@@ -73,13 +73,32 @@ export const CompanyRegister = styled.a`
   }
 `;
 
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+`;
+
+export const CancelButton = styled.button`
+  width: 100%;
+  border-radius: 1.5rem;
+  font-weight: 500;
+  color: ${pallete.scheme.red};
+  border: 2px solid ${pallete.scheme.red};
+  background-color: ${pallete.scheme.white};
+  padding: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+`;
+
 export const Submit = styled.input`
   width: 100%;
   border-radius: 1.5rem;
   font-weight: 500;
   color: ${pallete.scheme.white};
   padding: 0.75rem;
-  margin-top: 1rem;
   font-size: 1.125rem;
   font-weight: 600;
   background-color: ${pallete.scheme.blue};

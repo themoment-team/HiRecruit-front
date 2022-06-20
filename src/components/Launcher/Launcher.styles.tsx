@@ -5,7 +5,7 @@ export const LauncherWrapper = styled.div`
   position: absolute;
   border-radius: 2rem;
   bottom: 1.5rem;
-  right: 30.5rem;
+  right: 1.5rem;
   z-index: 100;
   display: flex;
   background: ${pallete.scheme.white};

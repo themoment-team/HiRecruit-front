@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import toast from 'react-hot-toast';
 
 import { SearchInput } from 'components/SearchInput';
 import { WorkerList } from 'components/WorkerList';
@@ -12,38 +13,73 @@ import { Logo } from 'assets/icons/Logo';
 
 import * as S from './SideBar.styles';
 import { handleAuth } from './container';
+import { SideBarButton } from 'components/common/SideBarButton';
+import { UserRule } from 'types/site.type';
 
 interface SideBarProps {
-  isSigned: boolean;
+  cookies: {
+    [key: string]: string;
+  };
 }
 
-export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
+export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   const [searchState, setSearchState] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
-
+  const [userRules, setUserRules] = useState<UserRule>('NO_AUTH_USER');
   const router = useRouter();
 
   useEffect(() => {
-    if (router.query.is_first === 'true') {
-      setModalVisible(true);
-    }
-  }, [router.query.is_first]);
+    const { USER_TYPE, HRSESSION } = cookies;
 
-  // TODO: 서버 레거시 코드에 대응하기 위한 코드 추후 삭제해야됨
-  useEffect(() => {
-    if (router.query.is_login) {
-      router.replace(router.pathname);
+    if (USER_TYPE === 'GUEST' && HRSESSION) {
+      setUserRules('GUEST');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.is_login]);
+
+    if (USER_TYPE === 'WORKER' && HRSESSION) {
+      setUserRules('WORKER');
+    }
+  }, []);
+
+  useEffect(() => {
+    switch (router.query.login) {
+      case 'fail':
+        if (router.query.server_error === 'true') {
+          toast.error(
+            '서버에서 인증에 실패했어요\nhirecruit@gsm.hs.kr에 문의해주세요',
+            { duration: Infinity },
+          );
+        } else {
+          toast.error(
+            '알수없는 이유로 인증에 실패했어요\nhirecruit@gsm.hs.kr에 문의해주세요',
+            { duration: Infinity },
+          );
+        }
+        break;
+      case 'cancel':
+        toast('인증을 취소했어요');
+        break;
+    }
+  }, []);
+
+  const handleProfileRegister = () => {
+    setModalVisible(true);
+  };
+
+  const handleMentorRegister = () => {
+    toast('기능 준비중입니다.');
+  };
 
   return (
     <>
       <S.SideBar>
-        <S.NavBar>
+        <S.SideBarHeader>
           <Logo logoColor="white" />
-          {isSigned ? (
+          {userRules === 'NO_AUTH_USER' ? (
+            <S.SignUpAnchor onClick={() => handleAuth()}>
+              회원가입/로그인
+            </S.SignUpAnchor>
+          ) : (
             <div
               onClick={() => {
                 setMenuVisible(prev => !prev);
@@ -51,23 +87,33 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ isSigned }) => {
             >
               {menuVisible ? <Cancel /> : <Burger />}
             </div>
-          ) : (
-            <S.SignUpAnchor onClick={() => handleAuth()}>
-              회원가입/로그인
-            </S.SignUpAnchor>
           )}
-        </S.NavBar>
-        <S.SearchBar>
+        </S.SideBarHeader>
+        <S.SideBarWrapper>
           <SearchInput setSearchState={setSearchState} />
-          <WorkerList searchState={searchState} />
-        </S.SearchBar>
+          {userRules === 'GUEST' && (
+            <SideBarButton
+              calloutText="내 프로필을 등록해볼까요?"
+              trigger={handleProfileRegister}
+            />
+          )}
+          {userRules === 'WORKER' && (
+            <SideBarButton
+              calloutText="멘토 등록하기"
+              trigger={handleMentorRegister}
+            />
+          )}
+          <WorkerList searchState={searchState} userRules={userRules} />
+        </S.SideBarWrapper>
       </S.SideBar>
       {modalVisible && (
         <Modal setModalVisible={setModalVisible}>
           <Form setSignUpFormVisible={setModalVisible} />
         </Modal>
       )}
-      {menuVisible && <Menu setMenuVisible={setMenuVisible} />}
+      {menuVisible && (
+        <Menu setMenuVisible={setMenuVisible} userRules={userRules} />
+      )}
     </>
   );
 };

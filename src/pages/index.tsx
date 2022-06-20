@@ -1,6 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
 import { Toaster } from 'react-hot-toast';
+import { SWRConfig } from 'swr';
 
 import { Map } from 'components/Map';
 
@@ -22,7 +23,13 @@ const Home: NextPage<HomeProps> = ({ cookies }) => {
           content="HiRecruit을 통해 보다 뛰어난 멘토를 찾고, 혁신적인 취업준비 경험을 느끼세요."
         />
       </Head>
-      <Map cookies={cookies} />
+      <SWRConfig
+        value={{
+          revalidateOnFocus: false,
+        }}
+      >
+        <Map cookies={cookies} />
+      </SWRConfig>
       <Toaster />
     </>
   );

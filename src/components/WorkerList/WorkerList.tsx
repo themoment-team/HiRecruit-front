@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { css } from '@emotion/react';
 
 import { WorkerCard } from 'components/WorkerCard';
 import useWorkerList from 'hooks/api/worker/use-worker-list';
@@ -31,7 +32,12 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
   }, [workerList, searchState, initialWorkerList]);
 
   return (
-    <S.WorkerList>
+    <S.WorkerList
+      css={css`
+        margin-top: 1.75rem;
+        height: calc(100% - 6.275rem);
+      `}
+    >
       {workerList?.length === 0 ? (
         <S.StatusMessage>
           찾으시는 결과가 존재하지 않습니다.

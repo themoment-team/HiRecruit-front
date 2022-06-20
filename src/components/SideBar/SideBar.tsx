@@ -13,6 +13,7 @@ import { Logo } from 'assets/icons/Logo';
 
 import * as S from './SideBar.styles';
 import { handleAuth } from './container';
+import { SideBarButton } from 'components/common/SideBarButton';
 
 interface SideBarProps {
   cookies: {
@@ -83,6 +84,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
         </S.NavBar>
         <S.SearchBar>
           <SearchInput setSearchState={setSearchState} />
+          <SideBarButton calloutText="내 프로필을 등록해볼까요?" />
           <WorkerList searchState={searchState} />
         </S.SearchBar>
       </S.SideBar>

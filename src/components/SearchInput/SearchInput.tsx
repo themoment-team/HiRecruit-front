@@ -32,6 +32,7 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
     <SearchInput
       css={css`
         margin: 1.75rem 0;
+        margin-bottom: 0;
       `}
       ref={inputEl}
       type="text"

@@ -5,7 +5,7 @@ export const WorkerList = styled.div`
   width: 100%;
   margin: 0 auto;
   padding-bottom: 1.5rem;
-  height: calc(100vh - 10rem);
+  height: calc(100vh - 13.05rem);
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

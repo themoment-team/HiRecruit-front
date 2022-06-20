@@ -14,14 +14,13 @@ import { Logo } from 'assets/icons/Logo';
 import * as S from './SideBar.styles';
 import { handleAuth } from './container';
 import { SideBarButton } from 'components/common/SideBarButton';
+import { UserRule } from 'types/site.type';
 
 interface SideBarProps {
   cookies: {
     [key: string]: string;
   };
 }
-
-type UserRule = 'GUEST' | 'WORKER' | 'NO_AUTH_USER';
 
 export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   const [searchState, setSearchState] = useState<string>('');
@@ -96,7 +95,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
               setProfileModalVisible={setModalVisible}
             />
           )}
-          <WorkerList searchState={searchState} />
+          <WorkerList searchState={searchState} userRules={userRules} />
         </S.SideBarWrapper>
       </S.SideBar>
       {modalVisible && (

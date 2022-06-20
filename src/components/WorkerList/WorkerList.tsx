@@ -5,13 +5,16 @@ import { WorkerCard } from 'components/WorkerCard';
 import useWorkerList from 'hooks/api/worker/use-worker-list';
 
 import * as S from './WorkerList.styles';
+import { UserRule } from 'types/site.type';
 
 interface WorkerListProps {
   searchState: string;
+  userRules: UserRule;
 }
 
 export const WorkerListComponent: React.FC<WorkerListProps> = ({
   searchState,
+  userRules,
 }) => {
   const { data: initialWorkerList } = useWorkerList();
   const [workerList, setWorkerList] = useState(initialWorkerList);
@@ -33,10 +36,13 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
 
   return (
     <S.WorkerList
-      css={css`
-        margin-top: 1.75rem;
-        height: calc(100% - 6.275rem);
-      `}
+      css={
+        userRules === 'NO_AUTH_USER' &&
+        css`
+          margin-top: 1.75rem;
+          height: calc(100% - 6.275rem);
+        `
+      }
     >
       {workerList?.length === 0 ? (
         <S.StatusMessage>

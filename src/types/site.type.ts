@@ -1,1 +1,1 @@
-export type UserRule = 'GUEST' | 'WORKER' | 'NO_AUTH_USER';
+export type UserRule = 'GUEST' | 'WORKER' | 'NO_AUTH_USER' | 'MENTOR';

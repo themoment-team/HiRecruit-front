@@ -15,3 +15,15 @@ export const workerUrl = {
     return `/worker`;
   },
 };
+
+/**
+ * mentor url controller
+ */
+export const mentorUrl = {
+  postPromotionEmailProcess: () => {
+    return `/mentor/promotion/process`;
+  },
+  patchVerify: (digit: string) => {
+    return `/mentor/promotion/process/verify?verificationCode=${digit}`;
+  },
+};

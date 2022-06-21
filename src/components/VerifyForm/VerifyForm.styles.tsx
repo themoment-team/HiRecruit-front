@@ -9,7 +9,7 @@ export const Input = styled(CommonInput)`
   outline: none;
   border: 2px solid ${pallete.scheme.blue};
   margin: 1rem 0;
-  width: 22rem;
+  width: 18rem;
   height: 3rem;
   font-size: 1rem;
   &::placeholder {

@@ -14,11 +14,24 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
   const router = useRouter();
   const inputEl = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    // query string clean up
-    if (router.query.search === '') {
-      router.replace(`/`);
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchState(e.target.value);
+  };
+
+  const handleQueryString = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (e.target.value !== '') {
+      router.replace({
+        pathname: `/`,
+        query: { search: e.target.value },
+      });
+    } else {
+      router.replace({
+        pathname: `/`,
+      });
     }
+  };
+
+  useEffect(() => {
     if (router.query.search !== undefined && inputEl.current !== null) {
       inputEl.current.focus();
       inputEl.current.value = router.query.search as string;
@@ -37,12 +50,8 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
       ref={inputEl}
       type="text"
       placeholder="이름 또는 회사로 검색"
-      onChange={e => {
-        router.replace({
-          pathname: `/`,
-          query: { search: e.target.value },
-        });
-      }}
+      onChange={handleSearch}
+      onBlur={handleQueryString}
     />
   );
 };

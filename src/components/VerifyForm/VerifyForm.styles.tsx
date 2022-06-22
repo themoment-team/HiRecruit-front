@@ -104,3 +104,12 @@ export const EmailButton = styled(CommonButton)`
   justify-content: center;
   gap: 0.5rem;
 `;
+
+export const WarningText = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  color: ${pallete.scheme.paragraph};
+`;

@@ -7,6 +7,7 @@ import { css } from '@emotion/react';
 import axiosClient from 'libs/axios/axiosClient';
 import { mentorUrl } from 'libs/api/apiUrlControllers';
 import pallete from 'shared/Pallete';
+import { Warning } from 'assets/icons/Warning';
 
 import * as S from './VerifyForm.styles';
 
@@ -117,6 +118,10 @@ export const VerifyFormComponent: React.FC<VerifyFormProps> = ({
               (postTryCount === 0 ? '인증번호 전송' : '인증번호 재전송')}
           </S.EmailButton>
         </S.EmailButtonWrapper>
+        <S.WarningText>
+          <Warning />
+          프로필 등록에 사용된 이메일로 인증번호를 발송합니다
+        </S.WarningText>
         <S.ButtonWrapper>
           <S.CancelButton
             onClick={() => setVerifyFormVisible(false)}

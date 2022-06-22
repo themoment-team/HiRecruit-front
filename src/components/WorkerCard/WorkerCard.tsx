@@ -6,6 +6,7 @@ import { Button } from 'components/common/Button';
 import { WorkerProfileImage } from 'components/common/WorkerProfileImage';
 
 import * as S from './Worker.styles';
+import { CheckBadge } from 'assets/icons/CheckBadge';
 
 interface WorkerCardProps {
   name: string;
@@ -14,6 +15,7 @@ interface WorkerCardProps {
   profileImgUri: string;
   devYear: number;
   position: string;
+  userType: 'WORKER' | 'MENTOR';
   companyName: string;
   location: string;
 }
@@ -27,6 +29,7 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
   position,
   companyName,
   location,
+  userType,
 }) => {
   const map = useMap();
   const [lat, lng] = useCoord(map, location);
@@ -52,7 +55,10 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
           alt={`${name}님의 프로필 사진`}
         />
         <S.ProfileParagraph>
-          <p className="name">{subString(name, 14)}</p>
+          <p className="name">
+            {subString(name, 10)}
+            {userType === 'MENTOR' && <CheckBadge />}
+          </p>
           <a className="email" href={`mailto:${email}`}>
             {subString(email, 25)}
           </a>

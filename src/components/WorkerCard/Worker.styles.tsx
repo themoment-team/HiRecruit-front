@@ -24,6 +24,9 @@ export const ProfileParagraph = styled.div`
     font-weight: 600;
     font-size: 1.125rem;
     color: ${pallete.scheme.black};
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
   }
   .email {
     font-size: 0.85rem;

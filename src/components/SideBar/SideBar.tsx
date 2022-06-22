@@ -106,7 +106,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
           )}
           {userRules === 'WORKER' && (
             <SideBarButton
-              calloutText="이메일 인증하여 멘토로 등록하시겠어요?"
+              calloutText="이제 멘토가 되어볼까요?"
               trigger={handleMentorRegister}
             />
           )}

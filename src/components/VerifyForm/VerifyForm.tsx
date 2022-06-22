@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FieldErrors, SubmitHandler, useForm } from 'react-hook-form';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import toast from 'react-hot-toast';
 import { css } from '@emotion/react';
@@ -28,16 +28,22 @@ export const VerifyFormComponent: React.FC<VerifyFormProps> = ({
   const resendEmailDuration = 10;
 
   const onSubmit: SubmitHandler<InputListType> = async data => {
-    axiosClient
+    await axiosClient
       .patch(mentorUrl.patchVerify(data.digit))
       .then(function (response) {
         toast.success('인증이 완료되었어요');
-        console.log(response);
+        window.location.reload();
       })
       .catch(function (error) {
         toast.error('인증에 실패하였어요');
         console.log(error);
       });
+  };
+
+  const onError = (errors: FieldErrors<InputListType>) => {
+    if (errors.digit?.message) {
+      toast.error(errors.digit?.message);
+    }
   };
 
   const onPostEmail = () => {
@@ -47,9 +53,8 @@ export const VerifyFormComponent: React.FC<VerifyFormProps> = ({
         .post(mentorUrl.postPromotionEmailProcess())
         .then(function (response) {
           setIsPostable(false);
-          setPostTryCount(prev => prev + 1);
           toast.success(
-            postTryCount === 1
+            postTryCount === 0
               ? '인증번호가 전송되었어요'
               : '인증번호가 재전송되었어요',
           );
@@ -67,10 +72,21 @@ export const VerifyFormComponent: React.FC<VerifyFormProps> = ({
 
   return (
     <S.VerifyFormWrapper>
-      <S.VerifyForm onSubmit={handleSubmit(onSubmit)}>
+      <S.VerifyForm onSubmit={handleSubmit(onSubmit, onError)}>
         <S.VerifyFormHeader>멘토 등록</S.VerifyFormHeader>
         <S.EmailButtonWrapper>
-          <S.Input {...register('digit')} placeholder="숫자 6자리 인증번호" />
+          <S.Input
+            {...register('digit', {
+              required: '인증번호를 입력하고 인증을 시도해주세요',
+              pattern: {
+                value: /^\d{6}$/,
+                message:
+                  '인증번호의 형식에 맞지 않아요\n숫자 6자리 인증번호를 입력해주세요',
+              },
+            })}
+            autoComplete="off"
+            placeholder="숫자 6자리 인증번호"
+          />
           <S.EmailButton
             type="button"
             onClick={() => onPostEmail()}
@@ -89,12 +105,16 @@ export const VerifyFormComponent: React.FC<VerifyFormProps> = ({
                 trailColor={pallete.scheme.gray}
                 strokeWidth={4}
                 size={34}
-                onComplete={() => setIsPostable(true)}
+                onComplete={() => {
+                  setIsPostable(true);
+                  setPostTryCount(prev => prev + 1);
+                }}
               >
                 {({ remainingTime }) => remainingTime}
               </CountdownCircleTimer>
             )}
-            {postTryCount === 0 ? '인증번호 전송' : '인증번호 재전송'}
+            {isPostable &&
+              (postTryCount === 0 ? '인증번호 전송' : '인증번호 재전송')}
           </S.EmailButton>
         </S.EmailButtonWrapper>
         <S.ButtonWrapper>

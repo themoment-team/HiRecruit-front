@@ -92,11 +92,11 @@ export const Submit = styled.input`
 export const EmailButtonWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 `;
 
 export const EmailButton = styled(CommonButton)`
-  width: 9.8rem;
+  width: 8rem;
   height: 3rem;
   font-size: 1rem;
   display: flex;

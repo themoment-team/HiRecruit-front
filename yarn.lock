@@ -2478,7 +2478,6 @@ __metadata:
     next: 12.1.0
     prettier: ^2.6.0
     react: 17.0.2
-    react-countdown-circle-timer: ^3.0.9
     react-daum-postcode: ^3.0.3
     react-dom: 17.0.2
     react-hook-form: ^7.31.3
@@ -2810,15 +2809,6 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: b676f8c040cdc5b12723ad2f91414d267605b26419d5c821ff03befa817ddd10e238d22b25d604920340fd73efd8ba795465a0377c4adf45a4a41e4234e42dc4
-  languageName: node
-  linkType: hard
-
-"react-countdown-circle-timer@npm:^3.0.9":
-  version: 3.0.9
-  resolution: "react-countdown-circle-timer@npm:3.0.9"
-  peerDependencies:
-    react: ">=16.8.0"
-  checksum: 1fc3895965b41e2cd3663fe637db9e9bdeea8ae9458ea893985f4da5f0bdaf2ce7ae580baa69411190eb02762d1e07d7254aacffa9e9ef57db58a2c072fc6582
   languageName: node
   linkType: hard
 

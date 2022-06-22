@@ -37,7 +37,7 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
   return (
     <S.WorkerList
       css={
-        (userRules === 'NO_AUTH_USER' || userRules === 'MENTOR') &&
+        userRules === 'NO_AUTH_USER' &&
         css`
           margin-top: 1.75rem;
           height: calc(100% - 6.275rem);

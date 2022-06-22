@@ -96,7 +96,11 @@ export const EmailButtonWrapper = styled.div`
 `;
 
 export const EmailButton = styled(CommonButton)`
-  width: 7rem;
+  width: 9.8rem;
   height: 3rem;
   font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 `;

@@ -36,8 +36,23 @@ export const VerifyFormComponent: React.FC<VerifyFormProps> = ({
         window.location.reload();
       })
       .catch(function (error) {
-        toast.error('인증에 실패하였어요');
         console.log(error);
+        if (error.response) {
+          switch (error.response.status) {
+            case 400:
+              toast.error(error.response.data.message);
+              break;
+            case 401:
+              toast.error(
+                '로그인 정보가 없어요\n새로고침 후 다시 한번 로그인 해주세요',
+              );
+              break;
+            default:
+              toast.error(
+                '알 수 없는 이유로 등록에 실패했어요\nhirecruit@gsm.hs.kr에 문의해주세요',
+              );
+          }
+        }
       });
   };
 
@@ -62,9 +77,23 @@ export const VerifyFormComponent: React.FC<VerifyFormProps> = ({
           console.log(response);
         })
         .catch(function (error) {
-          setPostTryCount(prev => prev + 1);
-          toast.error('인증번호 발송중에 오류가 발생했어요');
           console.log(error);
+          if (error.response) {
+            switch (error.response.status) {
+              case 400:
+                toast.error(error.response.data.message);
+                break;
+              case 401:
+                toast.error(
+                  '로그인 정보가 없어요\n새로고침 후 다시 한번 로그인 해주세요',
+                );
+                break;
+              default:
+                toast.error(
+                  '알 수 없는 이유로 등록에 실패했어요\nhirecruit@gsm.hs.kr에 문의해주세요',
+                );
+            }
+          }
         });
     } else {
       toast.error('인증번호 재전송까지 시간이 남았어요');

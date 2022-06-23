@@ -14,4 +14,8 @@ export const workerUrl = {
   getAllWorker: () => {
     return `/worker`;
   },
+
+  getMeWorker: () => {
+    return `/worker/me`;
+  },
 };

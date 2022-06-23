@@ -15,6 +15,7 @@ import * as S from './SideBar.styles';
 import { handleAuth } from './container';
 import { SideBarButton } from 'components/common/SideBarButton';
 import { UserRule } from 'types/site.type';
+import { EditForm } from 'components/EditForm';
 
 interface SideBarProps {
   cookies: {
@@ -25,6 +26,7 @@ interface SideBarProps {
 export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   const [searchState, setSearchState] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [editModalVisible, setEditModalVisible] = useState<boolean>(false);
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
   const [userRules, setUserRules] = useState<UserRule>('NO_AUTH_USER');
   const router = useRouter();
@@ -112,7 +114,16 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
         </Modal>
       )}
       {menuVisible && (
-        <Menu setMenuVisible={setMenuVisible} userRules={userRules} />
+        <Menu
+          setMenuVisible={setMenuVisible}
+          setEditModalVisible={setEditModalVisible}
+          userRules={userRules}
+        />
+      )}
+      {editModalVisible && (
+        <Modal setModalVisible={setEditModalVisible}>
+          <EditForm setEditFormVisible={setEditModalVisible} />
+        </Modal>
       )}
     </>
   );

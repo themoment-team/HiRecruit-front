@@ -3,10 +3,10 @@ import { Dispatch, SetStateAction, useEffect } from 'react';
 import * as S from './Menu.styles';
 import { handleLogout } from './container';
 import useModal from 'hooks/use-modal';
-import toast from 'react-hot-toast';
 
 interface MenuProps {
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
+  setEditModalVisible: Dispatch<SetStateAction<boolean>>;
   userRules: string;
 }
 
@@ -15,6 +15,7 @@ type UserRuleOmitNoAuth = 'GUEST' | 'WORKER';
 export const MenuComponent: React.FC<MenuProps> = ({
   setMenuVisible,
   userRules,
+  setEditModalVisible,
 }) => {
   const [el, clickOutside] = useModal(setMenuVisible);
 
@@ -26,7 +27,7 @@ export const MenuComponent: React.FC<MenuProps> = ({
   }, [clickOutside]);
 
   const onEditProfile = () => {
-    toast('기능 준비중입니다.');
+    setEditModalVisible(true);
   };
 
   const onLogout = () => {

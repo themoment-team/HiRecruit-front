@@ -23,3 +23,12 @@ export interface WorkerReqData {
     position: string;
   };
 }
+
+export interface WorkerEditReqData {
+  companyId?: number;
+  devYear?: number;
+  giveLink?: string;
+  introduction?: string;
+  position?: string;
+  updateColumns?: string[];
+}

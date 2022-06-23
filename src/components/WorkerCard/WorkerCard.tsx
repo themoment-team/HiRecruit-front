@@ -4,8 +4,10 @@ import { useMap } from 'react-kakao-maps-sdk';
 import useCoord from 'hooks/use-coord';
 import { Button } from 'components/common/Button';
 import { WorkerProfileImage } from 'components/common/WorkerProfileImage';
+import { Tooltip } from 'components/common/Tooltip';
 
 import * as S from './Worker.styles';
+import { CheckBadge } from 'assets/icons/CheckBadge';
 
 interface WorkerCardProps {
   name: string;
@@ -14,6 +16,7 @@ interface WorkerCardProps {
   profileImgUri: string;
   devYear: number;
   position: string;
+  userType: 'WORKER' | 'MENTOR';
   companyName: string;
   location: string;
 }
@@ -27,6 +30,7 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
   position,
   companyName,
   location,
+  userType,
 }) => {
   const map = useMap();
   const [lat, lng] = useCoord(map, location);
@@ -52,11 +56,18 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
           alt={`${name}님의 프로필 사진`}
         />
         <S.ProfileParagraph>
-          <p className="name">{subString(name, 14)}</p>
-          <a className="email" href={`mailto:${email}`}>
-            {subString(email, 25)}
-          </a>
-          <p className="company">{subString(companyName, 18)}</p>
+          <S.NameBadgeWrapper>
+            <S.Name>{subString(name, 10)}</S.Name>
+            {userType === 'MENTOR' && (
+              <Tooltip label="인증받은 멘토에요">
+                <span>
+                  <CheckBadge />
+                </span>
+              </Tooltip>
+            )}
+          </S.NameBadgeWrapper>
+          <S.Email href={`mailto:${email}`}>{subString(email, 25)}</S.Email>
+          <S.Company>{subString(companyName, 18)}</S.Company>
         </S.ProfileParagraph>
       </S.ProfileWrapper>
       {!!introduction && (

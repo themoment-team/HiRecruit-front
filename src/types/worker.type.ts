@@ -10,6 +10,7 @@ export interface WorkerData {
   devYear: number;
   position: string;
   company: CompanyData;
+  userType: 'WORKER' | 'MENTOR';
 }
 
 export interface WorkerReqData {

@@ -55,14 +55,16 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
           alt={`${name}님의 프로필 사진`}
         />
         <S.ProfileParagraph>
-          <p className="name">
-            {subString(name, 10)}
-            {userType === 'MENTOR' && <CheckBadge />}
-          </p>
-          <a className="email" href={`mailto:${email}`}>
-            {subString(email, 25)}
-          </a>
-          <p className="company">{subString(companyName, 18)}</p>
+          <S.NameBadgeWrapper>
+            <S.Name>{subString(name, 10)}</S.Name>
+            {userType === 'MENTOR' && (
+              <span>
+                <CheckBadge />
+              </span>
+            )}
+          </S.NameBadgeWrapper>
+          <S.Email href={`mailto:${email}`}>{subString(email, 25)}</S.Email>
+          <S.Company>{subString(companyName, 18)}</S.Company>
         </S.ProfileParagraph>
       </S.ProfileWrapper>
       {!!introduction && (

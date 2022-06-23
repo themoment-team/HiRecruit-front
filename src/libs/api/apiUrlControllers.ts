@@ -8,6 +8,15 @@ export const companyUrl = {
 };
 
 /**
+ * user url controller
+ */
+export const userUrl = {
+  getMeUser: () => {
+    return `/user/me`;
+  },
+};
+
+/**
  * worker url controller
  */
 export const workerUrl = {

@@ -25,6 +25,12 @@ export interface WorkerReqData {
   };
 }
 
+export interface UserEditReqData {
+  email?: string;
+  name?: string;
+  updateColumns?: string[];
+}
+
 export interface WorkerEditReqData {
   companyId?: number;
   devYear?: number;

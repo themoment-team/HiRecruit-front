@@ -6,13 +6,13 @@ import { css } from '@emotion/react';
 
 import { Modal } from 'components/common/Modal';
 import { CompanyForm } from 'components/CompanyForm';
-import { WorkerEditReqData } from 'types/worker.type';
+import { UserEditReqData, WorkerEditReqData } from 'types/worker.type';
 import axiosClient from 'libs/axios/axiosClient';
 import useCompanyList from 'hooks/api/company/use-company-list';
 
 import * as S from './EditForm.styles';
 import { InputListType, positionOptionList } from './container';
-import { workerUrl } from 'libs/api/apiUrlControllers';
+import { userUrl, workerUrl } from 'libs/api/apiUrlControllers';
 import useWorker from 'hooks/api/worker/use-worker';
 
 interface EditFormProps {
@@ -30,22 +30,22 @@ export const EditFormComponent: React.FC<EditFormProps> = ({
 
   useEffect(() => {
     if (initialWorker) {
+      setValue('name', initialWorker.name);
+      setValue('email', initialWorker.email);
       setValue('companyId', initialWorker.company.companyId.toString());
       setValue('devYear', initialWorker.devYear.toString());
       setValue('introduction', initialWorker.introduction);
       setValue('position', initialWorker.position);
-      setValue('updateColumns', [
-        'COMPANY_ID',
-        'INTRODUCTION',
-        'DEV_YEAR',
-        'GIVE_LINK',
-        'POSITION',
-      ]);
     }
   }, [initialWorker]);
 
   const onSubmit: SubmitHandler<InputListType> = async data => {
-    const reqData: WorkerEditReqData = {
+    const userReqData: UserEditReqData = {
+      name: data.name,
+      email: data.email,
+      updateColumns: ['EMAIL', 'NAME'],
+    };
+    const workerReqData: WorkerEditReqData = {
       companyId: parseInt(data.companyId),
       devYear: parseInt(data.devYear),
       introduction: data.introduction,
@@ -60,7 +60,16 @@ export const EditFormComponent: React.FC<EditFormProps> = ({
     };
 
     axiosClient
-      .patch(workerUrl.getMeWorker(), reqData)
+      .patch(userUrl.getMeUser(), userReqData)
+      .then(function () {
+        window.location.reload();
+      })
+      .catch(function (error: AxiosError<{ message: string }>) {
+        console.log(error);
+      });
+
+    axiosClient
+      .patch(workerUrl.getMeWorker(), workerReqData)
       .then(function () {
         toast.success('정보가 수정되었어요.');
         window.location.reload();
@@ -90,6 +99,13 @@ export const EditFormComponent: React.FC<EditFormProps> = ({
     <S.FormWrapper>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.FormHeader>프로필 수정하기</S.FormHeader>
+        <S.Input {...register('name')} placeholder="이름" required />
+        <S.Input
+          {...register('email')}
+          type="email"
+          placeholder="이메일"
+          required
+        />
         <S.SelectInput
           {...register('companyId')}
           required

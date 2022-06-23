@@ -1,4 +1,6 @@
 export interface InputListType {
+  name: string;
+  email: string;
   companyId: string;
   devYear: string;
   introduction: string;

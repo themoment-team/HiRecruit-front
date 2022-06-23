@@ -19,21 +19,17 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
   };
 
   const handleQueryString = (e: React.FocusEvent<HTMLInputElement>) => {
-    router.replace({
-      pathname: `/`,
-      query: { search: e.target.value },
-    });
-  };
-
-  useEffect(() => {
-    if (router.query.search && inputEl.current) {
-      inputEl.current.focus();
-      inputEl.current.value = router.query.search as string;
-
-      setSearchState(router.query.search as string);
+    if (e.target.value === '') {
+      router.replace({
+        pathname: '/',
+      });
+    } else {
+      router.replace({
+        pathname: `/`,
+        query: { search: e.target.value },
+      });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
   useEffect(() => {
     if (router.query.search === '') {
@@ -42,6 +38,8 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
     if (router.query.search && inputEl.current) {
       inputEl.current.focus();
       inputEl.current.value = router.query.search as string;
+
+      setSearchState(router.query.search as string);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query.search]);

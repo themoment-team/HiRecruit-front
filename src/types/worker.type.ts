@@ -25,10 +25,10 @@ export interface WorkerReqData {
 }
 
 export interface WorkerEditReqData {
-  companyId: number | undefined;
-  devYear: number | undefined;
+  companyId?: number;
+  devYear?: number;
   giveLink?: string;
-  introduction: string | undefined;
-  position: string | undefined;
-  updateColumns: string[];
+  introduction?: string;
+  position?: string;
+  updateColumns?: string[];
 }

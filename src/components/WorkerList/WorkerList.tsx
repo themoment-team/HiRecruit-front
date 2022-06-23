@@ -21,7 +21,7 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
 
   useEffect(() => {
     if (!initialWorkerList) return;
-    if (searchState === '') {
+    if (searchState === '' || searchState === undefined) {
       setWorkerList(initialWorkerList);
     } else {
       setWorkerList(
@@ -32,12 +32,12 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
         ),
       );
     }
-  }, [workerList, searchState, initialWorkerList]);
+  }, [searchState, initialWorkerList]);
 
   return (
     <S.WorkerList
       css={
-        userRules === 'NO_AUTH_USER' &&
+        (userRules === 'NO_AUTH_USER' || userRules === 'MENTOR') &&
         css`
           margin-top: 1.75rem;
           height: calc(100% - 6.275rem);

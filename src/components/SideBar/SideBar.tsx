@@ -7,13 +7,14 @@ import { WorkerList } from 'components/WorkerList';
 import { Modal } from 'components/common/Modal';
 import { Menu } from 'components/Menu';
 import { Form } from 'components/Form';
+import { VerifyForm } from 'components/VerifyForm';
+import { SideBarButton } from 'components/common/SideBarButton';
 import { Burger } from 'assets/icons/Burger';
 import { Cancel } from 'assets/icons/Cancel';
 import { Logo } from 'assets/icons/Logo';
 
 import * as S from './SideBar.styles';
 import { handleAuth } from './container';
-import { SideBarButton } from 'components/common/SideBarButton';
 import { UserRule } from 'types/site.type';
 import { EditForm } from 'components/EditForm';
 
@@ -27,6 +28,8 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   const [searchState, setSearchState] = useState<string>('');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [editModalVisible, setEditModalVisible] = useState<boolean>(false);
+  const [verifyFormModalVisible, setVerifyFormModalVisible] =
+    useState<boolean>(false);
   const [menuVisible, setMenuVisible] = useState<boolean>(false);
   const [userRules, setUserRules] = useState<UserRule>('NO_AUTH_USER');
   const router = useRouter();
@@ -40,6 +43,10 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
 
     if (USER_TYPE === 'WORKER' && HRSESSION) {
       setUserRules('WORKER');
+    }
+
+    if (USER_TYPE === 'MENTOR' && HRSESSION) {
+      setUserRules('MENTOR');
     }
   }, []);
 
@@ -69,7 +76,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   };
 
   const handleMentorRegister = () => {
-    toast('기능 준비중입니다.');
+    setVerifyFormModalVisible(true);
   };
 
   return (
@@ -101,7 +108,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
           )}
           {userRules === 'WORKER' && (
             <SideBarButton
-              calloutText="멘토 등록하기"
+              calloutText="이제 멘토가 되어볼까요?"
               trigger={handleMentorRegister}
             />
           )}
@@ -111,6 +118,11 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
       {modalVisible && (
         <Modal setModalVisible={setModalVisible}>
           <Form setSignUpFormVisible={setModalVisible} />
+        </Modal>
+      )}
+      {verifyFormModalVisible && (
+        <Modal setModalVisible={setVerifyFormModalVisible}>
+          <VerifyForm setVerifyFormVisible={setVerifyFormModalVisible} />
         </Modal>
       )}
       {menuVisible && (

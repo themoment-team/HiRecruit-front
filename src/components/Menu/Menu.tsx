@@ -10,7 +10,7 @@ interface MenuProps {
   userRules: string;
 }
 
-type UserRuleOmitNoAuth = 'GUEST' | 'WORKER';
+type UserRuleOmitNoAuth = 'GUEST' | 'WORKER' | 'MENTOR';
 
 export const MenuComponent: React.FC<MenuProps> = ({
   setMenuVisible,
@@ -40,6 +40,16 @@ export const MenuComponent: React.FC<MenuProps> = ({
         <S.MenuWrapper>
           {
             {
+              MENTOR: (
+                <>
+                  <S.MenuListItem onClick={onEditProfile}>
+                    프로필 수정하기
+                  </S.MenuListItem>
+                  <S.MenuListItemRed onClick={onLogout}>
+                    로그아웃
+                  </S.MenuListItemRed>
+                </>
+              ),
               WORKER: (
                 <>
                   <S.MenuListItem onClick={onEditProfile}>

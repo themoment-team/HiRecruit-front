@@ -11,6 +11,7 @@ import { CheckBadge } from 'assets/icons/CheckBadge';
 
 interface WorkerCardProps {
   name: string;
+  githubLoginId: string;
   email: string;
   introduction: string;
   profileImgUri: string;
@@ -23,6 +24,7 @@ interface WorkerCardProps {
 
 export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
   name,
+  githubLoginId,
   email,
   introduction,
   profileImgUri,
@@ -51,10 +53,16 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
   return (
     <S.WorkerCard>
       <S.ProfileWrapper>
-        <WorkerProfileImage
-          imageUri={profileImgUri}
-          alt={`${name}님의 프로필 사진`}
-        />
+        <a
+          target="_blank"
+          href={`https://github.com/${githubLoginId}`}
+          rel="noreferrer"
+        >
+          <WorkerProfileImage
+            imageUri={profileImgUri}
+            alt={`${name}님의 프로필 사진`}
+          />
+        </a>
         <S.ProfileParagraph>
           <S.NameBadgeWrapper>
             <S.Name>{subString(name, 10)}</S.Name>

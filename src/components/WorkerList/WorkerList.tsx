@@ -55,6 +55,7 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
           <WorkerCard
             key={info.workerId}
             name={info.name}
+            githubLoginId={info.githubLoginId}
             email={info.email}
             introduction={info.introduction}
             profileImgUri={info.profileImgUri}

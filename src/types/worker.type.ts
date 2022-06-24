@@ -2,6 +2,7 @@ import { CompanyData } from './company.type';
 
 export interface WorkerData {
   workerId: number;
+  githubLoginId: string;
   name: string;
   email: string;
   introduction: string;

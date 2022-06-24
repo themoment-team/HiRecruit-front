@@ -37,7 +37,7 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
   return (
     <S.WorkerList
       css={
-        userRules === 'NO_AUTH_USER' &&
+        (userRules === 'NO_AUTH_USER' || userRules === 'MENTOR') &&
         css`
           margin-top: 1.75rem;
           height: calc(100% - 6.275rem);
@@ -55,11 +55,13 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
           <WorkerCard
             key={info.workerId}
             name={info.name}
+            githubLoginId={info.githubLoginId}
             email={info.email}
             introduction={info.introduction}
             profileImgUri={info.profileImgUri}
             devYear={info.devYear}
             position={info.position}
+            userType={info.userType}
             companyName={info.company.name}
             location={info.company.location}
           />

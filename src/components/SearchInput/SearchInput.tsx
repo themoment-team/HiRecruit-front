@@ -19,20 +19,23 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
   };
 
   const handleQueryString = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (e.target.value !== '') {
+    if (e.target.value === '') {
       router.replace({
-        pathname: `/`,
-        query: { search: e.target.value },
+        pathname: '/',
       });
     } else {
       router.replace({
         pathname: `/`,
+        query: { search: e.target.value },
       });
     }
   };
 
   useEffect(() => {
-    if (router.query.search !== undefined && inputEl.current !== null) {
+    if (router.query.search === '') {
+      router.replace('/');
+    }
+    if (router.query.search && inputEl.current) {
       inputEl.current.focus();
       inputEl.current.value = router.query.search as string;
 

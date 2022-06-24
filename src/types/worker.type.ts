@@ -2,6 +2,7 @@ import { CompanyData } from './company.type';
 
 export interface WorkerData {
   workerId: number;
+  githubLoginId: string;
   name: string;
   email: string;
   introduction: string;
@@ -10,6 +11,7 @@ export interface WorkerData {
   devYear: number;
   position: string;
   company: CompanyData;
+  userType: 'WORKER' | 'MENTOR';
 }
 
 export interface WorkerReqData {
@@ -22,4 +24,19 @@ export interface WorkerReqData {
     introduction: string;
     position: string;
   };
+}
+
+export interface UserEditReqData {
+  email?: string;
+  name?: string;
+  updateColumns?: string[];
+}
+
+export interface WorkerEditReqData {
+  companyId?: number;
+  devYear?: number;
+  giveLink?: string;
+  introduction?: string;
+  position?: string;
+  updateColumns?: string[];
 }

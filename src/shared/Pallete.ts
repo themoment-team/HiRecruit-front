@@ -9,7 +9,7 @@ type ColorToken =
   | 'warning';
 
 type ColorTheme = {
-  scheme: Record<ColorToken, string>;
+  scheme: Record<ColorToken, `#${string}`>;
 };
 
 const pallete: Readonly<ColorTheme> = {

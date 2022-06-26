@@ -105,3 +105,13 @@ export const Submit = styled.input`
   border: none;
   cursor: pointer;
 `;
+
+export const WarningText = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 0.75rem;
+  font-size: 0.8rem;
+  gap: 0.5rem;
+  color: ${pallete.scheme.paragraph};
+`;

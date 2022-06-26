@@ -14,6 +14,7 @@ import * as S from './EditForm.styles';
 import { InputListType, positionOptionList } from './container';
 import { userUrl, workerUrl } from 'libs/api/apiUrlControllers';
 import useWorker from 'hooks/api/worker/use-worker';
+import { Warning } from 'assets/icons/Warning';
 
 interface EditFormProps {
   setEditFormVisible: Dispatch<SetStateAction<boolean>>;
@@ -100,12 +101,18 @@ export const EditFormComponent: React.FC<EditFormProps> = ({
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.FormHeader>프로필 수정하기</S.FormHeader>
         <S.Input {...register('name')} placeholder="이름" required />
-        <S.Input
-          {...register('email')}
-          type="email"
-          placeholder="이메일"
-          required
-        />
+        <div>
+          <S.Input
+            {...register('email')}
+            type="email"
+            placeholder="이메일"
+            required
+          />
+          <S.WarningText>
+            <Warning />
+            이메일을 변경하면 멘토 인증을 다시 하셔야 해요
+          </S.WarningText>
+        </div>
         <S.SelectInput
           {...register('companyId')}
           required

@@ -15,18 +15,24 @@ import { InputListType, positionOptionList } from './container';
 import { userUrl, workerUrl } from 'libs/api/apiUrlControllers';
 import useWorker from 'hooks/api/worker/use-worker';
 import { Warning } from 'assets/icons/Warning';
+import { UserRule } from 'types/site.type';
 
 interface EditFormProps {
   setEditFormVisible: Dispatch<SetStateAction<boolean>>;
+  cookies: {
+    [key: string]: string;
+  };
 }
 
 export const EditFormComponent: React.FC<EditFormProps> = ({
   setEditFormVisible,
+  cookies,
 }) => {
   const { data: initialWorker } = useWorker();
   const { register, handleSubmit, setValue } = useForm<InputListType>();
   const [companyFormModalVisible, setCompanyFormModalVisible] =
     useState<boolean>(false);
+  const [userRules, setUserRules] = useState<UserRule>('NO_AUTH_USER');
   const { data } = useCompanyList();
 
   useEffect(() => {
@@ -39,6 +45,22 @@ export const EditFormComponent: React.FC<EditFormProps> = ({
       setValue('position', initialWorker.position);
     }
   }, [initialWorker]);
+
+  useEffect(() => {
+    const { USER_TYPE, HRSESSION } = cookies;
+
+    if (USER_TYPE === 'GUEST' && HRSESSION) {
+      setUserRules('GUEST');
+    }
+
+    if (USER_TYPE === 'WORKER' && HRSESSION) {
+      setUserRules('WORKER');
+    }
+
+    if (USER_TYPE === 'MENTOR' && HRSESSION) {
+      setUserRules('MENTOR');
+    }
+  });
 
   const onSubmit: SubmitHandler<InputListType> = async data => {
     const userReqData: UserEditReqData = {
@@ -108,10 +130,12 @@ export const EditFormComponent: React.FC<EditFormProps> = ({
             placeholder="이메일"
             required
           />
-          <S.WarningText>
-            <Warning />
-            이메일을 변경하면 멘토 인증을 다시 하셔야 해요
-          </S.WarningText>
+          {userRules === 'MENTOR' && (
+            <S.WarningText>
+              <Warning />
+              이메일을 변경하면 멘토 인증을 다시 하셔야 해요
+            </S.WarningText>
+          )}
         </div>
         <S.SelectInput
           {...register('companyId')}

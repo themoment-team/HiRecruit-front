@@ -134,7 +134,10 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
       )}
       {editModalVisible && (
         <Modal setModalVisible={setEditModalVisible}>
-          <EditForm setEditFormVisible={setEditModalVisible} />
+          <EditForm
+            setEditFormVisible={setEditModalVisible}
+            cookies={cookies}
+          />
         </Modal>
       )}
     </>

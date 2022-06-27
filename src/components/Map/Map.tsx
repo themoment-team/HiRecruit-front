@@ -24,8 +24,12 @@ export const MapComponent: React.FC<MapProps> = ({ cookies }) => {
           lng: 127.86119616960151,
         }}
         style={{
-          width: '100vw',
-          height: '100vh',
+          position: 'fixed',
+          width: 'calc(100vw - 28rem)',
+          height: '94vh',
+          borderRadius: '50px',
+          top: '1.85rem',
+          right: '2.2rem',
         }}
         onCreate={setMap}
         level={12}

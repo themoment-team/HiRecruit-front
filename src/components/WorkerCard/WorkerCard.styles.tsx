@@ -4,9 +4,10 @@ import pallete from 'shared/Pallete';
 
 export const WorkerCard = styled.div`
   width: 100%;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
+  border-radius: 0.625rem;
+  padding: 1.75rem;
   background: ${pallete.scheme.white};
+  box-shadow: 0px 4px 20px 0px #0000000f;
 `;
 
 export const ProfileWrapper = styled.div`
@@ -18,8 +19,7 @@ export const ProfileParagraph = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 0.313rem;
-  padding-left: 1.5rem;
+  padding-left: 1rem;
 `;
 
 export const NameBadgeWrapper = styled.div`
@@ -34,11 +34,15 @@ export const NameBadgeWrapper = styled.div`
 export const Name = styled.p`
   font-weight: 600;
   font-size: 1.125rem;
+  font-size: 1.25rem;
+  margin-bottom: 4px;
   color: ${pallete.scheme.black};
 `;
 
 export const Email = styled.a`
-  font-size: 0.85rem;
+  font-weight: 400;
+  font-size: 0.875rem;
+  margin-bottom: 11px;
   color: ${pallete.scheme.blue};
   text-decoration: none;
   &:hover {
@@ -47,17 +51,26 @@ export const Email = styled.a`
 `;
 
 export const Company = styled.p`
-  font-size: 0.8rem;
+  font-weight: 400;
+`;
+
+export const WorkerPosition = styled.span`
+  color: ${pallete.scheme.blue};
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  padding-bottom: 4px;
 `;
 
 export const IntroduceCard = styled.div`
   width: 100%;
   height: auto;
-  padding: 0.75rem;
-  margin-top: 1.25rem;
+  padding: 0.875rem;
+  margin-top: 1rem;
   background-color: ${pallete.scheme.gray};
   border-radius: 0.5rem;
   p {
+    margin-top: 4px;
     color: ${pallete.scheme.paragraph};
     font-size: 0.875rem;
     font-weight: 500;
@@ -69,10 +82,6 @@ export const WorkerButtonWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   gap: 0.8rem;
-`;
-
-export const WorkerPosition = styled.span`
-  color: ${pallete.scheme.blue};
 `;

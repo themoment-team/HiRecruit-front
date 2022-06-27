@@ -6,7 +6,7 @@ import { Button } from 'components/common/Button';
 import { WorkerProfileImage } from 'components/common/WorkerProfileImage';
 import { Tooltip } from 'components/common/Tooltip';
 
-import * as S from './Worker.styles';
+import * as S from './WorkerCard.styles';
 import { CheckBadge } from 'assets/icons/CheckBadge';
 
 interface WorkerCardProps {
@@ -80,11 +80,8 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
       </S.ProfileWrapper>
       {!!introduction && (
         <S.IntroduceCard>
-          <p>
-            <S.WorkerPosition>{`${devYear}년차 ${position}`}</S.WorkerPosition>
-            <br />
-            {introduction}
-          </p>
+          <S.WorkerPosition>{`${devYear}년차 ${position}`}</S.WorkerPosition>
+          <p>{introduction}</p>
         </S.IntroduceCard>
       )}
       <S.WorkerButtonWrapper>

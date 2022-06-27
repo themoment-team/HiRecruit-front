@@ -16,7 +16,7 @@ const pallete: Readonly<ColorTheme> = {
   scheme: {
     white: '#ffffff',
     black: '#000000',
-    gray: '#f4f4f4',
+    gray: '#fafafa',
     darkgray: '#888888',
     blue: '#3d9cf7',
     red: '#F31260',

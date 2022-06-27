@@ -83,7 +83,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
     <>
       <S.SideBar>
         <S.SideBarHeader>
-          <Logo logoColor="white" />
+          <Logo logoColor="blue" />
           {userRules === 'NO_AUTH_USER' ? (
             <S.SignUpAnchor onClick={() => handleAuth()}>
               회원가입/로그인
@@ -104,12 +104,14 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
             <SideBarButton
               calloutText="내 프로필을 등록해볼까요?"
               trigger={handleProfileRegister}
+              userRules="GUEST"
             />
           )}
           {userRules === 'WORKER' && (
             <SideBarButton
               calloutText="이제 멘토가 되어볼까요?"
               trigger={handleMentorRegister}
+              userRules="WORKER"
             />
           )}
           <WorkerList searchState={searchState} userRules={userRules} />

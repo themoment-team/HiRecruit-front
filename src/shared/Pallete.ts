@@ -6,6 +6,7 @@ type ColorToken =
   | 'blue'
   | 'red'
   | 'paragraph'
+  | 'green'
   | 'warning';
 
 type ColorTheme = {
@@ -22,6 +23,7 @@ const pallete: Readonly<ColorTheme> = {
     red: '#F31260',
     paragraph: '#333333',
     warning: '#F5A524',
+    green: '#83A9A0',
   },
 };
 

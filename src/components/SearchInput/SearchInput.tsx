@@ -3,10 +3,32 @@ import { useEffect, useRef } from 'react';
 
 import { Input as SearchInput } from 'components/common/Input';
 import { css } from '@emotion/react';
+import pallete from 'shared/Pallete';
+import { Magnifier } from 'assets/icons/Magnifier';
 
 interface SearchInputProps {
   setSearchState: React.Dispatch<React.SetStateAction<string>>;
 }
+
+const SvgCss = css`
+  position: absolute;
+  top: 2.125rem;
+  right: 1.5rem;
+  cursor: pointer;
+`;
+
+const InputCss = css`
+  height: 3.75rem;
+  width: 22rem;
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+  box-sizing: border-box;
+  border: 2px solid ${pallete.scheme.blue};
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 19px;
+`;
 
 export const SearchInputComponent: React.FC<SearchInputProps> = ({
   setSearchState,
@@ -45,16 +67,20 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
   }, [router.query.search]);
 
   return (
-    <SearchInput
+    <div
       css={css`
-        margin: 1.75rem 0;
-        margin-bottom: 0;
+        position: relative;
       `}
-      ref={inputEl}
-      type="text"
-      placeholder="이름 또는 회사로 검색"
-      onChange={handleSearch}
-      onBlur={handleQueryString}
-    />
+    >
+      <SearchInput
+        css={InputCss}
+        ref={inputEl}
+        type="text"
+        placeholder="이름 또는 회사로 검색"
+        onChange={handleSearch}
+        onBlur={handleQueryString}
+      />
+      <Magnifier css={SvgCss} />
+    </div>
   );
 };

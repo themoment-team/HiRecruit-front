@@ -5,7 +5,7 @@ import pallete from 'shared/Pallete';
 export const Button = styled.button`
   border: none;
   width: 100%;
-  height: 2.275rem;
+  height: 2.5rem;
   text-align: center;
   font-weight: 700;
   font-size: 0.9rem;

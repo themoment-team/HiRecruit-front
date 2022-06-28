@@ -17,7 +17,8 @@ export const SideBarButtonWrapper = styled.button<BgProps>`
   font-weight: 500;
   border: none;
   position: relative;
-  background-color: ${props => (props.GUEST ? '#EDF6FF' : '#F5FEF4')};
+  background-color: ${props =>
+    props.GUEST ? pallete.scheme.lightblue : pallete.scheme.lightgreen};
   color: ${props => (props.GUEST ? pallete.scheme.blue : pallete.scheme.green)};
   cursor: pointer;
   p {

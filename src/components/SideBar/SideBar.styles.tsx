@@ -13,7 +13,6 @@ export const SideBar = styled.div`
 
 export const SideBarWrapper = styled.div`
   width: 25rem;
-  padding: 0 1.5rem;
   height: calc(100vh - 3rem);
 `;
 

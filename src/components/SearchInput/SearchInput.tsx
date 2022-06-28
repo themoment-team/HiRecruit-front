@@ -25,6 +25,7 @@ const InputCss = css`
   box-sizing: border-box;
   border: 2px solid ${pallete.scheme.blue};
   border-radius: 0.5rem;
+  outline: none;
   font-size: 1rem;
   font-weight: 400;
   line-height: 19px;

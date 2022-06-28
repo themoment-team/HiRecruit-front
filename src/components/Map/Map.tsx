@@ -27,7 +27,7 @@ export const MapComponent: React.FC<MapProps> = ({ cookies }) => {
           position: 'fixed',
           width: 'calc(100vw - 28rem)',
           height: '94vh',
-          borderRadius: '50px',
+          borderRadius: '3.125rem',
           top: '1.85rem',
           right: '2.2rem',
         }}

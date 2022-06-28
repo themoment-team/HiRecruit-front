@@ -5,7 +5,6 @@ import pallete from 'shared/Pallete';
 export const SideBar = styled.div`
   position: fixed;
   top: 0;
-  left: 0.5rem;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -13,28 +12,20 @@ export const SideBar = styled.div`
 `;
 
 export const SideBarWrapper = styled.div`
-  width: 28rem;
-  padding: 0 3.125rem;
-  height: calc(100vh - 4rem);
-  border-top-left-radius: 0.875rem;
-  border-top-right-radius: 0.875rem;
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: saturate(180%) blur(20px);
+  width: 25rem;
+  padding: 0 1.5rem;
+  height: calc(100vh - 3rem);
 `;
 
 export const SideBarHeader = styled.header`
-  padding: 1rem;
+  padding: 1.5rem 1.5rem 0.75rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${pallete.scheme.blue};
-  border-bottom-left-radius: 0.875rem;
-  border-bottom-right-radius: 0.875rem;
-  backdrop-filter: saturate(180%) blur(20px);
 `;
 
 export const SignUpAnchor = styled.a`
-  color: ${pallete.scheme.white};
+  color: ${pallete.scheme.blue};
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;

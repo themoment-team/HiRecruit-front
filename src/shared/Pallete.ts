@@ -6,7 +6,10 @@ type ColorToken =
   | 'blue'
   | 'red'
   | 'paragraph'
-  | 'warning';
+  | 'green'
+  | 'warning'
+  | 'lightblue'
+  | 'lightgreen';
 
 type ColorTheme = {
   scheme: Record<ColorToken, `#${string}`>;
@@ -22,6 +25,9 @@ const pallete: Readonly<ColorTheme> = {
     red: '#F31260',
     paragraph: '#333333',
     warning: '#F5A524',
+    green: '#83A9A0',
+    lightblue: '#EDF6FF',
+    lightgreen: '#F5FEF4',
   },
 };
 

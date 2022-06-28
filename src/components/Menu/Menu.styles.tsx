@@ -7,7 +7,9 @@ export const MenuWrapper = styled.ul`
   padding: 0.5rem;
   position: absolute;
   top: 4.65rem;
-  left: 18rem;
+  left: 14.75rem;
+  box-sizing: border-box;
+  border: 2px solid ${pallete.scheme.blue};
   border-radius: 1rem;
   z-index: 10;
   display: flex;

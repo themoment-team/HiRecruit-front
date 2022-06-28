@@ -35,7 +35,7 @@ export const VerifyFormWrapper = styled.span`
   justify-content: center;
   align-items: center;
   background-color: ${pallete.scheme.white};
-  border-radius: 10px;
+  border-radius: 0.625rem;
   animation: ${boundInDown} 0.6s ease;
 `;
 

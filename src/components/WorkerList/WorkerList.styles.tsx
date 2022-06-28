@@ -3,9 +3,10 @@ import pallete from 'shared/Pallete';
 
 export const WorkerList = styled.div`
   width: 100%;
-  margin: 0 auto;
   padding-bottom: 1.5rem;
   height: calc(100% - 9.25rem);
+  margin: 0 auto;
+  padding: 0 1.5rem;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

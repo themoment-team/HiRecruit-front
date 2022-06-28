@@ -13,18 +13,18 @@ interface SearchInputProps {
 const SvgCss = css`
   position: absolute;
   top: 2.125rem;
-  right: 1.5rem;
+  right: 3rem;
   cursor: pointer;
 `;
 
 const InputCss = css`
   height: 3.75rem;
   width: 22rem;
-  margin-top: 1rem;
   padding-left: 1.5rem;
   box-sizing: border-box;
   border: 2px solid ${pallete.scheme.blue};
   margin: 1rem 1.5rem;
+  margin-bottom: 0;
   border-radius: 0.5rem;
   outline: none;
   font-size: 1rem;

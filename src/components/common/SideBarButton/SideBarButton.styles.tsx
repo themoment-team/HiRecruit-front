@@ -6,17 +6,16 @@ interface BgProps {
 }
 
 export const SideBarButtonWrapper = styled.button<BgProps>`
-  width: 100%;
+  width: calc(100% - 3rem);
   height: 2.875rem;
-  padding: 0 0.5rem 0 1rem;
-  margin-top: 1rem;
+  margin: 1rem 1.5rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
   border: none;
-  position: relative;
   background-color: ${props =>
     props.GUEST ? pallete.scheme.lightblue : pallete.scheme.lightgreen};
   color: ${props => (props.GUEST ? pallete.scheme.blue : pallete.scheme.green)};
@@ -24,8 +23,8 @@ export const SideBarButtonWrapper = styled.button<BgProps>`
   p {
     margin-left: 1rem;
   }
-  span {
-    position: absolute;
-    right: 0.5rem;
+  .text-wrapper {
+    display: flex;
+    align-items: center;
   }
 `;

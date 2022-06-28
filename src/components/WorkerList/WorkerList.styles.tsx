@@ -4,16 +4,16 @@ import pallete from 'shared/Pallete';
 export const WorkerList = styled.div`
   width: 100%;
   padding-bottom: 1.5rem;
-  height: calc(100% - 9.25rem);
+  height: calc(100vh - 14rem);
   margin: 0 auto;
   padding: 0 1.5rem;
+  padding-bottom: 1rem;
   overflow: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
     display: none;
   }
-  border-radius: 0.625rem 0.625rem 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;

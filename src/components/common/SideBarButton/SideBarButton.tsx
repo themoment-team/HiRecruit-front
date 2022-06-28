@@ -20,8 +20,10 @@ export const SideBarButtonComponent: React.FC<SideBarButtonProps> = ({
     <>
       {userRules === 'GUEST' && (
         <SideBarButtonWrapper GUEST onClick={() => trigger()}>
-          <Building />
-          <p>{calloutText}</p>
+          <span className="text-wrapper">
+            <Building />
+            <p>{calloutText}</p>
+          </span>
           <span>
             <RightArrow />
           </span>
@@ -29,8 +31,10 @@ export const SideBarButtonComponent: React.FC<SideBarButtonProps> = ({
       )}
       {userRules === 'WORKER' && (
         <SideBarButtonWrapper onClick={() => trigger()}>
-          <HumanHead />
-          <p>{calloutText}</p>
+          <span className="text-wrapper">
+            <HumanHead />
+            <p>{calloutText}</p>
+          </span>
           <span>
             <RightArrow color={pallete.scheme.green} />
           </span>

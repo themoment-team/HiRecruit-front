@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import toast from 'react-hot-toast';
+import { css } from '@emotion/react';
 
 import { SearchInput } from 'components/SearchInput';
 import { WorkerList } from 'components/WorkerList';
@@ -9,14 +10,11 @@ import { Menu } from 'components/Menu';
 import { Form } from 'components/Form';
 import { VerifyForm } from 'components/VerifyForm';
 import { SideBarButton } from 'components/common/SideBarButton';
-import { Burger } from 'assets/icons/Burger';
-import { Cancel } from 'assets/icons/Cancel';
-import { Logo } from 'assets/icons/Logo';
 
 import * as S from './SideBar.styles';
-import { handleAuth } from './container';
 import { UserRule } from 'types/site.type';
 import { EditForm } from 'components/EditForm';
+import { Header } from 'components/common/Header';
 
 interface SideBarProps {
   cookies: {
@@ -82,22 +80,11 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   return (
     <>
       <S.SideBar>
-        <S.SideBarHeader>
-          <Logo logoColor="blue" />
-          {userRules === 'NO_AUTH_USER' ? (
-            <S.SignUpAnchor onClick={() => handleAuth()}>
-              회원가입/로그인
-            </S.SignUpAnchor>
-          ) : (
-            <div
-              onClick={() => {
-                setMenuVisible(prev => !prev);
-              }}
-            >
-              {menuVisible ? <Cancel /> : <Burger />}
-            </div>
-          )}
-        </S.SideBarHeader>
+        <Header
+          userRules={userRules}
+          setMenuVisible={setMenuVisible}
+          menuVisible={menuVisible}
+        />
         <S.SideBarWrapper>
           <SearchInput setSearchState={setSearchState} />
           {userRules === 'GUEST' && (

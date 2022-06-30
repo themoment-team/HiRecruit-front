@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { Toaster } from 'react-hot-toast';
 import { SWRConfig } from 'swr';
 
-import styled from '@emotion/styled';
 import { MobileMap } from 'components/MobileMap';
 
 interface MobileProps {
@@ -11,12 +10,6 @@ interface MobileProps {
     [key: string]: string;
   };
 }
-
-const MobileWrapper = styled.main`
-  width: 31.25rem;
-  height: 100%;
-  margin: 0 auto;
-`;
 
 const Mobile: NextPage<MobileProps> = ({ cookies }) => {
   return (
@@ -35,9 +28,7 @@ const Mobile: NextPage<MobileProps> = ({ cookies }) => {
           revalidateOnFocus: false,
         }}
       >
-        <MobileWrapper>
-          <MobileMap cookies={cookies} />
-        </MobileWrapper>
+        <MobileMap cookies={cookies} />
       </SWRConfig>
       <Toaster />
     </>

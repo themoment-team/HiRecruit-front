@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import toast from 'react-hot-toast';
-import { css } from '@emotion/react';
 
 import { SearchInput } from 'components/SearchInput';
 import { WorkerList } from 'components/WorkerList';

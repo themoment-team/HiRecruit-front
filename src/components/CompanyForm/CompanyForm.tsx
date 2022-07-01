@@ -47,7 +47,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
 
   const onSubmit: SubmitHandler<InputListType> = data => {
     try {
-      if (!uriRegex.test(data.companyImgUri)) {
+      if (!uriRegex.test(previewCompanyImgUri)) {
         toast.error('지원하지 않는 이미지 주소 형식입니다.');
         return;
       }

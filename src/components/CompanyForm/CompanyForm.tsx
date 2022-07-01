@@ -54,7 +54,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
   const onSubmit: SubmitHandler<InputListType> = data => {
     try {
       imgValidation(data.companyImgUri);
-    } catch (error) {
+    } catch {
       toast.error('지원하지 않는 이미지 주소 형식이에요');
       return;
     }

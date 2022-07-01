@@ -29,7 +29,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
 }) => {
   const uriRegex =
     // eslint-disable-next-line no-useless-escape
-    /(http(s)?:\/\/|www.)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}([\/a-z0-9-%#?&=\w])+(\.[a-z0-9]{2,4}(\?[\/a-z0-9-%#?&=\w]+)*)*/gi;
+    /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
 
   const { register, handleSubmit, setValue } = useForm<InputListType>();
   const { mutate } = useSWRConfig();
@@ -45,16 +45,12 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
     setValue('companyLocation', address);
   }, [address]);
 
-  const imgValidation = (companyImgUri: string) => {
-    if (!uriRegex.test(companyImgUri)) {
-      toast.error('지원하지 않는 이미지 주소 형식입니다.');
-    }
-  };
-
   const onSubmit: SubmitHandler<InputListType> = data => {
     try {
-      imgValidation(data.companyImgUri);
-      return;
+      if (!uriRegex.test(data.companyImgUri)) {
+        toast.error('지원하지 않는 이미지 주소 형식입니다.');
+        return;
+      }
     } catch (error) {
       console.log(error);
     }

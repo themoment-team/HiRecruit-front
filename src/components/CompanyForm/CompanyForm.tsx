@@ -47,16 +47,15 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
 
   const imgValidation = (companyImgUri: string) => {
     if (!uriRegex.test(companyImgUri)) {
-      return true;
+      toast.error('지원하지 않는 이미지 주소 형식입니다.');
     }
   };
 
   const onSubmit: SubmitHandler<InputListType> = data => {
     try {
       imgValidation(data.companyImgUri);
-    } catch {
-      toast.error('지원하지 않는 이미지 주소 형식이에요');
-      return;
+    } catch (error) {
+      console.log(error);
     }
 
     // TODO: post 로직 고도화

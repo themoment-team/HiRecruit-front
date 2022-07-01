@@ -45,10 +45,14 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
     setValue('companyLocation', address);
   }, [address]);
 
-  const onSubmit: SubmitHandler<InputListType> = data => {
+  const regexValidation = (imgUrl: string) => {
+    return uriRegex.test(imgUrl);
+  };
+
+  const onSubmit: SubmitHandler<InputListType> = async data => {
     try {
-      if (!uriRegex.test(previewCompanyImgUri)) {
-        toast.error('지원하지 않는 이미지 주소 형식입니다.');
+      if (!regexValidation(data.companyImgUri)) {
+        await toast.error('지원하지 않는 이미지 주소 형식입니다.');
         return;
       }
     } catch (error) {

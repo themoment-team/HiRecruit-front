@@ -54,6 +54,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
   const onSubmit: SubmitHandler<InputListType> = data => {
     try {
       imgValidation(data.companyImgUri);
+      return;
     } catch (error) {
       console.log(error);
     }

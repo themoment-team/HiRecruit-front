@@ -69,7 +69,7 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
         mutate(companyUrl.getAllCompany());
       })
       .catch(function (error: AxiosError<{ message: string }>) {
-        console.log(error);
+        console.log(error.response?.status);
         if (error.response) {
           switch (error.response.status) {
             case 400:

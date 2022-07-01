@@ -45,13 +45,19 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
     setValue('companyLocation', address);
   }, [address]);
 
+  const imgValidation = (companyImgUri: string) => {
+    if (!uriRegex.test(companyImgUri)) {
+      return true;
+    }
+  };
+
   const onSubmit: SubmitHandler<InputListType> = data => {
-    if (!uriRegex.test(data.companyImgUri)) {
+    try {
+      imgValidation(data.companyImgUri);
+    } catch (error) {
       toast.error('지원하지 않는 이미지 주소 형식이에요');
       return;
     }
-
-    console.log('why ?');
 
     // TODO: post 로직 고도화
     const reqData: CompanyReqData = {

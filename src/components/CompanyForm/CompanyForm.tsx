@@ -51,6 +51,8 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
       return;
     }
 
+    console.log('why ?');
+
     // TODO: post 로직 고도화
     const reqData: CompanyReqData = {
       name: data.companyName,

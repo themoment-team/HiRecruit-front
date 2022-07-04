@@ -11,7 +11,7 @@ import axiosClient from 'libs/axios/axiosClient';
 import useCompanyList from 'hooks/api/company/use-company-list';
 
 import * as S from './EditForm.styles';
-import { InputListType, positionOptionList } from './container';
+import { handleLogout, InputListType, positionOptionList } from './container';
 import { userUrl, workerUrl } from 'libs/api/apiUrlControllers';
 import useWorker from 'hooks/api/worker/use-worker';
 import { Warning } from 'assets/icons/Warning';
@@ -60,9 +60,13 @@ export const EditFormComponent: React.FC<EditFormProps> = ({
     if (USER_TYPE === 'MENTOR' && HRSESSION) {
       setUserRules('MENTOR');
     }
-  });
+  }, []);
 
   const onSubmit: SubmitHandler<InputListType> = async data => {
+    axiosClient.get(workerUrl.getMeWorker()).catch(function () {
+      toast.error('로그인 정보가 일치하지 않아요\n자동으로 로그아웃 됩니다');
+      handleLogout();
+    });
     const userReqData: UserEditReqData = {
       name: data.name,
       email: data.email,
@@ -118,6 +122,18 @@ export const EditFormComponent: React.FC<EditFormProps> = ({
       });
   };
 
+  const handleCompanyRegister = () => {
+    axiosClient
+      .get(workerUrl.getMeWorker())
+      .then(function () {
+        setCompanyFormModalVisible(true);
+      })
+      .catch(function () {
+        toast.error('로그인 정보가 일치하지 않아요\n자동으로 로그아웃 됩니다');
+        handleLogout();
+      });
+  };
+
   return (
     <S.FormWrapper>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
@@ -152,11 +168,7 @@ export const EditFormComponent: React.FC<EditFormProps> = ({
             </>
           ))}
         </S.SelectInput>
-        <S.CompanyRegister
-          onClick={() => {
-            setCompanyFormModalVisible(true);
-          }}
-        >
+        <S.CompanyRegister onClick={() => handleCompanyRegister()}>
           <span>회사를 찾을 수 없나요?</span> 회사를 등록해주세요
         </S.CompanyRegister>
         <S.SelectInput

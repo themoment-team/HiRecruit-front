@@ -9,14 +9,16 @@ import { Menu } from 'components/Menu';
 import { Form } from 'components/Form';
 import { VerifyForm } from 'components/VerifyForm';
 import { SideBarButton } from 'components/common/SideBarButton';
+import { EditForm } from 'components/EditForm';
 import { Burger } from 'assets/icons/Burger';
 import { Cancel } from 'assets/icons/Cancel';
 import { Logo } from 'assets/icons/Logo';
+import axiosClient from 'libs/axios/axiosClient';
+import { workerUrl } from 'libs/api/apiUrlControllers';
+import { UserRule } from 'types/site.type';
 
 import * as S from './SideBar.styles';
-import { handleAuth } from './container';
-import { UserRule } from 'types/site.type';
-import { EditForm } from 'components/EditForm';
+import { handleAuth, handleLogout } from './container';
 
 interface SideBarProps {
   cookies: {
@@ -72,11 +74,39 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
   }, []);
 
   const handleProfileRegister = () => {
-    setModalVisible(true);
+    axiosClient
+      .get(workerUrl.getMeWorker())
+      .then(function () {
+        setModalVisible(true);
+      })
+      .catch(function () {
+        toast.error('로그인 정보가 일치하지 않아요\n자동으로 로그아웃 됩니다');
+        handleLogout();
+      });
   };
 
   const handleMentorRegister = () => {
-    setVerifyFormModalVisible(true);
+    axiosClient
+      .get(workerUrl.getMeWorker())
+      .then(function () {
+        setVerifyFormModalVisible(true);
+      })
+      .catch(function () {
+        toast.error('로그인 정보가 일치하지 않아요\n자동으로 로그아웃 됩니다');
+        handleLogout();
+      });
+  };
+
+  const handleMenuClick = () => {
+    axiosClient
+      .get(workerUrl.getMeWorker())
+      .then(function () {
+        setMenuVisible(true);
+      })
+      .catch(function () {
+        toast.error('로그인 정보가 일치하지 않아요\n자동으로 로그아웃 됩니다');
+        handleLogout();
+      });
   };
 
   return (
@@ -89,11 +119,7 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
               회원가입/로그인
             </S.SignUpAnchor>
           ) : (
-            <div
-              onClick={() => {
-                setMenuVisible(prev => !prev);
-              }}
-            >
+            <div onClick={() => handleMenuClick()}>
               {menuVisible ? <Cancel /> : <Burger />}
             </div>
           )}

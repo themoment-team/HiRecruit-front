@@ -34,3 +34,7 @@ export const positionOptionList = [
   '응용 프로그램',
   '블록 체인',
 ];
+
+export const handleLogout = () => {
+  window.location.href = process.env.baseUrl + '/api/v1/auth/logout';
+};

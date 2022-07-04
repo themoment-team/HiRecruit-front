@@ -19,6 +19,7 @@ import { UserRule } from 'types/site.type';
 
 import * as S from './SideBar.styles';
 import { handleAuth, handleLogout } from './container';
+import { Header } from 'components/common/Header';
 
 interface SideBarProps {
   cookies: {
@@ -124,6 +125,11 @@ export const SideBarComponent: React.FC<SideBarProps> = ({ cookies }) => {
             </div>
           )}
         </S.SideBarHeader>
+        <Header
+          userRules={userRules}
+          setMenuVisible={setMenuVisible}
+          menuVisible={menuVisible}
+        />
         <S.SideBarWrapper>
           <SearchInput setSearchState={setSearchState} />
           {userRules === 'GUEST' && (

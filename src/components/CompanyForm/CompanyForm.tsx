@@ -78,6 +78,11 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
             case 400:
               toast.error(error.response.data.message);
               break;
+            case 401:
+              toast.error(
+                '로그인 정보가 없어요\n새로고침 후 다시 한번 로그인 해주세요',
+              );
+              break;
             default:
               toast.error(
                 '알 수 없는 이유로 등록에 실패했어요\nhirecruit@gsm.hs.kr에 문의해주세요',

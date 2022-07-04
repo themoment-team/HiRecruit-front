@@ -15,10 +15,10 @@ import { PostCode } from 'components/common/Postcode';
 import { Warning } from 'assets/icons/Warning';
 import { CompanyReqData } from 'types/company.type';
 import axiosClient from 'libs/axios/axiosClient';
-import { companyUrl, workerUrl } from 'libs/api/apiUrlControllers';
+import { companyUrl } from 'libs/api/apiUrlControllers';
 
 import * as S from './CompanyForm.styles';
-import { handleLogout, InputListType } from './container';
+import { InputListType } from './container';
 
 interface CompanyFormProps {
   setCompanyFormModalVisible: Dispatch<SetStateAction<boolean>>;
@@ -46,11 +46,6 @@ export const CompanyFormComponent: React.FC<CompanyFormProps> = ({
   }, [address]);
 
   const onSubmit: SubmitHandler<InputListType> = data => {
-    axiosClient.get(workerUrl.getMeWorker()).catch(function () {
-      toast.error('로그인 정보가 일치하지 않아요\n자동으로 로그아웃 됩니다');
-      handleLogout();
-    });
-
     if (!uriRegex.test(data.companyImgUri)) {
       toast.error('지원하지 않는 이미지 주소 형식이에요');
       return;

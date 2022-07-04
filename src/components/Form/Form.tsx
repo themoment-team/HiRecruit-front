@@ -27,10 +27,6 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
   const { data } = useCompanyList();
 
   const onSubmit: SubmitHandler<InputListType> = async data => {
-    axiosClient.get(workerUrl.getMeWorker()).catch(function () {
-      toast.error('로그인 정보가 일치하지 않아요\n자동으로 로그아웃 됩니다');
-      handleLogout();
-    });
     // TODO: post 로직 고도화
     const reqData: WorkerReqData = {
       email: data.email,
@@ -79,9 +75,15 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
       .then(function () {
         setCompanyFormModalVisible(true);
       })
-      .catch(function () {
-        toast.error('로그인 정보가 일치하지 않아요\n자동으로 로그아웃 됩니다');
-        handleLogout();
+      .catch(function (error: AxiosError) {
+        if (error?.response?.status === 401) {
+          toast.error(
+            '로그인 정보가 일치하지 않아요\n자동으로 로그아웃 됩니다',
+          );
+          handleLogout();
+        } else {
+          setCompanyFormModalVisible(true);
+        }
       });
   };
 

@@ -66,20 +66,12 @@ export const EditFormComponent: React.FC<EditFormProps> = ({
     const userReqData: UserEditReqData = {
       name: data.name,
       email: data.email,
-      updateColumns: ['EMAIL', 'NAME'],
     };
     const workerReqData: WorkerEditReqData = {
       companyId: parseInt(data.companyId),
       devYear: parseInt(data.devYear),
       introduction: data.introduction,
       position: data.position,
-      updateColumns: [
-        'COMPANY_ID',
-        'INTRODUCTION',
-        'DEV_YEAR',
-        'GIVE_LINK',
-        'POSITION',
-      ],
     };
 
     axiosClient

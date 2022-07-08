@@ -12,6 +12,7 @@ export const SideBarButtonWrapper = styled.button<BgProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 1rem;
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 500;

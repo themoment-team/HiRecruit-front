@@ -17,6 +17,7 @@ import axiosClient from 'libs/axios/axiosClient';
 import { handleLogout } from './container';
 import { Menu } from 'components/Menu';
 import { EditForm } from 'components/EditForm';
+import { SearchInput } from 'components/SearchInput';
 
 interface BottomSheetProps {
   cookies: {
@@ -94,6 +95,7 @@ export const BottomSheetComponent: React.FC<BottomSheetProps> = ({
         menuVisible={false}
         setMenuVisible={() => console.log('herll')}
       />
+      <SearchInput setSearchState={setSearchState} />
       <BottomSheet
         open={true}
         blocking={false}

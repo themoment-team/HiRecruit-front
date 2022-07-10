@@ -30,6 +30,21 @@ const InputCss = css`
   font-size: 1rem;
   font-weight: 400;
   line-height: 19px;
+  @media (max-width: 500px) {
+    width: calc(100vw - 2.8rem);
+    height: 3rem;
+    position: fixed;
+    top: 6.4625rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    margin: 0;
+    padding-left: 1rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1rem;
+    box-shadow: 0px 4px 10px 0px #00000040;
+  }
 `;
 
 export const SearchInputComponent: React.FC<SearchInputProps> = ({
@@ -45,11 +60,11 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
   const handleQueryString = (e: React.FocusEvent<HTMLInputElement>) => {
     if (e.target.value === '') {
       router.replace({
-        pathname: '/',
+        pathname: router.pathname,
       });
     } else {
       router.replace({
-        pathname: `/`,
+        pathname: router.pathname,
         query: { search: e.target.value },
       });
     }

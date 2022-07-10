@@ -72,7 +72,7 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
 
   useEffect(() => {
     if (router.query.search === '') {
-      router.replace('/');
+      router.replace(router.pathname);
     }
     if (router.query.search && inputEl.current) {
       inputEl.current.focus();

@@ -15,6 +15,12 @@ const SvgCss = css`
   top: 2.125rem;
   right: 3rem;
   cursor: pointer;
+  @media (max-width: 500px) {
+    position: fixed;
+    top: 5.75rem;
+    right: 2rem;
+    z-index: 2;
+  }
 `;
 
 const InputCss = css`
@@ -40,6 +46,7 @@ const InputCss = css`
     z-index: 1;
     margin: 0;
     padding-left: 1rem;
+    padding-right: 2.5rem;
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1rem;

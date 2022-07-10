@@ -19,6 +19,10 @@ export const MenuWrapper = styled.ul`
   background: ${pallete.scheme.white};
   box-shadow: 0px 12px 20px 6px ${pallete.scheme.black + '08'};
   animation: ${flipX} 0.4s ease-in-out;
+  @media (max-width: 500px) {
+    left: initial;
+    right: 0.7rem;
+  }
 `;
 
 export const MenuListItem = styled.li`

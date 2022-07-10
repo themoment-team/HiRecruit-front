@@ -1,17 +1,22 @@
-import { SideBarButton } from 'components/common/SideBarButton';
-import { WorkerList } from 'components/WorkerList';
 import { useEffect, useState } from 'react';
 import { BottomSheet } from 'react-spring-bottom-sheet';
-import { UserRule } from 'types/site.type';
 import 'react-spring-bottom-sheet/dist/style.css';
-import { workerUrl } from 'libs/api/apiUrlControllers';
-import axiosClient from 'libs/axios/axiosClient';
 import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
-import { handleLogout } from './container';
+
+import { SideBarButton } from 'components/common/SideBarButton';
+import { WorkerList } from 'components/WorkerList';
 import { Modal } from 'components/common/Modal';
 import { Form } from 'components/Form';
 import { VerifyForm } from 'components/VerifyForm';
+import { Header } from 'components/common/Header';
+import { UserRule } from 'types/site.type';
+import { workerUrl } from 'libs/api/apiUrlControllers';
+import axiosClient from 'libs/axios/axiosClient';
+
+import { handleLogout } from './container';
+import { Menu } from 'components/Menu';
+import { EditForm } from 'components/EditForm';
 
 interface BottomSheetProps {
   cookies: {
@@ -22,12 +27,13 @@ interface BottomSheetProps {
 export const BottomSheetComponent: React.FC<BottomSheetProps> = ({
   cookies,
 }) => {
-  const [open, setOpen] = useState(true);
   const [userRules, setUserRules] = useState<UserRule>('NO_AUTH_USER');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [verifyFormModalVisible, setVerifyFormModalVisible] =
     useState<boolean>(false);
+  const [menuVisible, setMenuVisible] = useState<boolean>(false);
   const [searchState, setSearchState] = useState<string>('');
+  const [editModalVisible, setEditModalVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const { USER_TYPE, HRSESSION } = cookies;
@@ -83,9 +89,13 @@ export const BottomSheetComponent: React.FC<BottomSheetProps> = ({
 
   return (
     <>
-      <button onClick={() => setOpen(!open)}>{open ? 'CLOSE' : 'OPEN'}</button>
+      <Header
+        userRules={userRules}
+        menuVisible={false}
+        setMenuVisible={() => console.log('herll')}
+      />
       <BottomSheet
-        open={open}
+        open={true}
         blocking={false}
         snapPoints={({ maxHeight }) => [0.27 * maxHeight, maxHeight * 0.735]}
       >
@@ -113,6 +123,21 @@ export const BottomSheetComponent: React.FC<BottomSheetProps> = ({
       {verifyFormModalVisible && (
         <Modal setModalVisible={setVerifyFormModalVisible}>
           <VerifyForm setVerifyFormVisible={setVerifyFormModalVisible} />
+        </Modal>
+      )}
+      {menuVisible && (
+        <Menu
+          setMenuVisible={setMenuVisible}
+          setEditModalVisible={setEditModalVisible}
+          userRules={userRules}
+        />
+      )}
+      {editModalVisible && (
+        <Modal setModalVisible={setEditModalVisible}>
+          <EditForm
+            setEditFormVisible={setEditModalVisible}
+            cookies={cookies}
+          />
         </Modal>
       )}
     </>

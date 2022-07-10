@@ -5,7 +5,6 @@ export interface InputListType {
   devYear: string;
   introduction: string;
   position: string;
-  updateColumns: string[];
 }
 
 export const positionOptionList = [

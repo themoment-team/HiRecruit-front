@@ -33,10 +33,13 @@ export const NameBadgeWrapper = styled.div`
 
 export const Name = styled.p`
   font-weight: 600;
-  font-size: 1.125rem;
   font-size: 1.25rem;
   margin-bottom: 4px;
   color: ${pallete.scheme.black};
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Email = styled.a`
@@ -48,10 +51,19 @@ export const Email = styled.a`
   &:hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const Company = styled.p`
   font-weight: 400;
+  font-size: 1rem;
+
+  @media (max-width: 500px) {
+    font-size: 0.875rem;
+  }
 `;
 
 export const WorkerPosition = styled.span`
@@ -60,6 +72,9 @@ export const WorkerPosition = styled.span`
   font-weight: 500;
   line-height: 1.25;
   padding-bottom: 4px;
+  @media (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const IntroduceCard = styled.div`
@@ -75,6 +90,9 @@ export const IntroduceCard = styled.div`
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.25;
+    @media (max-width: 500px) {
+      font-size: 0.75rem;
+    }
   }
 `;
 

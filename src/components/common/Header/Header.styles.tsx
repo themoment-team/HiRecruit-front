@@ -9,6 +9,13 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 500px) {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: ${pallete.scheme.white};
+  }
 `;
 
 export const HeaderAnchor = styled.a`

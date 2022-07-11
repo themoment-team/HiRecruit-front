@@ -115,6 +115,11 @@ export const BottomSheetComponent: React.FC<BottomSheetProps> = ({
             userRules="WORKER"
           />
         )}
+        <SideBarButton
+          calloutText="내 프로필을 등록해볼까요?"
+          trigger={handleProfileRegister}
+          userRules="GUEST"
+        />
         <WorkerList searchState={searchState} userRules={userRules} />
       </BottomSheet>
       {modalVisible && (

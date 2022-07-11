@@ -28,4 +28,8 @@ export const SideBarButtonWrapper = styled.button<BgProps>`
     display: flex;
     align-items: center;
   }
+
+  @media (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;

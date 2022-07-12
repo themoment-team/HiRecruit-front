@@ -18,6 +18,9 @@ export const Input = styled(CommonInput)`
   &:focus {
     outline: none;
   }
+  @media (max-width: 500px) {
+    width: 12rem;
+  }
 `;
 
 export const VerifyFormHeader = styled.div`
@@ -37,6 +40,9 @@ export const VerifyFormWrapper = styled.span`
   background-color: ${pallete.scheme.white};
   border-radius: 0.625rem;
   animation: ${boundInDown} 0.6s ease;
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const VerifyForm = styled.form`
@@ -61,6 +67,9 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
   margin-top: 1rem;
   gap: 1rem;
+  @media (max-width: 500px) {
+    gap: 0.6rem;
+  }
 `;
 
 export const CancelButton = styled.button`
@@ -93,6 +102,9 @@ export const EmailButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  @media (max-width: 500px) {
+    gap: 0.6rem;
+  }
 `;
 
 export const EmailButton = styled(CommonButton)`
@@ -112,4 +124,7 @@ export const WarningText = styled.div`
   justify-content: flex-start;
   gap: 0.5rem;
   color: ${pallete.scheme.paragraph};
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 `;

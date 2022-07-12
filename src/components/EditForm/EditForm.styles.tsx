@@ -10,7 +10,7 @@ export const FormWrapper = styled.span`
   justify-content: center;
   align-items: center;
   background-color: ${pallete.scheme.white};
-  border-radius: 10px;
+  border-radius: 0.625px;
   animation: ${boundInDown} 0.6s ease;
 `;
 
@@ -104,4 +104,14 @@ export const Submit = styled.input`
   background-color: ${pallete.scheme.blue};
   border: none;
   cursor: pointer;
+`;
+
+export const WarningText = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 0.75rem;
+  font-size: 0.8rem;
+  gap: 0.5rem;
+  color: ${pallete.scheme.paragraph};
 `;

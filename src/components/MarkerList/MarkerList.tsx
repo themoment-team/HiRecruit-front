@@ -1,11 +1,14 @@
-import { CustomMapMarker } from 'components/CustomMapMarker';
-import useMapLevel from 'hooks/use-map-level';
 import {
   CustomOverlayMap,
   MapMarker,
   MarkerClusterer,
   useMap,
 } from 'react-kakao-maps-sdk';
+
+import { CustomMapMarker } from 'components/CustomMapMarker';
+import useMapLevel from 'hooks/use-map-level';
+import { useWindowSize } from 'hooks/use-window-size';
+import { useEffect } from 'react';
 
 interface MarkerListComponentProps {
   markers: any[];
@@ -16,6 +19,7 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
 }) => {
   const map = useMap();
   const level = useMapLevel(map);
+  const { width } = useWindowSize();
 
   const panTo = (lat: number, lng: number) => {
     if (map) {
@@ -26,19 +30,17 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
     }
   };
 
+  useEffect(() => {
+    console.log(width);
+  }, [width]);
+
   return (
     <MarkerClusterer
       averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
       minLevel={10} // 클러스터 할 최소 지도 레벨
     >
       {markers.map(marker =>
-        level > 3 ? (
-          <MapMarker
-            key={`${marker.position.lat}-${marker.position.lng}`}
-            position={marker.position}
-            onClick={() => panTo(marker.position.lat, marker.position.lng)}
-          />
-        ) : (
+        level <= 3 && width && width >= 500 ? (
           <CustomOverlayMap
             key={`${marker.position.lat}-${marker.position.lng}`}
             position={marker.position}
@@ -49,6 +51,12 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
               imageUri={marker.companyImgUri}
             />
           </CustomOverlayMap>
+        ) : (
+          <MapMarker
+            key={`${marker.position.lat}-${marker.position.lng}`}
+            position={marker.position}
+            onClick={() => panTo(marker.position.lat, marker.position.lng)}
+          />
         ),
       )}
     </MarkerClusterer>

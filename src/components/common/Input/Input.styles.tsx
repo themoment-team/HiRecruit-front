@@ -17,7 +17,6 @@ export const Input = styled.input`
     transition: opacity 0.18s;
   }
   &:focus {
-    outline: 2px solid ${pallete.scheme.blue};
     &::placeholder {
       opacity: 0;
     }

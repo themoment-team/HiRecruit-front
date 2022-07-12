@@ -7,7 +7,9 @@ export const MenuWrapper = styled.ul`
   padding: 0.5rem;
   position: absolute;
   top: 4.65rem;
-  left: 18rem;
+  left: 14.75rem;
+  box-sizing: border-box;
+  border: 2px solid ${pallete.scheme.blue};
   border-radius: 1rem;
   z-index: 10;
   display: flex;
@@ -17,6 +19,10 @@ export const MenuWrapper = styled.ul`
   background: ${pallete.scheme.white};
   box-shadow: 0px 12px 20px 6px ${pallete.scheme.black + '08'};
   animation: ${flipX} 0.4s ease-in-out;
+  @media (max-width: 500px) {
+    left: initial;
+    right: 0.7rem;
+  }
 `;
 
 export const MenuListItem = styled.li`

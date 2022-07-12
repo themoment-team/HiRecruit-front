@@ -45,7 +45,7 @@ export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
       <Button
         onClick={() => {
           router.push({
-            pathname: `/`,
+            pathname: router.pathname,
             query: { search: companyName },
           });
         }}

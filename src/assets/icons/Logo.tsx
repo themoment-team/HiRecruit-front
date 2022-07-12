@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import pallete from 'shared/Pallete';
 
-type logoColorToken = 'white' | 'black';
+type logoColorToken = 'white' | 'black' | 'blue';
 type logoSizeToken = 'small' | 'medium';
 
 interface LogoProps {
@@ -20,6 +20,8 @@ export const Logo: React.FC<React.SVGProps<SVGSVGElement> & LogoProps> = ({
         return pallete.scheme.white;
       case 'black':
         return pallete.scheme.black;
+      case 'blue':
+        return pallete.scheme.blue;
       default:
         return pallete.scheme.black;
     }
@@ -28,11 +30,11 @@ export const Logo: React.FC<React.SVGProps<SVGSVGElement> & LogoProps> = ({
   const { width, height } = useMemo(() => {
     switch (size) {
       case 'small':
-        return { width: '60', height: '24' };
+        return { width: '63', height: '25' };
       case 'medium':
         return { width: '100', height: '40' };
       default:
-        return { width: '60', height: '24' };
+        return { width: '63', height: '25' };
     }
   }, [size]);
 

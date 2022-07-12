@@ -11,7 +11,8 @@ import axiosClient from 'libs/axios/axiosClient';
 import useCompanyList from 'hooks/api/company/use-company-list';
 
 import * as S from './Form.styles';
-import { positionOptionList, InputListType } from './container';
+import { positionOptionList, InputListType, handleLogout } from './container';
+import { workerUrl } from 'libs/api/apiUrlControllers';
 
 interface SignUpFormProps {
   setSignUpFormVisible: Dispatch<SetStateAction<boolean>>;
@@ -68,6 +69,24 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
       });
   };
 
+  const handleCompanyRegister = () => {
+    axiosClient
+      .get(workerUrl.getMeWorker())
+      .then(function () {
+        setCompanyFormModalVisible(true);
+      })
+      .catch(function (error: AxiosError) {
+        if (error?.response?.status === 401) {
+          toast.error(
+            '로그인 정보가 일치하지 않아요\n자동으로 로그아웃 됩니다',
+          );
+          handleLogout();
+        } else {
+          setCompanyFormModalVisible(true);
+        }
+      });
+  };
+
   return (
     <S.FormWrapper>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
@@ -100,11 +119,7 @@ export const FormComponent: React.FC<SignUpFormProps> = ({
             </>
           ))}
         </S.SelectInput>
-        <S.CompanyRegister
-          onClick={() => {
-            setCompanyFormModalVisible(true);
-          }}
-        >
+        <S.CompanyRegister onClick={() => handleCompanyRegister()}>
           <span>회사를 찾을 수 없나요?</span> 회사를 등록해주세요
         </S.CompanyRegister>
         <S.SelectInput

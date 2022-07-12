@@ -92,8 +92,8 @@ export const BottomSheetComponent: React.FC<BottomSheetProps> = ({
     <>
       <Header
         userRules={userRules}
-        menuVisible={false}
-        setMenuVisible={() => console.log('herll')}
+        menuVisible={menuVisible}
+        setMenuVisible={setMenuVisible}
       />
       <SearchInput setSearchState={setSearchState} />
       <BottomSheet

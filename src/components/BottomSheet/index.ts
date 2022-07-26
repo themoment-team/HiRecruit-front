@@ -1,1 +1,1 @@
-export { BottomSheetComponent as BottomSheetComponent } from './BottomSheetComponent';
+export { BottomSheetComponent as BottomSheetComponent } from './BottomSheet';

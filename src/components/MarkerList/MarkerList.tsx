@@ -8,7 +8,6 @@ import {
 import { CustomMapMarker } from 'components/CustomMapMarker';
 import useMapLevel from 'hooks/use-map-level';
 import { useWindowSize } from 'hooks/use-window-size';
-import { useEffect } from 'react';
 
 interface MarkerListComponentProps {
   markers: any[];
@@ -29,10 +28,6 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
       map.panTo(moveCoord);
     }
   };
-
-  useEffect(() => {
-    console.log(width);
-  }, [width]);
 
   return (
     <MarkerClusterer

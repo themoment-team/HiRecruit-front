@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 
@@ -11,15 +11,15 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    if (windowSize.width) {
+    if (router.pathname !== '/site-state/inspection' && windowSize.width) {
       const { width } = windowSize;
 
-      if (width <= 500) {
-        router.push('/device/mobile');
+      if (width <= 500 && router.pathname !== '/device/mobile') {
+        window.location.href = '/device/mobile';
       }
 
-      if (width > 500) {
-        router.push('/');
+      if (width > 500 && router.pathname !== '/') {
+        window.location.href = '/';
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

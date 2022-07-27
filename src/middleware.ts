@@ -11,7 +11,11 @@ export async function middleware(req: NextRequest) {
   const { device } = userAgent(req);
   const viewport = device.type === 'mobile' ? 'mobile' : 'desktop';
 
-  if (siteState === 'INSPECTION' && pathname !== '/site-state/inspection') {
+  if (
+    process.env.SITE_ENV === 'production' &&
+    siteState === 'INSPECTION' &&
+    pathname !== '/site-state/inspection'
+  ) {
     return NextResponse.redirect(`${origin}/site-state/inspection`);
   } else {
     if (viewport === 'mobile' && pathname !== '/device/mobile') {

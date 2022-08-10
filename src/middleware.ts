@@ -20,13 +20,13 @@ export async function middleware(req: NextRequest) {
     pathname !== '/site-state/inspection'
   ) {
     return NextResponse.redirect(`${origin}/site-state/inspection`);
-  } else {
-    if (device.type === 'mobile' && pathname !== '/device/mobile') {
-      return NextResponse.redirect(`${origin}/device/mobile`);
-    } else {
-      return NextResponse.next();
-    }
   }
+
+  if (device.type === 'mobile' && pathname !== '/device/mobile') {
+    return NextResponse.redirect(`${origin}/device/mobile`);
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {

@@ -9,11 +9,10 @@ const getSiteState = async () => {
 };
 
 export async function middleware(req: NextRequest) {
-  const siteState = await getSiteState();
-
   const { pathname, origin } = req.nextUrl;
   const { device } = userAgent(req);
-  const viewport = device.type === 'mobile' ? 'mobile' : 'desktop';
+
+  const siteState = await getSiteState();
 
   if (
     process.env.SITE_ENV === 'production' &&
@@ -22,7 +21,7 @@ export async function middleware(req: NextRequest) {
   ) {
     return NextResponse.redirect(`${origin}/site-state/inspection`);
   } else {
-    if (viewport === 'mobile' && pathname !== '/device/mobile') {
+    if (device.type === 'mobile' && pathname !== '/device/mobile') {
       return NextResponse.redirect(`${origin}/device/mobile`);
     } else {
       return NextResponse.next();

@@ -19,6 +19,9 @@ export const CustomMapMarker = styled.div`
     border-width: 8px;
     border-color: ${pallete.scheme.white} transparent transparent transparent;
   }
+  &:hover {
+    z-index: 999;
+  }
 `;
 
 export const ProfileImage = styled.div`

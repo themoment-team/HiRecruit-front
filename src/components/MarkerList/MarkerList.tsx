@@ -32,17 +32,17 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
       {markers.map(marker =>
         level <= 3 && width && width >= 500 ? (
           <CustomMapMarker
+            key={marker.id}
             position={marker.position}
             companyName={marker.name}
             companyUri={marker.homepageUri}
             imageUri={marker.companyImgUri}
           />
         ) : (
-          <CustomMapMarker
+          <MapMarker
+            key={`${marker.position.lat}-${marker.position.lng}`}
             position={marker.position}
-            companyName={marker.name}
-            companyUri={marker.homepageUri}
-            imageUri={marker.companyImgUri}
+            onClick={() => panTo(marker.position.lat, marker.position.lng)}
           />
         ),
       )}

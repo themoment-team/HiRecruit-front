@@ -1,9 +1,4 @@
-import {
-  CustomOverlayMap,
-  MapMarker,
-  MarkerClusterer,
-  useMap,
-} from 'react-kakao-maps-sdk';
+import { MapMarker, MarkerClusterer, useMap } from 'react-kakao-maps-sdk';
 
 import { CustomMapMarker } from 'components/CustomMapMarker';
 import useMapLevel from 'hooks/use-map-level';
@@ -36,16 +31,13 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
     >
       {markers.map(marker =>
         level <= 3 && width && width >= 500 ? (
-          <CustomOverlayMap
-            key={`${marker.position.lat}-${marker.position.lng}`}
+          <CustomMapMarker
+            key={marker.id}
             position={marker.position}
-          >
-            <CustomMapMarker
-              companyName={marker.name}
-              companyUri={marker.homepageUri}
-              imageUri={marker.companyImgUri}
-            />
-          </CustomOverlayMap>
+            companyName={marker.name}
+            companyUri={marker.homepageUri}
+            imageUri={marker.companyImgUri}
+          />
         ) : (
           <MapMarker
             key={`${marker.position.lat}-${marker.position.lng}`}

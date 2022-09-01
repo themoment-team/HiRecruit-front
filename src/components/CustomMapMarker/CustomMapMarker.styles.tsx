@@ -7,7 +7,6 @@ export const CustomMapMarker = styled.div`
   padding: 0.75rem;
   background-color: ${pallete.scheme.white};
   border-radius: 0.75rem;
-  transform: translateY(calc(-50% - 8px));
   .stilettos {
     position: absolute;
     top: 100%;

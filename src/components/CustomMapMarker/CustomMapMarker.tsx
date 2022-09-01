@@ -4,6 +4,8 @@ import { Button } from 'components/common/Button';
 
 import * as S from './CustomMapMarker.styles';
 import { CustomOverlayMap } from 'react-kakao-maps-sdk';
+import { useState } from 'react';
+import { css } from '@emotion/react';
 
 interface MarkerProps {
   companyName: string;
@@ -22,13 +24,21 @@ export const CustomMapMarkerComponent: React.FC<MarkerProps> = ({
   position,
 }) => {
   const router = useRouter();
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
   return (
     <CustomOverlayMap
       key={`${position.lat}-${position.lng}`}
       position={position}
+      zIndex={isMouseOver ? 999 : 1}
+      css={css`
+        transform: translateY(calc(-50% - 8px));
+      `}
     >
-      <S.CustomMapMarker>
+      <S.CustomMapMarker
+        onMouseOver={() => setIsMouseOver(true)}
+        onMouseLeave={() => setIsMouseOver(false)}
+      >
         <div className="stilettos" />
         <S.ProfileImage>
           {imageUri ? (

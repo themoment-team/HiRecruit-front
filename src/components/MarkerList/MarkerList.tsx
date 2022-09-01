@@ -38,10 +38,11 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
             imageUri={marker.companyImgUri}
           />
         ) : (
-          <MapMarker
-            key={`${marker.position.lat}-${marker.position.lng}`}
+          <CustomMapMarker
             position={marker.position}
-            onClick={() => panTo(marker.position.lat, marker.position.lng)}
+            companyName={marker.name}
+            companyUri={marker.homepageUri}
+            imageUri={marker.companyImgUri}
           />
         ),
       )}

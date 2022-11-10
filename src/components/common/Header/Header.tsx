@@ -11,6 +11,7 @@ import { UserRule } from 'types/site.type';
 import * as S from './Header.styles';
 import { handleAuth, handleLogout } from './container';
 import { AxiosError } from 'axios';
+import Link from 'next/link';
 
 interface HeaderProps {
   userRules: UserRule;
@@ -43,7 +44,11 @@ export const HeaderComponent: React.FC<HeaderProps> = ({
 
   return (
     <S.Header>
-      <Logo logoColor="blue" />
+      <Link href="/" passHref>
+        <a>
+          <Logo logoColor="blue" />
+        </a>
+      </Link>
       {userRules === 'NO_AUTH_USER' ? (
         <S.HeaderAnchor onClick={() => handleAuth()}>
           회원가입/로그인

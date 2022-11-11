@@ -59,6 +59,7 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
 }) => {
   const router = useRouter();
   const inputEl = useRef<HTMLInputElement>(null);
+  const search = router.query['search'];
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchState(e.target.value);
@@ -76,6 +77,13 @@ export const SearchInputComponent: React.FC<SearchInputProps> = ({
       });
     }
   };
+
+  useEffect(() => {
+    if (!search) {
+      if (inputEl.current) inputEl.current.value = '';
+      setSearchState('');
+    }
+  }, [search]);
 
   useEffect(() => {
     if (router.query.search === '') {

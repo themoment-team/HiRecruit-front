@@ -8,6 +8,7 @@ import { Tooltip } from 'components/common/Tooltip';
 
 import * as S from './WorkerCard.styles';
 import { CheckBadge } from 'assets/icons/CheckBadge';
+import { RightArrow } from 'assets/icons/RightArrow';
 
 interface WorkerCardProps {
   name: string;
@@ -18,6 +19,7 @@ interface WorkerCardProps {
   devYear: number;
   position: string;
   userType: 'WORKER' | 'MENTOR';
+  companyLink: string;
   companyName: string;
   location: string;
 }
@@ -30,6 +32,7 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
   profileImgUri,
   devYear,
   position,
+  companyLink,
   companyName,
   location,
   userType,
@@ -75,7 +78,14 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
             )}
           </S.NameBadgeWrapper>
           <S.Email href={`mailto:${email}`}>{subString(email, 25)}</S.Email>
-          <S.Company>{subString(companyName, 18)}</S.Company>
+          <S.Company
+            href={companyLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {subString(companyName, 18)}
+            <RightArrow />
+          </S.Company>
         </S.ProfileParagraph>
       </S.ProfileWrapper>
       {!!introduction && (

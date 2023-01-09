@@ -57,12 +57,10 @@ export const Email = styled.a`
   }
 `;
 
-export const Company = styled.p`
+export const Company = styled.a`
   font-weight: 400;
   font-size: 1rem;
   color: #000000;
-  display: flex;
-  align-items: center;
 
   @media (max-width: 500px) {
     font-size: 0.875rem;

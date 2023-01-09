@@ -84,7 +84,6 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
             rel="noopener noreferrer"
           >
             {subString(companyName, 18)}
-            <RightArrow />
           </S.Company>
         </S.ProfileParagraph>
       </S.ProfileWrapper>

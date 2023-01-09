@@ -61,6 +61,7 @@ export const Company = styled.a`
   font-weight: 400;
   font-size: 1rem;
   color: #000000;
+  text-decoration: none;
 
   @media (max-width: 500px) {
     font-size: 0.875rem;

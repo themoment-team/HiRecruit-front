@@ -57,7 +57,7 @@ export const Email = styled.a`
   }
 `;
 
-export const Company = styled.a`
+export const CompanyLink = styled.a`
   font-weight: 400;
   font-size: 1rem;
   color: #000000;

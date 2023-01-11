@@ -18,6 +18,7 @@ import { handleLogout } from './container';
 import { Menu } from 'components/Menu';
 import { EditForm } from 'components/EditForm';
 import { SearchInput } from 'components/SearchInput';
+import { css } from '@emotion/react';
 
 interface BottomSheetProps {
   cookies: {
@@ -100,6 +101,15 @@ export const BottomSheetComponent: React.FC<BottomSheetProps> = ({
         open={true}
         blocking={false}
         snapPoints={({ maxHeight }) => [0.27 * maxHeight, maxHeight * 0.735]}
+        header={
+          <div
+            css={css`
+              height: 20px;
+              border: none;
+              box-shadow: none !important;
+            `}
+          ></div>
+        }
       >
         {userRules === 'GUEST' && (
           <SideBarButton

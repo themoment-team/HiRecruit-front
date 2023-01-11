@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { MarkerData } from 'types/marker.type';
 import useCompanyList from './api/company/use-company-list';
 
 const useMarker = (map: kakao.maps.Map | undefined) => {
-  const [markers, setMarkers] = useState<any[]>([]);
+  const [markers, setMarkers] = useState<MarkerData[]>([]);
   const { data } = useCompanyList();
 
   useEffect(() => {
@@ -14,11 +15,11 @@ const useMarker = (map: kakao.maps.Map | undefined) => {
     data.forEach(info => {
       gc.addressSearch(info.location, (result, status) => {
         if (status === kakao.maps.services.Status.OK) {
-          const coords = {
+          const coords: MarkerData = {
             ...info,
             position: {
-              lat: result[0].y,
-              lng: result[0].x,
+              lat: parseFloat(result[0].y),
+              lng: parseFloat(result[0].x),
             },
           };
 

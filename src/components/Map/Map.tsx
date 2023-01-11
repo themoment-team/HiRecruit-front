@@ -5,6 +5,7 @@ import useMarker from 'hooks/use-marker';
 import { SideBar } from 'components/SideBar';
 import { MarkerList } from 'components/MarkerList';
 import { Launcher } from 'components/Launcher';
+import defaultMapConfig from 'shared/DefaultMapConfig';
 
 interface MapProps {
   cookies: {
@@ -20,8 +21,8 @@ export const MapComponent: React.FC<MapProps> = ({ cookies }) => {
     <>
       <Map
         center={{
-          lat: 36.658563176254795,
-          lng: 127.86119616960151,
+          lat: defaultMapConfig.lat,
+          lng: defaultMapConfig.lng,
         }}
         style={{
           position: 'fixed',
@@ -32,7 +33,7 @@ export const MapComponent: React.FC<MapProps> = ({ cookies }) => {
           right: '2.2rem',
         }}
         onCreate={setMap}
-        level={12}
+        level={defaultMapConfig.level}
       >
         <MarkerList markers={markers} />
         <SideBar cookies={cookies} />

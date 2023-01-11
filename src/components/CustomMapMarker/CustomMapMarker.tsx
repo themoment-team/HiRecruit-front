@@ -10,7 +10,7 @@ import { css } from '@emotion/react';
 interface MarkerProps {
   companyName: string;
   companyUri: string;
-  imageUri: string;
+  imageUri?: string;
   position: {
     lat: number;
     lng: number;

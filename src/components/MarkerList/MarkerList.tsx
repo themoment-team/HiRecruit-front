@@ -3,9 +3,10 @@ import { MapMarker, MarkerClusterer, useMap } from 'react-kakao-maps-sdk';
 import { CustomMapMarker } from 'components/CustomMapMarker';
 import useMapLevel from 'hooks/use-map-level';
 import { useWindowSize } from 'hooks/use-window-size';
+import { MarkerData } from 'types/marker.type';
 
 interface MarkerListComponentProps {
-  markers: any[];
+  markers: MarkerData[];
 }
 
 export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
@@ -32,7 +33,7 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
       {markers.map(marker =>
         level <= 3 && width && width >= 500 ? (
           <CustomMapMarker
-            key={marker.id}
+            key={marker.companyId}
             position={marker.position}
             companyName={marker.name}
             companyUri={marker.homepageUri}
@@ -40,7 +41,7 @@ export const MarkerListComponent: React.FC<MarkerListComponentProps> = ({
           />
         ) : (
           <MapMarker
-            key={`${marker.position.lat}-${marker.position.lng}`}
+            key={marker.companyId}
             position={marker.position}
             onClick={() => panTo(marker.position.lat, marker.position.lng)}
           />

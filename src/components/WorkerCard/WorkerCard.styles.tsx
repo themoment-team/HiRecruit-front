@@ -11,11 +11,11 @@ export const WorkerCard = styled.button`
   cursor: pointer;
   text-align: start;
   border: none;
-  transform: translateY(0);
-  transition: transform 0.5s;
+  transform: scale(1);
+  transition: transform 0.3s;
   :hover {
-    transform: translateY(-10px);
-    transition: transform 0.5s;
+    transform: scale(0.978);
+    transition: transform 0.3s;
   }
 `;
 

@@ -35,10 +35,6 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
     }
   }, [searchState, initialWorkerList]);
 
-  const showCareer = (id: number) => {
-    setSelectId(selectId => (selectId === id ? null : id));
-  };
-
   return (
     <S.WorkerList
       css={
@@ -59,6 +55,7 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
         workerList?.map(info => (
           <WorkerCard
             key={info.workerId}
+            id={info.workerId}
             name={info.name}
             githubLoginId={info.githubLoginId}
             email={info.email}
@@ -70,7 +67,7 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
             companyName={info.company.name}
             location={info.company.location}
             isShowCareer={info.workerId === selectId}
-            showCareer={() => showCareer(info.workerId)}
+            setSelectId={setSelectId}
           />
         ))
       )}

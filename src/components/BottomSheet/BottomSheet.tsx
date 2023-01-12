@@ -104,7 +104,7 @@ export const BottomSheetComponent: React.FC<BottomSheetProps> = ({
         header={
           <div
             css={css`
-              height: 20px;
+              height: 5px;
               border: none;
               box-shadow: none !important;
             `}

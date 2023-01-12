@@ -2,12 +2,21 @@ import styled from '@emotion/styled';
 
 import pallete from 'shared/Pallete';
 
-export const WorkerCard = styled.div`
+export const WorkerCard = styled.button`
   width: 100%;
   border-radius: 0.625rem;
   padding: 1.75rem;
   background: ${pallete.scheme.white};
   box-shadow: 0px 4px 20px 0px #0000000f;
+  cursor: pointer;
+  text-align: start;
+  border: none;
+  transform: translateY(0);
+  transition: transform 0.5s;
+  :hover {
+    transform: translateY(-10px);
+    transition: transform 0.5s;
+  }
 `;
 
 export const ProfileWrapper = styled.div`

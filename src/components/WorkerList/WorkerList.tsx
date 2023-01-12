@@ -18,6 +18,7 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
 }) => {
   const { data: initialWorkerList } = useWorkerList();
   const [workerList, setWorkerList] = useState(initialWorkerList);
+  const [selectId, setSelectId] = useState<number | null>(null);
 
   useEffect(() => {
     if (!initialWorkerList) return;
@@ -33,6 +34,10 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
       );
     }
   }, [searchState, initialWorkerList]);
+
+  const showCareer = (id: number) => {
+    setSelectId(selectId => (selectId === id ? null : id));
+  };
 
   return (
     <S.WorkerList
@@ -64,6 +69,8 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
             userType={info.userType}
             companyName={info.company.name}
             location={info.company.location}
+            isShowCareer={info.workerId === selectId}
+            showCareer={() => showCareer(info.workerId)}
           />
         ))
       )}

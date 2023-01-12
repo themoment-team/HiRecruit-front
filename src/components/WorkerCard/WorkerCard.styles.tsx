@@ -2,15 +2,13 @@ import styled from '@emotion/styled';
 
 import pallete from 'shared/Pallete';
 
-export const WorkerCard = styled.button`
+export const WorkerCard = styled.div`
   width: 100%;
   border-radius: 0.625rem;
   padding: 1.75rem;
   background: ${pallete.scheme.white};
   box-shadow: 0px 4px 20px 0px #0000000f;
   cursor: pointer;
-  text-align: start;
-  border: none;
   transform: scale(1);
   transition: transform 0.3s;
   :hover {

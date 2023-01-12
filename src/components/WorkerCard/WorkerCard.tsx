@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useMap } from 'react-kakao-maps-sdk';
 
 import useCoord from 'hooks/use-coord';
@@ -10,6 +10,7 @@ import * as S from './WorkerCard.styles';
 import { CheckBadge } from 'assets/icons/CheckBadge';
 
 interface WorkerCardProps {
+  id: number;
   name: string;
   githubLoginId: string;
   email: string;
@@ -20,9 +21,12 @@ interface WorkerCardProps {
   userType: 'WORKER' | 'MENTOR';
   companyName: string;
   location: string;
+  isShowCareer: boolean;
+  setSelectId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
+const WorkerCard: React.FC<WorkerCardProps> = ({
+  id,
   name,
   githubLoginId,
   email,
@@ -33,6 +37,8 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
   companyName,
   location,
   userType,
+  isShowCareer,
+  setSelectId,
 }) => {
   const map = useMap();
   const [lat, lng] = useCoord(map, location);
@@ -50,8 +56,12 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
     }
   };
 
+  const clickWorkerCard = () => {
+    setSelectId(selectId => (selectId === id ? null : id));
+  };
+
   return (
-    <S.WorkerCard>
+    <S.WorkerCard onClick={clickWorkerCard}>
       <S.ProfileWrapper>
         <a
           target="_blank"
@@ -75,7 +85,10 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
             )}
           </S.NameBadgeWrapper>
           <S.Email href={`mailto:${email}`}>{subString(email, 25)}</S.Email>
-          <S.Company>{subString(companyName, 18)}</S.Company>
+          <S.Company>
+            {/*TODO : select시 경력 보이기 구현 */}
+            {isShowCareer ? 'select!' : subString(companyName, 18)}
+          </S.Company>
         </S.ProfileParagraph>
       </S.ProfileWrapper>
       {!!introduction && (
@@ -96,3 +109,5 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
     </S.WorkerCard>
   );
 };
+
+export const WorkerCardComponent = React.memo(WorkerCard);

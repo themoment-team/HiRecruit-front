@@ -4,6 +4,7 @@ import { MobileWrapper } from './Mobile.styles';
 import { Map } from 'react-kakao-maps-sdk';
 import useMarker from 'hooks/use-marker';
 import { MarkerList } from 'components/MarkerList';
+import defaultMapConfig from 'shared/DefaultMapConfig';
 
 interface MobileMapProps {
   cookies: {
@@ -19,15 +20,15 @@ export const MobileMapComponent: React.FC<MobileMapProps> = ({ cookies }) => {
     <MobileWrapper>
       <Map
         center={{
-          lat: 36.658563176254795,
-          lng: 127.86119616960151,
+          lat: defaultMapConfig.lat,
+          lng: defaultMapConfig.lng,
         }}
         style={{
           width: '100vw',
           height: '100vh',
         }}
         onCreate={setMap}
-        level={12}
+        level={defaultMapConfig.level}
       >
         <MarkerList markers={markers} />
         <BottomSheetComponent cookies={cookies} />

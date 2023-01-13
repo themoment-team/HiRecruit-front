@@ -32,6 +32,8 @@ export const LauncherButton = styled.button`
   font-weight: 600;
   font-size: 1.2rem;
   color: ${pallete.scheme.white};
+  transition: transform 0.2s ease-in-out;
+  transform: rotate(0deg);
 `;
 
 export const LauncherText = styled.p`

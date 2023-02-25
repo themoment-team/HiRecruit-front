@@ -12,6 +12,8 @@ import * as S from './Header.styles';
 import { handleAuth, handleLogout } from './container';
 import { AxiosError } from 'axios';
 import Link from 'next/link';
+import { useMap } from 'react-kakao-maps-sdk';
+import defaultMapConfig from 'shared/DefaultMapConfig';
 
 interface HeaderProps {
   userRules: UserRule;
@@ -24,6 +26,8 @@ export const HeaderComponent: React.FC<HeaderProps> = ({
   menuVisible,
   setMenuVisible,
 }) => {
+  const map = useMap();
+
   const handleMenuClick = () => {
     axiosClient
       .get(workerUrl.getMeWorker())
@@ -42,10 +46,20 @@ export const HeaderComponent: React.FC<HeaderProps> = ({
       });
   };
 
+  const clickLogo = () => {
+    const moveCoord = new kakao.maps.LatLng(
+      defaultMapConfig.lat,
+      defaultMapConfig.lng,
+    );
+
+    map.setLevel(defaultMapConfig.level);
+    map.panTo(moveCoord);
+  };
+
   return (
     <S.Header>
       <Link href="/" passHref>
-        <a>
+        <a onClick={clickLogo}>
           <Logo logoColor="blue" />
         </a>
       </Link>

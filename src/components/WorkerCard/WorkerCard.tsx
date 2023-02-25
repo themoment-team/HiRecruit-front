@@ -43,6 +43,8 @@ const WorkerCard: React.FC<WorkerCardProps> = ({
   const map = useMap();
   const [lat, lng] = useCoord(map, location);
 
+  const mockCareer = ['samsung', 'lg', 'sk'];
+
   const subString = useCallback((str: string, n: number): string => {
     return str?.length > n ? `${str.substring(0, n)}...` : str;
   }, []);
@@ -85,10 +87,17 @@ const WorkerCard: React.FC<WorkerCardProps> = ({
             )}
           </S.NameBadgeWrapper>
           <S.Email href={`mailto:${email}`}>{subString(email, 25)}</S.Email>
-          <S.Company>
-            {/*TODO : select시 경력 보이기 구현 */}
-            {isShowCareer ? 'select!' : subString(companyName, 18)}
-          </S.Company>
+          {isShowCareer ? (
+            mockCareer.map((career, index) => (
+              <S.Company key={index}>{subString(career, 18)}</S.Company>
+            ))
+          ) : (
+            <S.Company>{subString(companyName, 18)}</S.Company>
+          )}
+          {/* <S.Company> */}
+          {/*TODO : select시 경력 보이기 구현 */}
+          {/* {isShowCareer ? mockCareer.map(career => ) : subString(companyName, 18)} */}
+          {/* </S.Company> */}
         </S.ProfileParagraph>
       </S.ProfileWrapper>
       {!!introduction && (

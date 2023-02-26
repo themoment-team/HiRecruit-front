@@ -18,6 +18,7 @@ interface WorkerCardProps {
   devYear: number;
   position: string;
   userType: 'WORKER' | 'MENTOR';
+  companyLink: string;
   companyName: string;
   location: string;
 }
@@ -30,6 +31,7 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
   profileImgUri,
   devYear,
   position,
+  companyLink,
   companyName,
   location,
   userType,
@@ -75,7 +77,13 @@ export const WorkerCardComponent: React.FC<WorkerCardProps> = ({
             )}
           </S.NameBadgeWrapper>
           <S.Email href={`mailto:${email}`}>{subString(email, 25)}</S.Email>
-          <S.Company>{subString(companyName, 18)}</S.Company>
+          <S.CompanyLink
+            href={companyLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {subString(companyName, 18)}
+          </S.CompanyLink>
         </S.ProfileParagraph>
       </S.ProfileWrapper>
       {!!introduction && (

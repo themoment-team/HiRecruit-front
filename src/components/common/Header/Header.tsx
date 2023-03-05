@@ -11,6 +11,9 @@ import { UserRule } from 'types/site.type';
 import * as S from './Header.styles';
 import { handleAuth, handleLogout } from './container';
 import { AxiosError } from 'axios';
+import Link from 'next/link';
+import { useMap } from 'react-kakao-maps-sdk';
+import defaultMapConfig from 'shared/DefaultMapConfig';
 
 interface HeaderProps {
   userRules: UserRule;
@@ -23,6 +26,8 @@ export const HeaderComponent: React.FC<HeaderProps> = ({
   menuVisible,
   setMenuVisible,
 }) => {
+  const map = useMap();
+
   const handleMenuClick = () => {
     axiosClient
       .get(workerUrl.getMeWorker())
@@ -41,9 +46,23 @@ export const HeaderComponent: React.FC<HeaderProps> = ({
       });
   };
 
+  const clickLogo = () => {
+    const moveCoord = new kakao.maps.LatLng(
+      defaultMapConfig.lat,
+      defaultMapConfig.lng,
+    );
+
+    map.setLevel(defaultMapConfig.level);
+    map.panTo(moveCoord);
+  };
+
   return (
     <S.Header>
-      <Logo logoColor="blue" />
+      <Link href="/" passHref>
+        <a onClick={clickLogo}>
+          <Logo logoColor="blue" />
+        </a>
+      </Link>
       {userRules === 'NO_AUTH_USER' ? (
         <S.HeaderAnchor onClick={() => handleAuth()}>
           회원가입/로그인

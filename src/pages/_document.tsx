@@ -5,6 +5,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document';
+import Script from 'next/script';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -44,13 +45,18 @@ class MyDocument extends Document {
 
           <link
             rel="stylesheet"
-            type="text/css"
-            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+            as="style"
+            crossOrigin="anonymous"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable-dynamic-subset.css"
           />
         </Head>
         <body>
           <Main />
           <NextScript />
+          <Script
+            src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.mapApiKey}&libraries=services,clusterer&autoload=false`}
+            strategy="beforeInteractive"
+          />
         </body>
       </Html>
     );

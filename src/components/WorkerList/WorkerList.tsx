@@ -63,6 +63,7 @@ export const WorkerListComponent: React.FC<WorkerListProps> = ({
             position={info.position}
             userType={info.userType}
             companyName={info.company.name}
+            companyLink={info.company.homepageUri}
             location={info.company.location}
           />
         ))
